@@ -2,7 +2,14 @@
 
 const pokemonAPI = (() => {
     const main = document.querySelector(".main");
-    const url = `https://pokeapi.co/api/v2/pokemon/56`;
+    const colors = {
+        bug: "#68d391",
+        dark: "ccc",
+        dragon: "#81e6d9",
+        electric: "#faf089",
+        fairy: "#fc8181",
+        
+    }
 
     function createPokemon(pokemon) {
         console.log(pokemon);
@@ -20,21 +27,26 @@ const pokemonAPI = (() => {
             <section class="main-card-content">
                 <h3 class="main-card-content-num">#${pokeNum}</h3>
                 <p class="main-card-content-name">${pokeName}</p>
-                <p class="main-card-content-type">${pokeType}</p>
+                <p class="main-card-content-type">Type: ${pokeType}</p>
             </section>
             `;
         card.insertAdjacentHTML("afterbegin", cardHTML);
         main.append(card);
     }
 
+    async function getPokemon() {
+        for (let i = 1; i <= 100; i++) {
+            await fetchPokemon(i);
+        }
+    }
+
     async function fetchPokemon(id) {
         const url = `https://pokeapi.co/api/v2/pokemon/${id}`;
         const res = await fetch(url, { mode: "cors" });
+        const data = await res.json();
+        createPokemon(data);
     }
 
-    fetch(url, { mode: "cors" })
-        .then(res => res.json())
-        .then(data => createPokemon(data))
-        .catch(err => console.error(err));
+    getPokemon();
 
 })();
