@@ -24,7 +24,6 @@ const pokemonAPI = (() => {
     }
 
     function createPokemon(pokemon) {
-        console.log(pokemon);
         const pokeImg = pokemon.sprites.front_shiny;
         const pokeNum = pokemon.id.toString().padStart(3, "0");
         const pokeName = pokemon.name;
@@ -61,6 +60,6 @@ const pokemonAPI = (() => {
         createPokemon(data);
     }
 
-    getPokemon();
+    getPokemon().catch(err => console.error(err));
 
 })();
