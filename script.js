@@ -35,7 +35,7 @@ const pokemonAPI = (() => {
         const cardHTML = 
             `
             <figure class="main-card-fig">
-                <img class="main-card-fig-img" src="${pokeImg}"></img>
+                <img class="main-card-fig-img" src="${pokeImg}" alt="Pokemon character"></img>
             </figure>
             <section class="main-card-content">
                 <h3 class="main-card-content-num">#${pokeNum}</h3>
