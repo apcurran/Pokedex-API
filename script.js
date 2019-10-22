@@ -49,7 +49,7 @@ const pokemonAPI = (() => {
     }
 
     async function getPokemon() {
-        for (let i = 1; i <= 100; i++) {
+        for (let i = 1; i <= 150; i++) {
             await fetchPokemon(i);
         }
     }

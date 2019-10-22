@@ -5,7 +5,7 @@
 }
 
 html {
-    font-family: sans-serif;
+    font-family: 'Work Sans', sans-serif;
     letter-spacing: .02em;
 }
 
@@ -41,6 +41,7 @@ body {
 
     background-color: #eee;
     border-radius: 20px;
+    box-shadow: 0 6px 9px rgba(0,0,0, .175);
 }
 
 .main-card-content {
@@ -59,8 +60,8 @@ body {
 
 .main-card-fig-img {
     width: 100%;
-    transform: translateY(25%);
-    filter: drop-shadow(0 8px 6px rgba(0,0,0, .4));
+    transform: translateY(21%);
+    filter: drop-shadow(0 8px 5px rgba(0,0,0, .325));
 }
 
 .main-card-content-num,
@@ -69,7 +70,20 @@ body {
     margin: .2rem 0;
 }
 
+.main-card-content-num {
+    padding: .2rem .9rem;
+    font-size: .925rem;
+    font-weight: 400;
+    background-color: hsl(0, 0%, 98%);
+    border-radius: 500px;
+}
+
 .main-card-content-name {
     text-transform: uppercase;
-    letter-spacing: .06em;
+    letter-spacing: .05em;
+    font-size: 1.05rem;
+}
+
+.main-card-content-type {
+    font-size: .85rem;
 }
