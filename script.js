@@ -7,8 +7,20 @@ const pokemonAPI = (() => {
         dark: "ccc",
         dragon: "#81e6d9",
         electric: "#faf089",
-        fairy: "#fc8181",
-        
+        fairy: "#feb2b2",
+        fighting: "#f6ad55",
+        fire: "#fc8181",
+        flying: "#e2e8f0",
+        ghost: "#b794f4",
+        grass: "#c6f6d5",
+        ground: "#ecc94b",
+        ice: "#bee3f8",
+        normal: "#b2f5ea",
+        poison: "#d6bcfa",
+        psychic: "#fbb6ce",
+        rock: "#fbd38d",
+        steel: "#9ae6b4",
+        water: "#90cdf4"
     }
 
     function createPokemon(pokemon) {
@@ -17,8 +29,10 @@ const pokemonAPI = (() => {
         const pokeNum = pokemon.id.toString().padStart(3, "0");
         const pokeName = pokemon.name;
         const pokeType = pokemon.types[0].type.name;
+        const pokeColor = colors[pokeType];
         const card = document.createElement("article");
         card.classList.add("main-card");
+        card.style.backgroundColor = pokeColor;
         const cardHTML = 
             `
             <figure class="main-card-fig">
