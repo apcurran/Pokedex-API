@@ -1,6 +1,8 @@
 "use strict";
 
 const pokemonAPI = (() => {
+    if (document.body.id !== "home") return;
+
     const main = document.querySelector(".main");
     const colors = {
         bug: "#68d391",
@@ -45,6 +47,7 @@ const pokemonAPI = (() => {
             `;
         card.insertAdjacentHTML("afterbegin", cardHTML);
         main.append(card);
+        card.addEventListener("click", () => selectedPokemon(pokemon));
     }
 
     async function getPokemon() {
@@ -60,6 +63,19 @@ const pokemonAPI = (() => {
         createPokemon(data);
     }
 
+    function selectedPokemon(data) {
+        sessionStorage.setItem("selectedPokemon", JSON.stringify(data));
+        location = "pokecard.html";
+    }
+
     getPokemon().catch(err => console.error(err));
+
+})();
+
+const pokeCard = (() => {
+    if (document.body.id !== "poke-card-data") return;
+
+    console.log("Hello Poke Card!");
+
 
 })();
