@@ -82,30 +82,48 @@ const pokeCard = (() => {
         const pokeMain = document.querySelector(".poke-main");
         const convertedWeight = (pokeCardData.weight / 4.536).toFixed(2); // Convert hectograms to pounds
         const convertedHeight = (pokeCardData.height / 3.048).toFixed(2); // Convert decimeters to feet
-        const stat1Val = pokeCardData.stats[0].stat.base_stat;
-        const stat2Val = pokeCardData.stats[1].stat.base_stat;
+        const stat1Val = pokeCardData.stats[0].base_stat;
+        const stat2Val = pokeCardData.stats[1].base_stat;
+        const stat3Val = pokeCardData.stats[2].base_stat;
+        const stat4Val = pokeCardData.stats[3].base_stat;
+        const stat5Val = pokeCardData.stats[4].base_stat;
+        const stat6Val = pokeCardData.stats[5].base_stat;
 
         const pokeCardHTML = `
             <section class="poke-main-section">
                 <h1 class="poke-main-section-title">${pokeCardData.name}</h1>
                 <img class="poke-main-section-img" src="${pokeCardData.sprites.front_default}" alt="${pokeCardData.name} Pokemon">
-                <p>Weight: ${convertedWeight} lbs, Height: ${convertedHeight} ft</p>
-                <p class="poke-main-section-para">${pokeCardData.abilities[0].ability.name}</p>
-                <p class="poke-main-section-para">${pokeCardData.abilities[1].ability.name}</p>
-                <div class="poke-main-section-prog">
-                    <div class="poke-main-section-prog-bar" style="width: ${stat1Val}%"><small>100%</small></div>
+                <p class="poke-main-section-weight">Weight: ${convertedWeight} lbs, Height: ${convertedHeight} ft</p>
+                <div class="poke-main-section-abilities">
+                    <label class="poke-main-section-abilities-label">Abilities:</label>
+                    <div class="poke-main-section-abilities-field">
+                        <p class="poke-main-section-abilities-para">${pokeCardData.abilities[0].ability.name}</p>
+                        <p class="poke-main-section-abilities-para">${pokeCardData.abilities[1].ability.name}</p>
+                    </div>
                 </div>
+                <h3 class="poke-main-section-stat">${pokeCardData.stats[0].stat.name}</h3>
                 <div class="poke-main-section-prog">
-                    <div class="poke-main-section-prog-bar" style="width: ${stat1Val}%"><small>100%</small></div>
+                    <div class="poke-main-section-prog-bar" style="width: ${stat1Val}%"><small>${stat1Val}%</small></div>
                 </div>
+                <h3 class="poke-main-section-stat">${pokeCardData.stats[1].stat.name}</h3>
                 <div class="poke-main-section-prog">
-                    <div class="poke-main-section-prog-bar" style="width: ${stat1Val}%"><small>100%</small></div>
+                    <div class="poke-main-section-prog-bar" style="width: ${stat2Val}%"><small>${stat2Val}%</small></div>
                 </div>
+                <h3 class="poke-main-section-stat">${pokeCardData.stats[2].stat.name}</h3>
                 <div class="poke-main-section-prog">
-                    <div class="poke-main-section-prog-bar" style="width: ${stat1Val}%"><small>100%</small></div>
+                    <div class="poke-main-section-prog-bar" style="width: ${stat3Val}%"><small>${stat3Val}%</small></div>
                 </div>
+                <h3 class="poke-main-section-stat">${pokeCardData.stats[3].stat.name}</h3>
                 <div class="poke-main-section-prog">
-                    <div class="poke-main-section-prog-bar" style="width: ${stat1Val}%"><small>100%</small></div>
+                    <div class="poke-main-section-prog-bar" style="width: ${stat4Val}%"><small>${stat4Val}%</small></div>
+                </div>
+                <h3 class="poke-main-section-stat">${pokeCardData.stats[4].stat.name}</h3>
+                <div class="poke-main-section-prog">
+                    <div class="poke-main-section-prog-bar" style="width: ${stat5Val}%"><small>${stat5Val}%</small></div>
+                </div>
+                <h3 class="poke-main-section-stat">${pokeCardData.stats[5].stat.name}</h3>
+                <div class="poke-main-section-prog">
+                    <div class="poke-main-section-prog-bar" style="width: ${stat6Val}%"><small>${stat6Val}%</small></div>
                 </div>
             </section>
         `;

@@ -42,6 +42,7 @@ html {
     background-color: #eee;
     border-radius: 20px;
     box-shadow: 0 6px 9px rgba(0,0,0, .175);
+    cursor: pointer;
 }
 
 .main-card-content {
@@ -89,16 +90,32 @@ html {
 }
 
 /* Poke Card Page */
+
+.poke-main {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.poke-main-section {
+    flex: 1;
+    max-width: 60%;
+    padding: 3.5rem 2.5rem;
+    border-radius: 30px;
+    background-color: lightcoral;
+}
+
 .poke-main-section-prog {
     width: 15rem;
     height: 2rem;
-    margin-left: 2rem;
-    background-color: #cecece;
+    margin: 1rem;
+    background-color: #dedede;
     border-radius: 500px;
 }
 
 .poke-main-section-prog-bar {
-    background: lightblue;
+    background: #4c51bf;
     height: 100%;
     border-radius: 500px;
 }
@@ -107,4 +124,9 @@ html {
     display: flex;
     justify-content: center;
     align-items: center;
+    color: #fff;
+}
+
+.poke-main-section-abilities-field {
+
 }
