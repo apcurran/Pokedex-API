@@ -65,6 +65,7 @@ const pokemonAPI = (() => {
 
     function selectedPokemon(data) {
         sessionStorage.setItem("selectedPokemon", JSON.stringify(data));
+        // Send user to separate page for selected character
         location = "pokecard.html";
     }
 
@@ -75,7 +76,43 @@ const pokemonAPI = (() => {
 const pokeCard = (() => {
     if (document.body.id !== "poke-card-data") return;
 
-    console.log("Hello Poke Card!");
+    (function createPokeCardData() {
+        const pokeCardData = JSON.parse(sessionStorage.getItem("selectedPokemon"));
+        console.log(pokeCardData);
+        const pokeMain = document.querySelector(".poke-main");
+        const convertedWeight = (pokeCardData.weight / 4.536).toFixed(2); // Convert hectograms to pounds
+        const convertedHeight = (pokeCardData.height / 3.048).toFixed(2); // Convert decimeters to feet
+        const stat1Val = pokeCardData.stats[0].stat.base_stat;
+        const stat2Val = pokeCardData.stats[1].stat.base_stat;
 
+        const pokeCardHTML = `
+            <section class="poke-main-section">
+                <h1 class="poke-main-section-title">${pokeCardData.name}</h1>
+                <img class="poke-main-section-img" src="${pokeCardData.sprites.front_default}" alt="${pokeCardData.name} Pokemon">
+                <p>Weight: ${convertedWeight} lbs, Height: ${convertedHeight} ft</p>
+                <p class="poke-main-section-para">${pokeCardData.abilities[0].ability.name}</p>
+                <p class="poke-main-section-para">${pokeCardData.abilities[1].ability.name}</p>
+                <div class="poke-main-section-prog">
+                    <div class="poke-main-section-prog-bar" style="width: ${stat1Val}%"><small>100%</small></div>
+                </div>
+                <div class="poke-main-section-prog">
+                    <div class="poke-main-section-prog-bar" style="width: ${stat1Val}%"><small>100%</small></div>
+                </div>
+                <div class="poke-main-section-prog">
+                    <div class="poke-main-section-prog-bar" style="width: ${stat1Val}%"><small>100%</small></div>
+                </div>
+                <div class="poke-main-section-prog">
+                    <div class="poke-main-section-prog-bar" style="width: ${stat1Val}%"><small>100%</small></div>
+                </div>
+                <div class="poke-main-section-prog">
+                    <div class="poke-main-section-prog-bar" style="width: ${stat1Val}%"><small>100%</small></div>
+                </div>
+            </section>
+        `;
+
+        pokeMain.insertAdjacentHTML("afterbegin", pokeCardHTML);
+
+        
+    })();
 
 })();

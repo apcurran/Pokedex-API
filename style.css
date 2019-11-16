@@ -9,7 +9,7 @@ html {
     letter-spacing: .02em;
 }
 
-body {
+.home {
     margin-top: 3rem;
     display: flex;
     align-items: center;
@@ -86,4 +86,25 @@ body {
 
 .main-card-content-type {
     font-size: .85rem;
+}
+
+/* Poke Card Page */
+.poke-main-section-prog {
+    width: 15rem;
+    height: 2rem;
+    margin-left: 2rem;
+    background-color: #cecece;
+    border-radius: 500px;
+}
+
+.poke-main-section-prog-bar {
+    background: lightblue;
+    height: 100%;
+    border-radius: 500px;
+}
+
+.poke-main-section-prog-bar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
