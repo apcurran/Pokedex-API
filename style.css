@@ -53,15 +53,18 @@ html {
 }
 
 .main-card-fig {
-    width: 7rem;
-    height: 7rem;
+    width: 9rem;
+    height: 9rem;
+    display: flex;
+    justify-content: center;
     border-radius: 50%;
     background-color: hsl(0, 0%, 98%);
 }
 
 .main-card-fig-img {
-    width: 100%;
-    transform: translateY(21%);
+    width: 70%;
+    height: 70%;
+    transform: translateY(50%);
     filter: drop-shadow(0 8px 5px rgba(0,0,0, .325));
 }
 

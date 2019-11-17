@@ -37,7 +37,7 @@ const pokemonAPI = (() => {
         const cardHTML = 
             `
             <figure class="main-card-fig">
-                <img class="main-card-fig-img" src="${pokeImg}" alt="Pokemon character"></img>
+                <img class="main-card-fig-img" src="https://pokeres.bastionbot.org/images/pokemon/${pokemon.id}.png" alt="Pokemon character"></img>
             </figure>
             <section class="main-card-content">
                 <h3 class="main-card-content-num">#${pokeNum}</h3>
@@ -94,7 +94,7 @@ const pokeCard = (() => {
             <section class="poke-main-section">
                 <section class="poke-main-section-data">
                     <h1 class="poke-main-section-data-title">${pokeCardData.name}</h1>
-                    <img class="poke-main-section-data-img" src="${pokeCardData.sprites.front_default}" alt="${pokeCardData.name} Pokemon">
+                    <img class="poke-main-section-data-img" src="https://pokeres.bastionbot.org/images/pokemon/${pokeCardData.id}.png" alt="${pokeCardData.name} Pokemon">
                     <p class="poke-main-section-data-body">Weight: ${convertedWeight} lbs</p>
                     <p class="poke-main-section-data-body">Height: ${convertedHeight} ft</p>
                     <div class="poke-main-section-data-abilities">
