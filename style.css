@@ -113,7 +113,7 @@ html {
     padding: 3.5rem 2.5rem;
     border-radius: 30px;
     background-color: hsl(204, 45%, 99%);
-    box-shadow: 0 9px 22px -4px rgba(0,0,0, .2);
+    box-shadow: 0 9px 22px -4px rgba(0,0,0, .225);
 }
 
 .poke-main-section-data-title {
@@ -127,6 +127,10 @@ html {
 
 .poke-main-section-data-abilities-title span {
     font-size: 1rem;
+}
+
+.poke-main-section-data-img {
+    width: 75%;
 }
 
 .poke-main-section-stats-title {

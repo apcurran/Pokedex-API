@@ -26,7 +26,6 @@ const pokemonAPI = (() => {
     }
 
     function createPokemon(pokemon) {
-        const pokeImg = pokemon.sprites.front_shiny;
         const pokeNum = pokemon.id.toString().padStart(3, "0");
         const pokeName = pokemon.name;
         const pokeType = pokemon.types[0].type.name;
