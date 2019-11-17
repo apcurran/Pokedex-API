@@ -80,6 +80,7 @@ const pokeCard = (() => {
         const pokeCardData = JSON.parse(sessionStorage.getItem("selectedPokemon"));
         console.log(pokeCardData);
         const pokeMain = document.querySelector(".poke-main");
+
         const convertedWeight = (pokeCardData.weight / 4.536).toFixed(2); // Convert hectograms to pounds
         const convertedHeight = (pokeCardData.height / 3.048).toFixed(2); // Convert decimeters to feet
         const stat1Val = pokeCardData.stats[0].base_stat;
@@ -91,46 +92,46 @@ const pokeCard = (() => {
 
         const pokeCardHTML = `
             <section class="poke-main-section">
-                <h1 class="poke-main-section-title">${pokeCardData.name}</h1>
-                <img class="poke-main-section-img" src="${pokeCardData.sprites.front_default}" alt="${pokeCardData.name} Pokemon">
-                <p class="poke-main-section-weight">Weight: ${convertedWeight} lbs, Height: ${convertedHeight} ft</p>
-                <div class="poke-main-section-abilities">
-                    <label class="poke-main-section-abilities-label">Abilities:</label>
-                    <div class="poke-main-section-abilities-field">
-                        <p class="poke-main-section-abilities-para">${pokeCardData.abilities[0].ability.name}</p>
-                        <p class="poke-main-section-abilities-para">${pokeCardData.abilities[1].ability.name}</p>
+                <section class="poke-main-section-data">
+                    <h1 class="poke-main-section-data-title">${pokeCardData.name}</h1>
+                    <img class="poke-main-section-data-img" src="${pokeCardData.sprites.front_default}" alt="${pokeCardData.name} Pokemon">
+                    <p class="poke-main-section-data-body">Weight: ${convertedWeight} lbs</p>
+                    <p class="poke-main-section-data-body">Height: ${convertedHeight} ft</p>
+                    <div class="poke-main-section-data-abilities">
+                        <h3 class="poke-main-section-data-abilities-title">Ability: <span>${pokeCardData.abilities[0].ability.name}</span></h3>
                     </div>
-                </div>
-                <h3 class="poke-main-section-stat">${pokeCardData.stats[0].stat.name}</h3>
-                <div class="poke-main-section-prog">
-                    <div class="poke-main-section-prog-bar" style="width: ${stat1Val}%"><small>${stat1Val}%</small></div>
-                </div>
-                <h3 class="poke-main-section-stat">${pokeCardData.stats[1].stat.name}</h3>
-                <div class="poke-main-section-prog">
-                    <div class="poke-main-section-prog-bar" style="width: ${stat2Val}%"><small>${stat2Val}%</small></div>
-                </div>
-                <h3 class="poke-main-section-stat">${pokeCardData.stats[2].stat.name}</h3>
-                <div class="poke-main-section-prog">
-                    <div class="poke-main-section-prog-bar" style="width: ${stat3Val}%"><small>${stat3Val}%</small></div>
-                </div>
-                <h3 class="poke-main-section-stat">${pokeCardData.stats[3].stat.name}</h3>
-                <div class="poke-main-section-prog">
-                    <div class="poke-main-section-prog-bar" style="width: ${stat4Val}%"><small>${stat4Val}%</small></div>
-                </div>
-                <h3 class="poke-main-section-stat">${pokeCardData.stats[4].stat.name}</h3>
-                <div class="poke-main-section-prog">
-                    <div class="poke-main-section-prog-bar" style="width: ${stat5Val}%"><small>${stat5Val}%</small></div>
-                </div>
-                <h3 class="poke-main-section-stat">${pokeCardData.stats[5].stat.name}</h3>
-                <div class="poke-main-section-prog">
-                    <div class="poke-main-section-prog-bar" style="width: ${stat6Val}%"><small>${stat6Val}%</small></div>
-                </div>
+                </section>
+                <section class="poke-main-section-stats">
+                    <h3 class="poke-main-section-stats-title">${pokeCardData.stats[0].stat.name}</h3>
+                    <div class="poke-main-section-stats-prog">
+                        <div class="poke-main-section-stats-prog-bar" style="width: ${stat1Val}%"><small>${stat1Val}%</small></div>
+                    </div>
+                    <h3 class="poke-main-section-stats-title">${pokeCardData.stats[1].stat.name}</h3>
+                    <div class="poke-main-section-stats-prog">
+                        <div class="poke-main-section-stats-prog-bar" style="width: ${stat2Val}%"><small>${stat2Val}%</small></div>
+                    </div>
+                    <h3 class="poke-main-section-stats-title">${pokeCardData.stats[2].stat.name}</h3>
+                    <div class="poke-main-section-stats-prog">
+                        <div class="poke-main-section-stats-prog-bar" style="width: ${stat3Val}%"><small>${stat3Val}%</small></div>
+                    </div>
+                    <h3 class="poke-main-section-stats-title">${pokeCardData.stats[3].stat.name}</h3>
+                    <div class="poke-main-section-stats-prog">
+                        <div class="poke-main-section-stats-prog-bar" style="width: ${stat4Val}%"><small>${stat4Val}%</small></div>
+                    </div>
+                    <h3 class="poke-main-section-stats-title">${pokeCardData.stats[4].stat.name}</h3>
+                    <div class="poke-main-section-stats-prog">
+                        <div class="poke-main-section-stats-prog-bar" style="width: ${stat5Val}%"><small>${stat5Val}%</small></div>
+                    </div>
+                    <h3 class="poke-main-section-stats-title">${pokeCardData.stats[5].stat.name}</h3>
+                    <div class="poke-main-section-stats-prog">
+                        <div class="poke-main-section-stats-prog-bar" style="width: ${stat6Val}%"><small>${stat6Val}%</small></div>
+                    </div>
+                </section>
             </section>
         `;
 
         pokeMain.insertAdjacentHTML("afterbegin", pokeCardHTML);
-
-        
+  
     })();
 
 })();
