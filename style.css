@@ -133,6 +133,14 @@ html {
     width: 75%;
 }
 
+.poke-main-section-data-body:first-of-type {
+    margin-top: 2rem;
+}
+
+.poke-main-section-data-body {
+    margin: 1rem 0;
+}
+
 .poke-main-section-stats-title {
     margin-bottom: .75rem;
     text-transform: uppercase;
