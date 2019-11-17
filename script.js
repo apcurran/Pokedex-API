@@ -66,7 +66,7 @@ const pokemonAPI = (() => {
     function selectedPokemon(data) {
         sessionStorage.setItem("selectedPokemon", JSON.stringify(data));
         // Send user to separate page for selected character
-        location = "pokecard.html";
+        location = "poke-card.html";
     }
 
     getPokemon().catch(err => console.error(err));
