@@ -193,9 +193,7 @@ html {
 }
 
 @media screen and (max-width: 34.25em) {
-    .poke-main-section {
-        margin: 1.5rem;
-    }
+    .poke-main-section { margin: 1.5rem; }
 }
 
 @media screen and (max-width: 26.5em) {
@@ -212,6 +210,3 @@ html {
         margin-bottom: 1.5rem;
     }
 }
-
-
-

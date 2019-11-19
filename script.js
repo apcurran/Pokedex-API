@@ -69,7 +69,6 @@ const pokemonAPI = (() => {
     }
 
     getPokemon().catch(err => console.error(err));
-
 })();
 
 const pokeCard = (() => {
@@ -133,7 +132,6 @@ const pokeCard = (() => {
         `;
 
         pokeMain.insertAdjacentHTML("afterbegin", pokeCardHTML);
-  
     })();
 
 })();
