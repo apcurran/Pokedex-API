@@ -75,9 +75,12 @@ const pokemonAPI = (() => {
 const pokeCard = (() => {
     if (document.body.id !== "poke-card-data") return;
 
+    function capInitialLetter(str) {
+        return str[0].toUpperCase() + str.slice(1);
+    }
+    
     (function createPokeCardData() {
         const pokeCardData = JSON.parse(sessionStorage.getItem("selectedPokemon"));
-        console.log(pokeCardData);
         const pokeMain = document.querySelector(".poke-main");
 
         const convertedWeight = (pokeCardData.weight / 4.536).toFixed(2); // Convert hectograms to pounds
@@ -97,7 +100,7 @@ const pokeCard = (() => {
                     <p class="poke-main-section-data-body">Weight: ${convertedWeight} lbs</p>
                     <p class="poke-main-section-data-body">Height: ${convertedHeight} ft</p>
                     <div class="poke-main-section-data-abilities">
-                        <h3 class="poke-main-section-data-abilities-title">Ability: <span>${pokeCardData.abilities[0].ability.name}</span></h3>
+                        <p class="poke-main-section-data-abilities-title">Ability: <span>${capInitialLetter(pokeCardData.abilities[0].ability.name)}</span></p>
                     </div>
                 </section>
                 <section class="poke-main-section-stats">

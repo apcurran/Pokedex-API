@@ -130,6 +130,7 @@ html {
 }
 
 .poke-main-section-data-img {
+    margin-top: 1.5rem;
     width: 75%;
 }
 
@@ -165,3 +166,52 @@ html {
 
     color: #fff;
 }
+
+@media screen and (max-width: 80em) {
+    .poke-main-section { max-width: 90%; }
+}
+
+@media screen and (max-width: 46em) {
+    .poke-main-section {
+        margin: 3rem;
+        grid-template-columns: 1fr;
+    }
+
+    .poke-main-section-data {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .poke-main-section-data-img,
+    .poke-main-section-data-title { align-self: center; }
+
+    .poke-main-section-data-body,
+    .poke-main-section-data-abilities {
+        margin-top: 1rem;
+        margin-bottom: 0;
+    }
+}
+
+@media screen and (max-width: 34.25em) {
+    .poke-main-section {
+        margin: 1.5rem;
+    }
+}
+
+@media screen and (max-width: 26.5em) {
+    .poke-main-section {
+        margin: 1.5rem;
+        padding: 2.5rem 2rem;
+    }
+    
+    .poke-main-section-stats-title { margin-bottom: .25rem; }
+
+    .poke-main-section-stats-prog {
+        width: 13.5rem;
+        height: 1.5rem;
+        margin-bottom: 1.5rem;
+    }
+}
+
+
+
