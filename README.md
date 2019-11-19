@@ -3,6 +3,10 @@ Pokedex API
 
 Project [link](https://apcurran.github.io/Pokedex-API/)
 
+![Pokedex](https://github.com/apcurran/Pokedex-API/blob/master/src/images/README-img1.jpg)
+
+![Pokedex](https://github.com/apcurran/Pokedex-API/blob/master/src/images/README-img2.jpg)
+
 ## Features:
 
 * Vanilla JS functionality includes:
