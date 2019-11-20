@@ -14,12 +14,24 @@ html {
     display: flex;
     align-items: center;
     flex-direction: column;
+    min-height: 100vh;
 
     background: linear-gradient(to bottom, #fff, #eaeaea);
 }
 
-.main-title {
+.home-title {
     margin-bottom: 2rem;
+}
+
+.home-form {
+    width: 20rem;
+    max-width: 90%;
+}
+
+.home-form-search {
+    width: 100%;
+    padding: .4rem;
+    font-size: 1rem;
 }
 
 .main {

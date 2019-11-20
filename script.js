@@ -31,7 +31,7 @@ const pokemonAPI = (() => {
         const pokeType = pokemon.types[0].type.name;
         const pokeColor = colors[pokeType];
         const card = document.createElement("article");
-        card.classList.add("main-card");
+        card.classList.add("main-card", `${pokeName}`);
         card.style.backgroundColor = pokeColor;
         const cardHTML = 
             `
@@ -134,4 +134,29 @@ const pokeCard = (() => {
         pokeMain.insertAdjacentHTML("afterbegin", pokeCardHTML);
     })();
 
+})();
+
+
+const searchFilter = (() => {
+    if (document.body.id !== "home") return;
+
+    const searchInput = document.forms.search.elements.input;
+
+    function getMatches(event) {
+        const searchTerm = searchInput.value.toLowerCase();
+        const pokeCards = document.querySelectorAll(".main-card");
+
+        for (const card of pokeCards) {
+            const title = card.querySelector(".main-card-content-name").textContent;
+            const regex = new RegExp(`^${searchTerm}`, "gi"); // Match the word beginning with searchTerm
+
+            if (title.match(regex)) {
+                card.style.display = "flex";
+            } else {
+                card.style.display = "none";
+            }
+        }
+    }
+
+    searchInput.addEventListener("keyup", getMatches);
 })();
