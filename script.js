@@ -156,6 +156,7 @@ const searchFilter = (() => {
                 card.style.display = "none";
             }
         }
+
     }
 
     searchInput.addEventListener("keyup", getMatches);

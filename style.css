@@ -17,7 +17,7 @@ input {
     flex-direction: column;
     min-height: 100vh;
 
-    background-color: #fefefe;;
+    background-color: hsl(204, 45%, 99%);
 }
 
 .home-title {
@@ -26,7 +26,7 @@ input {
 
 .home-form {
     width: 20rem;
-    max-width: 85%;
+    max-width: 80%;
     margin-bottom: 2rem;
     display: flex;
 }
@@ -40,13 +40,11 @@ input {
     border: none;
     outline: none;
     box-shadow: 0 2px 8px rgba(0,0,0, .25);
-    transition: transform 150ms ease-in-out,
-                box-shadow 150ms ease-in-out;
+    transition: box-shadow 150ms ease;
 }
 
 .home-form-search:focus {
-    transform: translateY(-3px);
-    box-shadow: 0 6px 14px -4px rgba(0,0,0, .225);
+    box-shadow: 0 2px 15px hsl(205, 79%, 70%);
 }
 
 .home-form-search::placeholder {
@@ -224,10 +222,11 @@ input {
 }
 
 @media screen and (max-width: 34.25em) {
-    .home-title,
-    .home-form {
-        margin-bottom: 2rem;
-    }
+    .home { margin-top: 1.5rem; }
+
+    .home-title { margin-bottom: 1.25rem; }
+
+    .home-form { margin-bottom: 2rem; }
 
     .poke-main-section { margin: 1.5rem; }
 }
