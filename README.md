@@ -17,6 +17,8 @@ Project [link](https://apcurran.github.io/Pokedex-API/)
 
     * Dynamic JS generated HTML for displaying Pokemon cards and data pages
 
+    * Real-time search filter for Pokemon
+
     * Clickable Pokemon cards redirect to a separate info page for specified character
 
 * CSS Grid and Flexbox used throughout
