@@ -140,7 +140,8 @@ const pokeCard = (() => {
 const searchFilter = (() => {
     if (document.body.id !== "home") return;
 
-    const searchInput = document.forms.search.elements.input;
+    const form = document.forms.search;
+    const searchInput = form.elements.input;
 
     function getMatches(event) {
         const searchTerm = searchInput.value.toLowerCase();
@@ -148,7 +149,7 @@ const searchFilter = (() => {
 
         for (const card of pokeCards) {
             const title = card.querySelector(".main-card-content-name").textContent;
-            const regex = new RegExp(`^${searchTerm}`, "gi"); // Match the word beginning with searchTerm
+            const regex = new RegExp(`^${searchTerm}`, "gi"); // Match the title beginning with searchTerm
 
             if (title.match(regex)) {
                 card.style.display = "flex";
@@ -160,4 +161,5 @@ const searchFilter = (() => {
     }
 
     searchInput.addEventListener("keyup", getMatches);
+    form.addEventListener("submit", (event) => event.preventDefault()); // Prevent page refresh
 })();
