@@ -125,7 +125,7 @@ input {
     /* Hidden by default, shown on API request */
     display: none;
     position: fixed;
-    bottom: 3rem;
+    bottom: 5%;
 }
 
 .loading-ball {
