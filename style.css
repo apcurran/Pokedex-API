@@ -16,7 +16,7 @@ input {
     align-items: center;
     flex-direction: column;
     min-height: 100vh;
-
+    
     background-color: hsl(204, 45%, 99%);
 }
 
@@ -55,7 +55,7 @@ input {
     margin: 1rem 0 4rem 0;
     width: 80rem;
     max-width: 90%;
-
+    
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(275px, 1fr));
     place-content: center center;
@@ -67,7 +67,7 @@ input {
     flex-direction: column;
     align-items: center;
     padding: 2rem;
-
+    
     background-color: #eee;
     border-radius: 20px;
     box-shadow: 0 6px 9px rgba(0,0,0, .175);
@@ -121,6 +121,46 @@ input {
     font-size: .85rem;
 }
 
+.loading {
+    /* Hidden by default, shown on API request */
+    display: none;
+    position: fixed;
+    bottom: 3rem;
+}
+
+.loading-ball {
+    width: .8rem;
+    height: .8rem;
+    margin-left: .7rem;
+    margin-right: .7rem;
+    border-radius: 50%;
+    background-color: #4299e1;
+    animation: bounce 600ms ease-in-out infinite;
+}
+
+.loading-ball:nth-of-type(2) {
+    animation-delay: 100ms;
+    background-color: #3182ce;
+}
+.loading-ball:nth-of-type(3) {
+    animation-delay: 200ms;
+    background-color: #2b6cb0;
+}
+
+@keyframes bounce {
+    0% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-14px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
 /* Poke Card Page */
 
 .poke-main {
@@ -128,7 +168,7 @@ input {
     display: flex;
     justify-content: center;
     align-items: center;
-
+    
     background: #74ebd5; /* fallback for old browsers */
     background: linear-gradient(to right, #74ebd5, #acb6e5);
 }
@@ -195,6 +235,9 @@ input {
 
     color: #fff;
 }
+
+
+
 
 @media screen and (max-width: 80em) {
     .poke-main-section { max-width: 90%; }

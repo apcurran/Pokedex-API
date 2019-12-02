@@ -4,6 +4,7 @@ const pokemonAPI = (() => {
     if (document.body.id !== "home") return;
 
     const main = document.querySelector(".main");
+    const loading = document.querySelector(".loading");
     const colors = {
         bug: "#68d391",
         dark: "ccc",
@@ -50,9 +51,12 @@ const pokemonAPI = (() => {
     }
 
     async function getPokemon() {
+        loading.style.display = "flex";
         for (let i = 1; i <= 150; i++) {
             await fetchPokemon(i);
         }
+
+        loading.style.display = "";
     }
 
     async function fetchPokemon(id) {
