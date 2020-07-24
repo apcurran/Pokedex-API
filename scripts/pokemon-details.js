@@ -1,3 +1,5 @@
+"use strict";
+
 const pokeCard = (() => {
     function capInitialLetter(str) {
         return str[0].toUpperCase() + str.slice(1);
