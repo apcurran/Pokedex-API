@@ -54,7 +54,7 @@ const pokemonAPI = (() => {
         let promisesArr = [];
 
         for (let i = 1; i <= 150; i++) {
-            promisesArr.push(fetchPokemon(i));
+            promisesArr.push(await fetchPokemon(i));
         }
 
         Promise.all(promisesArr);
