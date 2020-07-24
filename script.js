@@ -52,9 +52,14 @@ const pokemonAPI = (() => {
 
     async function getPokemon() {
         loading.style.display = "flex";
+
+        let promisesArr = [];
+
         for (let i = 1; i <= 150; i++) {
-            await fetchPokemon(i);
+            promisesArr.push(fetchPokemon(i));
         }
+
+        Promise.all(promisesArr);
 
         loading.style.display = "";
     }
