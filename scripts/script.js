@@ -22,7 +22,7 @@ const pokemonAPI = (() => {
         rock: "#fbd38d",
         steel: "#9ae6b4",
         water: "#90cdf4"
-    }
+    };
 
     function createPokemon(pokemon) {
         const pokeNum = pokemon.id.toString().padStart(3, "0");
@@ -102,5 +102,5 @@ const searchFilter = (() => {
     }
 
     searchInput.addEventListener("keyup", getMatches);
-    form.addEventListener("submit", (event) => event.preventDefault()); // Prevent page refresh
+    form.addEventListener("submit", event => event.preventDefault()); // Prevent page refresh
 })();
