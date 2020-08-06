@@ -57,7 +57,11 @@ const pokemonAPI = (() => {
             promisesArr.push(fetchPokemon(i));
         }
 
-        await Promise.all(promisesArr);
+        const pokemonData = await Promise.all(promisesArr);
+
+        for (let i = 0; i < 150; i++) {
+            createPokemon(pokemonData[i]);
+        }
 
         loading.style.display = "";
     }
@@ -66,7 +70,8 @@ const pokemonAPI = (() => {
         const url = `https://pokeapi.co/api/v2/pokemon/${id}`;
         const res = await fetch(url, { mode: "cors" });
         const data = await res.json();
-        createPokemon(data);
+        // createPokemon(data);
+        return data;
     }
 
     function selectedPokemon(data) {
