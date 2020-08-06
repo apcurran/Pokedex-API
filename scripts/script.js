@@ -54,10 +54,10 @@ const pokemonAPI = (() => {
         let promisesArr = [];
 
         for (let i = 1; i <= 150; i++) {
-            promisesArr.push(await fetchPokemon(i));
+            promisesArr.push(fetchPokemon(i));
         }
 
-        Promise.all(promisesArr);
+        await Promise.all(promisesArr);
 
         loading.style.display = "";
     }
