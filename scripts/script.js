@@ -53,13 +53,14 @@ const pokemonAPI = (() => {
 
         let promisesArr = [];
 
+        // Start at i = 1 for passing id to fetchPokemon func
         for (let i = 1; i <= 150; i++) {
             promisesArr.push(fetchPokemon(i));
         }
 
         const pokemonData = await Promise.all(promisesArr);
 
-        for (let i = 0; i < 150; i++) {
+        for (let i = 0; i < pokemonData.length; i++) {
             createPokemon(pokemonData[i]);
         }
 
