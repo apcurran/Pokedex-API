@@ -35,7 +35,7 @@ const pokemonAPI = (() => {
         const cardHTML = 
             `
             <figure class="main-card-fig">
-                <img class="main-card-fig-img" src="https://pokeres.bastionbot.org/images/pokemon/${pokemon.id}.png" alt="Pokemon character" width="600" height="600" loading="lazy">
+                <img class="main-card-fig-img" src="https://pokeres.bastionbot.org/images/pokemon/${pokemon.id}.png" alt="Pokemon character" width="600" height="600" loading="${pokemon.id > 12 ? 'lazy' : 'eager'}">
             </figure>
             <section class="main-card-content">
                 <h3 class="main-card-content-num">#${pokeNum}</h3>
@@ -43,6 +43,7 @@ const pokemonAPI = (() => {
                 <p class="main-card-content-type">Type: ${pokeType}</p>
             </section>
             `;
+
         card.insertAdjacentHTML("afterbegin", cardHTML);
         main.append(card);
         card.addEventListener("click", () => selectedPokemon(pokemon));
