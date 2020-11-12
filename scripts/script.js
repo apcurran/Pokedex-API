@@ -73,7 +73,7 @@ const pokemonAPI = (() => {
             const url = `https://pokeapi.co/api/v2/pokemon/${id}`;
             const res = await fetch(url, { mode: "cors" });
             const data = await res.json();
-            // createPokemon(data);
+            
             return data;
             
         } catch (err) {
