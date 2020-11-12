@@ -73,7 +73,7 @@ const pokemonAPI = (() => {
             const url = `https://pokeapi.co/api/v2/pokemon/${id}`;
             const res = await fetch(url, { mode: "cors" });
             const data = await res.json();
-            
+
             return data;
             
         } catch (err) {
@@ -93,8 +93,8 @@ const pokemonAPI = (() => {
 const searchFilter = (() => {
     const form = document.forms.search;
     const searchInput = form.elements.input;
-
-    function getMatches(event) {
+    
+    function getMatches() {
         const searchTerm = searchInput.value.toLowerCase();
         const pokeCards = document.querySelectorAll(".main-card");
 
