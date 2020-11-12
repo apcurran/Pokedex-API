@@ -69,11 +69,16 @@ const pokemonAPI = (() => {
     }
 
     async function fetchPokemon(id) {
-        const url = `https://pokeapi.co/api/v2/pokemon/${id}`;
-        const res = await fetch(url, { mode: "cors" });
-        const data = await res.json();
-        // createPokemon(data);
-        return data;
+        try {
+            const url = `https://pokeapi.co/api/v2/pokemon/${id}`;
+            const res = await fetch(url, { mode: "cors" });
+            const data = await res.json();
+            // createPokemon(data);
+            return data;
+            
+        } catch (err) {
+            console.error(err);
+        }
     }
 
     function selectedPokemon(data) {
@@ -86,8 +91,6 @@ const pokemonAPI = (() => {
 })();
 
 const searchFilter = (() => {
-    if (document.body.id !== "home") return;
-
     const form = document.forms.search;
     const searchInput = form.elements.input;
 
