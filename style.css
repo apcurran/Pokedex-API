@@ -110,7 +110,7 @@ input {
     font-weight: 400;
     background-color: hsl(0, 0%, 98%);
     border-radius: 500px;
-    color: hsl(0, 0%, 38%);
+    color: hsl(0, 0%, 36%);
 }
 
 .main-card-content-name {
@@ -213,7 +213,7 @@ input {
 }
 
 .poke-main-section-stats-title {
-    margin-bottom: .75rem;
+    margin-bottom: .5rem;
     text-transform: uppercase;
     font-weight: 400;
 }
