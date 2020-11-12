@@ -5,6 +5,27 @@
     const main = document.querySelector(".main");
     const loading = document.querySelector(".loading");
 
+    function createPokemon(pokemon, pokeId) {
+        const pokeNum = pokeId.toString().padStart(3, "0");
+        const pokeName = pokemon.name;
+        const card = document.createElement("article");
+        card.classList.add("main-card");
+        const cardHTML = 
+        `
+        <figure class="main-card-fig">
+        <img class="main-card-fig-img" src="https://pokeres.bastionbot.org/images/pokemon/${pokeId}.png" alt="Pokemon character" width="600" height="600" loading="${pokeId > 12 ? 'lazy' : 'eager'}">
+        </figure>
+        <section class="main-card-content">
+        <h3 class="main-card-content-num">#${pokeNum}</h3>
+        <p class="main-card-content-name">${pokeName}</p>
+        </section>
+        `;
+        
+        card.insertAdjacentHTML("afterbegin", cardHTML);
+        main.append(card);
+        card.addEventListener("click", () => selectedPokemon(pokemon.url));
+    }
+    
     async function getPokemon() {
         loading.style.display = "flex";
 
@@ -17,27 +38,6 @@
         }
 
         loading.style.display = "";
-    }
-
-    function createPokemon(pokemon, pokeId) {
-        const pokeNum = pokeId.toString().padStart(3, "0");
-        const pokeName = pokemon.name;
-        const card = document.createElement("article");
-        card.classList.add("main-card");
-        const cardHTML = 
-            `
-            <figure class="main-card-fig">
-                <img class="main-card-fig-img" src="https://pokeres.bastionbot.org/images/pokemon/${pokeId}.png" alt="Pokemon character" width="600" height="600" loading="${pokeId > 12 ? 'lazy' : 'eager'}">
-            </figure>
-            <section class="main-card-content">
-                <h3 class="main-card-content-num">#${pokeNum}</h3>
-                <p class="main-card-content-name">${pokeName}</p>
-            </section>
-            `;
-
-        card.insertAdjacentHTML("afterbegin", cardHTML);
-        main.append(card);
-        card.addEventListener("click", () => selectedPokemon(pokemon.url));
     }
 
     function selectedPokemon(data) {
