@@ -24,62 +24,68 @@ const pokemonAPI = (() => {
         water: "#90cdf4"
     };
 
-    function createPokemon(pokemon) {
-        const pokeNum = pokemon.id.toString().padStart(3, "0");
+    function createPokemon(pokemon, pokeId) {
+        const pokeNum = pokeId.toString().padStart(3, "0");
         const pokeName = pokemon.name;
-        const pokeType = pokemon.types[0].type.name;
-        const pokeColor = colors[pokeType];
+        // const pokeType = pokemon.types[0].type.name;
+        // const pokeColor = colors[pokeType];
+        // card.style.backgroundColor = pokeColor;
         const card = document.createElement("article");
         card.classList.add("main-card", `${pokeName}`);
-        card.style.backgroundColor = pokeColor;
         const cardHTML = 
             `
             <figure class="main-card-fig">
-                <img class="main-card-fig-img" src="https://pokeres.bastionbot.org/images/pokemon/${pokemon.id}.png" alt="Pokemon character" width="600" height="600" loading="${pokemon.id > 12 ? 'lazy' : 'eager'}">
+                <img class="main-card-fig-img" src="https://pokeres.bastionbot.org/images/pokemon/${pokeId}.png" alt="Pokemon character" width="600" height="600" loading="${pokeId > 12 ? 'lazy' : 'eager'}">
             </figure>
             <section class="main-card-content">
                 <h3 class="main-card-content-num">#${pokeNum}</h3>
                 <p class="main-card-content-name">${pokeName}</p>
-                <p class="main-card-content-type">Type: ${pokeType}</p>
             </section>
             `;
 
         card.insertAdjacentHTML("afterbegin", cardHTML);
         main.append(card);
-        card.addEventListener("click", () => selectedPokemon(pokemon));
+        card.addEventListener("click", () => selectedPokemon(pokemon.url));
     }
 
     async function getPokemon() {
         loading.style.display = "flex";
 
-        let promisesArr = [];
+        // let promisesArr = [];
 
-        // Start at i = 1 for passing id to fetchPokemon func
-        for (let i = 1; i <= 150; i++) {
-            promisesArr.push(fetchPokemon(i));
+        const pokemonGroupResponse = await fetch("https://pokeapi.co/api/v2/pokemon?limit=150");
+        const pokemonGroupData = await pokemonGroupResponse.json();
+        const pokemonDataArr = pokemonGroupData.results;
+        
+        for (let i = 0; i < pokemonDataArr.length; i++) {
+            createPokemon(pokemonDataArr[i], i + 1);
         }
+        // // Start at i = 1 for passing id to fetchPokemon func
+        // for (let i = 1; i <= 150; i++) {
+        //     promisesArr.push(fetchPokemon(i));
+        // }
 
-        const pokemonData = await Promise.all(promisesArr);
+        // const pokemonData = await Promise.all(promisesArr);
 
-        for (let i = 0; i < pokemonData.length; i++) {
-            createPokemon(pokemonData[i]);
-        }
+        // for (let i = 0; i < pokemonData.length; i++) {
+        //     createPokemon(pokemonData[i]);
+        // }
 
         loading.style.display = "";
     }
 
-    async function fetchPokemon(id) {
-        try {
-            const url = `https://pokeapi.co/api/v2/pokemon/${id}`;
-            const res = await fetch(url, { mode: "cors" });
-            const data = await res.json();
+    // async function fetchPokemon(id) {
+    //     try {
+    //         const url = `https://pokeapi.co/api/v2/pokemon/${id}`;
+    //         const res = await fetch(url, { mode: "cors" });
+    //         const data = await res.json();
 
-            return data;
+    //         return data;
             
-        } catch (err) {
-            console.error(err);
-        }
-    }
+    //     } catch (err) {
+    //         console.error(err);
+    //     }
+    // }
 
     function selectedPokemon(data) {
         sessionStorage.setItem("selectedPokemon", JSON.stringify(data));

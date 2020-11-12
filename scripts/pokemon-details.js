@@ -5,10 +5,19 @@ const pokeCard = (() => {
         return str[0].toUpperCase() + str.slice(1);
     }
     
-    (function createPokeCardData() {
-        const pokeCardData = JSON.parse(sessionStorage.getItem("selectedPokemon"));
-        const pokeMain = document.querySelector(".poke-main");
+    (async function createPokeCardData() {
+        const pokeCardDataUrl = JSON.parse(sessionStorage.getItem("selectedPokemon"));
+        let pokeCardData;
 
+        try {
+            const pokeCardResponse = await fetch(pokeCardDataUrl);
+            pokeCardData = await pokeCardResponse.json();
+
+        } catch (err) {
+            console.error(err);
+        }
+        
+        const pokeMain = document.querySelector(".poke-main");
         const convertedWeight = (pokeCardData.weight / 4.536).toFixed(2); // Convert hectograms to pounds
         const convertedHeight = (pokeCardData.height / 3.048).toFixed(2); // Convert decimeters to feet
         const stat1Val = pokeCardData.stats[0].base_stat;
