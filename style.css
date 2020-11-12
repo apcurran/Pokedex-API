@@ -4,6 +4,10 @@
     box-sizing: border-box;
 }
 
+:root {
+    --main-bg-clr: hsl(204, 45%, 98%);
+}
+
 html,
 input {
     font-family: 'Work Sans', sans-serif;
@@ -17,7 +21,7 @@ input {
     flex-direction: column;
     min-height: 100vh;
     
-    background-color: hsl(204, 45%, 98%);
+    background-color: var(--main-bg-clr);
 }
 
 .home-title {
@@ -165,13 +169,12 @@ input {
 }
 
 /* Poke Card Page */
-
 .poke-main {
     min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #EBF4FF;
+    background-color: var(--main-bg-clr);
 }
 
 .poke-main-section {
@@ -236,9 +239,6 @@ input {
 
     color: #fff;
 }
-
-
-
 
 @media screen and (max-width: 80em) {
     .poke-main-section { max-width: 90%; }
