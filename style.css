@@ -67,11 +67,8 @@ input {
     flex-direction: column;
     align-items: center;
     padding: 2rem;
-    background: #C3DAFE;  /* fallback for old browsers */
-    background: linear-gradient(to bottom, hsl(221, 90%, 86%), hsl(217, 97%, 88%)); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-    
-    
-    
+    background: #c3dafe;  /* fallback for old browsers */
+    background: linear-gradient(to bottom, hsl(221, 90%, 86%), hsl(217, 97%, 88%));
     border-radius: 20px;
     box-shadow: 0 6px 9px rgba(0,0,0, .165);
     cursor: pointer;
@@ -97,7 +94,7 @@ input {
     width: 70%;
     height: 70%;
     transform: translateY(50%);
-    filter: drop-shadow(0 8px 5px rgba(0,0,0, .325));
+    filter: drop-shadow(0 6px 5px rgba(0,0,0, .32));
 }
 
 .main-card-content-num,
@@ -107,17 +104,20 @@ input {
 }
 
 .main-card-content-num {
-    padding: .2rem .9rem;
+    padding: .25rem .75rem;
+    line-height: 1;
     font-size: .925rem;
     font-weight: 400;
     background-color: hsl(0, 0%, 98%);
     border-radius: 500px;
+    color: hsl(0, 0%, 38%);
 }
 
 .main-card-content-name {
     text-transform: uppercase;
     letter-spacing: .05em;
     font-size: 1.05rem;
+    color: hsl(247, 35%, 24%);
 }
 
 .main-card-content-type {
