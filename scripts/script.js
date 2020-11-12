@@ -3,26 +3,6 @@
 const pokemonAPI = (() => {
     const main = document.querySelector(".main");
     const loading = document.querySelector(".loading");
-    const colors = {
-        bug: "#68d391",
-        dark: "ccc",
-        dragon: "#81e6d9",
-        electric: "#faf089",
-        fairy: "#feb2b2",
-        fighting: "#f6ad55",
-        fire: "#fc8181",
-        flying: "#e2e8f0",
-        ghost: "#b794f4",
-        grass: "#c6f6d5",
-        ground: "#ecc94b",
-        ice: "#bee3f8",
-        normal: "#b2f5ea",
-        poison: "#d6bcfa",
-        psychic: "#fbb6ce",
-        rock: "#fbd38d",
-        steel: "#9ae6b4",
-        water: "#90cdf4"
-    };
 
     function createPokemon(pokemon, pokeId) {
         const pokeNum = pokeId.toString().padStart(3, "0");

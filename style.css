@@ -171,9 +171,7 @@ input {
     display: flex;
     justify-content: center;
     align-items: center;
-    
-    background: #74ebd5; /* fallback for old browsers */
-    background: linear-gradient(to right, #74ebd5, #acb6e5);
+    background-color: #EBF4FF;
 }
 
 .poke-main-section {
@@ -224,7 +222,7 @@ input {
     width: 15rem;
     height: 2rem;
     margin-bottom: 2rem;
-    background-color: #dedede;
+    background-color: #fff;
     border-radius: 500px;
 }
 

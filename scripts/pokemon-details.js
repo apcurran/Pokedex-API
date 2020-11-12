@@ -1,6 +1,27 @@
 "use strict";
 
 const pokeCard = (() => {
+    const colors = {
+        bug: "#68d391",
+        dark: "ccc",
+        dragon: "#81e6d9",
+        electric: "#faf089",
+        fairy: "#feb2b2",
+        fighting: "#f6ad55",
+        fire: "#fc8181",
+        flying: "#e2e8f0",
+        ghost: "#b794f4",
+        grass: "#c6f6d5",
+        ground: "#ecc94b",
+        ice: "#bee3f8",
+        normal: "#b2f5ea",
+        poison: "#d6bcfa",
+        psychic: "#fbb6ce",
+        rock: "#fbd38d",
+        steel: "#9ae6b4",
+        water: "#90cdf4"
+    };
+
     function capInitialLetter(str) {
         return str[0].toUpperCase() + str.slice(1);
     }
@@ -17,6 +38,9 @@ const pokeCard = (() => {
             console.error(err);
         }
         
+        const pokeType = pokeCardData.types[0].type.name;
+        const pokeColor = colors[pokeType];
+
         const pokeMain = document.querySelector(".poke-main");
         const convertedWeight = (pokeCardData.weight / 4.536).toFixed(2); // Convert hectograms to pounds
         const convertedHeight = (pokeCardData.height / 3.048).toFixed(2); // Convert decimeters to feet
@@ -28,10 +52,11 @@ const pokeCard = (() => {
         const stat6Val = pokeCardData.stats[5].base_stat;
 
         const pokeCardHTML = `
-            <section class="poke-main-section">
+            <section class="poke-main-section" style="background-color: ${pokeColor};">
                 <section class="poke-main-section-data">
                     <h1 class="poke-main-section-data-title">${pokeCardData.name}</h1>
                     <img class="poke-main-section-data-img" src="https://pokeres.bastionbot.org/images/pokemon/${pokeCardData.id}.png" alt="${pokeCardData.name} Pokemon">
+                    <p class="poke-main-section-data-body">Type: ${capInitialLetter(pokeType)}</p>
                     <p class="poke-main-section-data-body">Weight: ${convertedWeight} lbs</p>
                     <p class="poke-main-section-data-body">Height: ${convertedHeight} ft</p>
                     <div class="poke-main-section-data-abilities">
