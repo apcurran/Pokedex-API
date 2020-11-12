@@ -1,8 +1,23 @@
 "use strict";
 
-const pokemonAPI = (() => {
+{
+    // Pokemon Cards Grid
     const main = document.querySelector(".main");
     const loading = document.querySelector(".loading");
+
+    async function getPokemon() {
+        loading.style.display = "flex";
+
+        const pokemonGroupResponse = await fetch("https://pokeapi.co/api/v2/pokemon?limit=150");
+        const pokemonGroupData = await pokemonGroupResponse.json();
+        const pokemonDataArr = pokemonGroupData.results;
+        
+        for (let i = 0; i < pokemonDataArr.length; i++) {
+            createPokemon(pokemonDataArr[i], i + 1);
+        }
+
+        loading.style.display = "";
+    }
 
     function createPokemon(pokemon, pokeId) {
         const pokeNum = pokeId.toString().padStart(3, "0");
@@ -25,20 +40,6 @@ const pokemonAPI = (() => {
         card.addEventListener("click", () => selectedPokemon(pokemon.url));
     }
 
-    async function getPokemon() {
-        loading.style.display = "flex";
-
-        const pokemonGroupResponse = await fetch("https://pokeapi.co/api/v2/pokemon?limit=150");
-        const pokemonGroupData = await pokemonGroupResponse.json();
-        const pokemonDataArr = pokemonGroupData.results;
-        
-        for (let i = 0; i < pokemonDataArr.length; i++) {
-            createPokemon(pokemonDataArr[i], i + 1);
-        }
-
-        loading.style.display = "";
-    }
-
     function selectedPokemon(data) {
         sessionStorage.setItem("selectedPokemon", JSON.stringify(data));
         // Send user to separate page for selected character
@@ -46,9 +47,11 @@ const pokemonAPI = (() => {
     }
 
     getPokemon().catch(err => console.error(err));
-})();
 
-const searchFilter = (() => {
+}
+
+{
+    // Search Filter
     const form = document.forms.search;
     const searchInput = form.elements.input;
     
@@ -71,4 +74,5 @@ const searchFilter = (() => {
 
     searchInput.addEventListener("keyup", getMatches);
     form.addEventListener("submit", event => event.preventDefault()); // Prevent page refresh
-})();
+
+}

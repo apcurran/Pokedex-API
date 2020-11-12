@@ -1,6 +1,7 @@
 "use strict";
 
-const pokeCard = (() => {
+{
+    // Pokemon Card
     const colors = {
         bug: "#68d391",
         dark: "ccc",
@@ -22,25 +23,22 @@ const pokeCard = (() => {
         water: "#90cdf4"
     };
 
-    function capInitialLetter(str) {
-        return str[0].toUpperCase() + str.slice(1);
-    }
     
     (async function createPokeCardData() {
         const pokeCardDataUrl = JSON.parse(sessionStorage.getItem("selectedPokemon"));
         let pokeCardData;
-
+        
         try {
             const pokeCardResponse = await fetch(pokeCardDataUrl);
             pokeCardData = await pokeCardResponse.json();
-
+            
         } catch (err) {
             console.error(err);
         }
         
         const pokeType = pokeCardData.types[0].type.name;
         const pokeColor = colors[pokeType];
-
+        
         const pokeMain = document.querySelector(".poke-main");
         const convertedWeight = (pokeCardData.weight / 4.536).toFixed(2); // Convert hectograms to pounds
         const convertedHeight = (pokeCardData.height / 3.048).toFixed(2); // Convert decimeters to feet
@@ -50,7 +48,11 @@ const pokeCard = (() => {
         const stat4Val = pokeCardData.stats[3].base_stat;
         const stat5Val = pokeCardData.stats[4].base_stat;
         const stat6Val = pokeCardData.stats[5].base_stat;
-
+        
+        function capInitialLetter(str) {
+            return str[0].toUpperCase() + str.slice(1);
+        }
+        
         const pokeCardHTML = `
             <section class="poke-main-section" style="background-color: ${pokeColor};">
                 <section class="poke-main-section-data">
@@ -95,4 +97,4 @@ const pokeCard = (() => {
         pokeMain.insertAdjacentHTML("afterbegin", pokeCardHTML);
     })();
 
-})();
+}
