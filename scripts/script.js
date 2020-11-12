@@ -8,7 +8,7 @@ const pokemonAPI = (() => {
         const pokeNum = pokeId.toString().padStart(3, "0");
         const pokeName = pokemon.name;
         const card = document.createElement("article");
-        card.classList.add("main-card", `${pokeName}`);
+        card.classList.add("main-card");
         const cardHTML = 
             `
             <figure class="main-card-fig">
