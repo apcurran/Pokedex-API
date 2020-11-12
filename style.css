@@ -17,11 +17,12 @@ input {
     flex-direction: column;
     min-height: 100vh;
     
-    background-color: hsl(204, 45%, 99%);
+    background-color: hsl(204, 45%, 98%);
 }
 
 .home-title {
     margin-bottom: 2.5rem;
+    color: hsl(209, 62%, 46%);
 }
 
 .home-form {
@@ -33,13 +34,12 @@ input {
 
 .home-form-search {
     width: 100%;
-    padding: .6rem;
-    padding-left: .75rem;
+    padding: .5rem 1rem;
     font-size: 1rem;
     border-radius: 500px;
     border: none;
     outline: none;
-    box-shadow: 0 2px 8px rgba(0,0,0, .25);
+    box-shadow: 0 2px 6px rgba(0,0,0, .15);
     transition: box-shadow 150ms ease;
 }
 
@@ -73,7 +73,7 @@ input {
     
     
     border-radius: 20px;
-    box-shadow: 0 6px 9px rgba(0,0,0, .175);
+    box-shadow: 0 6px 9px rgba(0,0,0, .165);
     cursor: pointer;
 }
 
@@ -134,8 +134,8 @@ input {
 .loading-ball {
     width: .8rem;
     height: .8rem;
-    margin-left: .7rem;
-    margin-right: .7rem;
+    margin-left: .4375rem;
+    margin-right: .4375rem;
     border-radius: 50%;
     background-color: #4299e1;
     animation: bounce 600ms ease-in-out infinite;
@@ -183,7 +183,7 @@ input {
     padding: 3.5rem 2.5rem;
     border-radius: 30px;
     background-color: hsl(204, 45%, 99%);
-    box-shadow: 0 9px 22px -4px rgba(0,0,0, .225);
+    box-shadow: 0 9px 22px -4px rgba(0,0,0, .185);
 }
 
 .poke-main-section-data-title {
