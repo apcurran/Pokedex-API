@@ -13,11 +13,11 @@
         const cardHTML = 
         `
         <figure class="main-card-fig">
-        <img class="main-card-fig-img" src="https://pokeres.bastionbot.org/images/pokemon/${pokeId}.png" alt="Pokemon character" width="600" height="600" loading="${pokeId > 12 ? 'lazy' : 'eager'}">
+            <img class="main-card-fig-img" src="https://pokeres.bastionbot.org/images/pokemon/${pokeId}.png" alt="Pokemon character" width="600" height="600" loading="${pokeId > 12 ? 'lazy' : 'eager'}">
         </figure>
         <section class="main-card-content">
-        <h3 class="main-card-content-num">#${pokeNum}</h3>
-        <p class="main-card-content-name">${pokeName}</p>
+            <h3 class="main-card-content-num">#${pokeNum}</h3>
+            <p class="main-card-content-name">${pokeName}</p>
         </section>
         `;
         
