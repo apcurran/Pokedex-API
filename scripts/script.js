@@ -4,7 +4,7 @@
     // Pokemon Cards Grid
     const main = document.querySelector(".main");
     const loading = document.querySelector(".loading");
-    const POKEMON_PER_PAGE = 150;
+    const POKEMON_PER_PAGE = 50;
     const API_INITIAL_DATA = `https://pokeapi.co/api/v2/pokemon?limit=${POKEMON_PER_PAGE}`;
     const paginationNextBtn = document.getElementById("pagination-controls__btn--next");
     const paginationPrevBtn = document.getElementById("pagination-controls__btn--prev");
