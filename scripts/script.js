@@ -53,6 +53,7 @@
 
     }
 
+    // Create Pokemon cards on page load
     getPokemon().catch(err => console.error(err));
 
     // Pokemon Pop-Up
@@ -146,6 +147,16 @@
         document.addEventListener("keydown", handleClosePopupEsc);
     }
     
+    function handleClosePopopClick(event) {
+        const isOutside = !event.target.closest(".popup");
+        const isPopupCloseBtn = event.target.closest(".popup__close-btn");
+        const popupContainer = main.querySelector(".popup-container");
+        
+        if (popupContainer && isOutside || popupContainer && isPopupCloseBtn) {
+            popupContainer.remove();
+        }
+    }
+    
     function handleClosePopupEsc(event) {
         if (event.key !== "Escape") return;
 
@@ -153,17 +164,6 @@
 
         popupContainer.remove();
     }
-
-    function handleClosePopopClick(event) {
-        const isOutside = !event.target.closest(".popup");
-        const isPopupCloseBtn = event.target.closest(".popup__close-btn");
-        const popupContainer = main.querySelector(".popup-container");
-
-        if (popupContainer && isOutside || popupContainer && isPopupCloseBtn) {
-            popupContainer.remove();
-        }
-    }
-
 }
 
 {
