@@ -148,11 +148,14 @@
     }
     
     function handleClosePopopClick(event) {
+        const popupContainer = main.querySelector(".popup-container");
+
+        if (!popupContainer) return;
+
         const isOutside = !event.target.closest(".popup");
         const isPopupCloseBtn = event.target.closest(".popup__close-btn");
-        const popupContainer = main.querySelector(".popup-container");
         
-        if (popupContainer && isOutside || popupContainer && isPopupCloseBtn) {
+        if (isOutside || isPopupCloseBtn) {
             popupContainer.remove();
         }
     }
