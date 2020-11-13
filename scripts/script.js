@@ -4,6 +4,12 @@
     // Pokemon Cards Grid
     const main = document.querySelector(".main");
     const loading = document.querySelector(".loading");
+    const POKEMON_PER_PAGE = 150;
+    const API_INITIAL_DATA = `https://pokeapi.co/api/v2/pokemon?limit=${POKEMON_PER_PAGE}`;
+    let pagination = {
+        next: "",
+        prev: ""
+    };
 
     function createPokemon(pokemon, pokeId) {
         const pokeNum = pokeId.toString().padStart(3, "0");
@@ -26,11 +32,16 @@
         card.addEventListener("click", () => selectedPokemon(pokemon.url));
     }
     
-    async function getPokemon() {
+    async function getPokemon(apiUrl) {
         loading.style.display = "flex";
 
-        const pokemonGroupResponse = await fetch("https://pokeapi.co/api/v2/pokemon?limit=150");
+        const pokemonGroupResponse = await fetch(apiUrl);
         const pokemonGroupData = await pokemonGroupResponse.json();
+        // Update Pagination Controls Obj
+        pagination.next = pokemonGroupData.next;
+        pagination.prev = pokemonGroupData.prev;
+
+        console.log(pagination);
         const pokemonDataArr = pokemonGroupData.results;
         
         for (let i = 0; i < pokemonDataArr.length; i++) {
@@ -54,7 +65,7 @@
     }
 
     // Create Pokemon cards on page load
-    getPokemon().catch(err => console.error(err));
+    getPokemon(API_INITIAL_DATA).catch(err => console.error(err));
 
     // Pokemon Pop-Up
     function createPokeCardPopup(pokeCardData) {
