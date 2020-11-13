@@ -164,10 +164,9 @@
     function closePopup(event) {
         const isOutside = !event.target.closest(".popup");
         const isPopupCloseBtn = event.target.closest(".popup__close-btn");
+        const popupContainer = main.querySelector(".popup-container");
 
-        if (isOutside || isPopupCloseBtn) {
-            const popupContainer = main.querySelector(".popup-container");
-
+        if (popupContainer && isOutside || popupContainer && isPopupCloseBtn) {
             popupContainer.remove();
         }
     }
