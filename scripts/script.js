@@ -140,10 +140,21 @@
         `;
 
         main.insertAdjacentHTML("afterbegin", pokeCardHTML);
-        document.addEventListener("click", closePopup);
+
+        // Close Popup event listeners
+        document.addEventListener("click", handleClosePopopClick);
+        document.addEventListener("keydown", handleClosePopupEsc);
+    }
+    
+    function handleClosePopupEsc(event) {
+        if (event.key !== "Escape") return;
+
+        const popupContainer = main.querySelector(".popup-container");
+
+        popupContainer.remove();
     }
 
-    function closePopup(event) {
+    function handleClosePopopClick(event) {
         const isOutside = !event.target.closest(".popup");
         const isPopupCloseBtn = event.target.closest(".popup__close-btn");
         const popupContainer = main.querySelector(".popup-container");
