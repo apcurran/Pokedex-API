@@ -13,7 +13,11 @@
         prevUrl: ""
     };
 
-    function createPokemon(pokemon, pokeId) {
+    function createPokemon(pokemon) {
+        // TODO use regex to pull out pokemon id from url
+        const pokeUrl = pokemon.url;
+        const pokeId = pokeUrl.match(/\/(\d+)\/$/)[1];
+
         const pokeNum = pokeId.toString().padStart(3, "0");
         const pokeName = pokemon.name;
         const card = document.createElement("article");
@@ -39,7 +43,6 @@
 
         const pokemonGroupResponse = await fetch(apiUrl);
         const pokemonGroupData = await pokemonGroupResponse.json();
-        console.log(pokemonGroupData);
         // Update Pagination Controls Obj
         pagination.nextUrl = pokemonGroupData.next;
         pagination.prevUrl = pokemonGroupData.previous;
@@ -47,7 +50,7 @@
         const pokemonDataArr = pokemonGroupData.results;
         
         for (let i = 0; i < pokemonDataArr.length; i++) {
-            createPokemon(pokemonDataArr[i], i + 1);
+            createPokemon(pokemonDataArr[i]);
         }
 
         loading.style.display = "";
@@ -72,21 +75,16 @@
         }
     }
 
-    function handlePaginationNextClick(type) {
+    function handlePaginationClick(type) {
         // Clear prev pokemon cards first
         removePokemonCards();
 
         // Make API req
-        console.log(pagination[type]);
         getPokemon(pagination[type]);
     }
 
-    function handlePaginationPrevClick() {
-
-    }
-
-    paginationNextBtn.addEventListener("click", () => handlePaginationNextClick("nextUrl"));
-    paginationPrevBtn.addEventListener("click", handlePaginationPrevClick);
+    paginationNextBtn.addEventListener("click", () => handlePaginationClick("nextUrl"));
+    paginationPrevBtn.addEventListener("click", () => handlePaginationClick("prevUrl"));
 
     // Create Pokemon cards on page load
     getPokemon(API_INITIAL_DATA).catch(err => console.error(err));
