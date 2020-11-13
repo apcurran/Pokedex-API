@@ -41,9 +41,6 @@
     }
 
     async function selectedPokemon(pokemonUrl) {
-        // sessionStorage.setItem("selectedPokemon", JSON.stringify(data));
-        // // Send user to separate page for selected character
-        // location = "poke-card.html";
         try {
             const response = await fetch(pokemonUrl);
             const data = await response.json();
@@ -59,18 +56,7 @@
     getPokemon().catch(err => console.error(err));
 
     // Pokemon Pop-Up
-    async function createPokeCardPopup(pokeCardData) {
-        // const pokeCardDataUrl = JSON.parse(sessionStorage.getItem("selectedPokemon"));
-        // let pokeCardData;
-        
-        // try {
-        //     const pokeCardResponse = await fetch(pokeCardDataUrl);
-        //     pokeCardData = await pokeCardResponse.json();
-            
-        // } catch (err) {
-        //     console.error(err);
-        // }
-        
+    function createPokeCardPopup(pokeCardData) {
         const pokeType = pokeCardData.types[0].type.name;
         const colors = {
             bug: "#68d391",
@@ -94,7 +80,6 @@
         };
         const pokeColor = colors[pokeType];
         
-        // const pokeMain = document.querySelector(".poke-main");
         const convertedWeight = (pokeCardData.weight / 4.536).toFixed(2); // Convert hectograms to pounds
         const convertedHeight = (pokeCardData.height / 3.048).toFixed(2); // Convert decimeters to feet
         const stat1Val = pokeCardData.stats[0].base_stat;
@@ -155,9 +140,6 @@
         `;
 
         main.insertAdjacentHTML("afterbegin", pokeCardHTML);
-
-        // const popupContainer = main.querySelector(".popup-container");
-        // popupContainer.addEventListener("click", closePopup);
         document.addEventListener("click", closePopup);
     }
 
