@@ -184,6 +184,11 @@ input {
     background-color: rgba(255, 255, 255, .85);
 }
 
+.popup {
+    height: 100%;
+    overflow-y: scroll;
+}
+
 .poke-main-section {
     position: relative;
     flex: 1;
