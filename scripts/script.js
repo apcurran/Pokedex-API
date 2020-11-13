@@ -6,9 +6,11 @@
     const loading = document.querySelector(".loading");
     const POKEMON_PER_PAGE = 150;
     const API_INITIAL_DATA = `https://pokeapi.co/api/v2/pokemon?limit=${POKEMON_PER_PAGE}`;
+    const paginationNextBtn = document.getElementById("pagination-controls__btn--next");
+    const paginationPrevBtn = document.getElementById("pagination-controls__btn--prev");
     let pagination = {
-        next: "",
-        prev: ""
+        nextUrl: "",
+        prevUrl: ""
     };
 
     function createPokemon(pokemon, pokeId) {
@@ -37,11 +39,11 @@
 
         const pokemonGroupResponse = await fetch(apiUrl);
         const pokemonGroupData = await pokemonGroupResponse.json();
+        console.log(pokemonGroupData);
         // Update Pagination Controls Obj
-        pagination.next = pokemonGroupData.next;
-        pagination.prev = pokemonGroupData.prev;
+        pagination.nextUrl = pokemonGroupData.next;
+        pagination.prevUrl = pokemonGroupData.previous;
 
-        console.log(pagination);
         const pokemonDataArr = pokemonGroupData.results;
         
         for (let i = 0; i < pokemonDataArr.length; i++) {
@@ -63,6 +65,28 @@
         }
 
     }
+
+    function removePokemonCards() {
+        while (main.firstChild) {
+            main.removeChild(main.firstChild);
+        }
+    }
+
+    function handlePaginationNextClick(type) {
+        // Clear prev pokemon cards first
+        removePokemonCards();
+
+        // Make API req
+        console.log(pagination[type]);
+        getPokemon(pagination[type]);
+    }
+
+    function handlePaginationPrevClick() {
+
+    }
+
+    paginationNextBtn.addEventListener("click", () => handlePaginationNextClick("nextUrl"));
+    paginationPrevBtn.addEventListener("click", handlePaginationPrevClick);
 
     // Create Pokemon cards on page load
     getPokemon(API_INITIAL_DATA).catch(err => console.error(err));
