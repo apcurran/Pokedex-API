@@ -184,10 +184,10 @@ input {
     background-color: rgba(255, 255, 255, .85);
 }
 
-.popup {
+/* .popup {
     height: 100%;
     overflow-y: scroll;
-}
+} */
 
 .poke-main-section {
     position: relative;
@@ -280,10 +280,17 @@ input {
 }
 
 @media screen and (max-width: 80em) {
-    .poke-main-section { max-width: 90%; }
+    .poke-main-section { max-width: 92%; }
 }
 
 @media screen and (max-width: 46em) {
+    .popup {
+        height: 100%;
+        overflow-y: scroll;
+    }
+
+    .poke-main-section-stats-prog { width: 100%; }
+
     .poke-main-section {
         margin: 3rem;
         grid-template-columns: 1fr;
@@ -321,10 +328,4 @@ input {
     }
     
     .poke-main-section-stats-title { margin-bottom: .25rem; }
-
-    .poke-main-section-stats-prog {
-        width: 13.5rem;
-        height: 1.5rem;
-        margin-bottom: 1.5rem;
-    }
 }
