@@ -6,6 +6,7 @@
 
 :root {
     --main-bg-clr: hsl(204, 45%, 98%);
+    --primary-clr: hsl(209, 62%, 46%);
 }
 
 html,
@@ -26,7 +27,7 @@ input {
 
 .home-title {
     margin-bottom: 2.5rem;
-    color: hsl(209, 62%, 46%);
+    color: var(--primary-clr);
 }
 
 .home-form {
@@ -53,6 +54,19 @@ input {
 
 .home-form-search::placeholder {
     color: #999;
+}
+
+.pagination-controls__btn {
+    margin: 0 .25rem;
+    padding: .5rem .75rem;
+    text-transform: uppercase;
+    letter-spacing: .08em;
+    font-size: .875rem;
+    font-weight: 700;
+    background: none;
+    border: 1px solid var(--primary-clr);
+    cursor: pointer;
+    color: var(--primary-clr);
 }
 
 .main {
@@ -182,12 +196,20 @@ input {
     justify-content: center;
     align-items: center;
     background-color: rgba(255, 255, 255, .85);
+    opacity: 0;
+
+    animation: fade-in 300ms ease forwards;
 }
 
-/* .popup {
-    height: 100%;
-    overflow-y: scroll;
-} */
+@keyframes fade-in {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
 
 .poke-main-section {
     position: relative;

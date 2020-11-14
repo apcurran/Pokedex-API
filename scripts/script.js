@@ -13,7 +13,7 @@
         prevUrl: ""
     };
 
-    function createPokemon(pokemon) {
+    function createPokemon(pokemon, index) {
         // TODO use regex to pull out pokemon id from url
         const pokeUrl = pokemon.url;
         const pokeId = pokeUrl.match(/\/(\d+)\/$/)[1];
@@ -25,7 +25,7 @@
         const cardHTML = 
         `
         <figure class="main-card-fig">
-            <img class="main-card-fig-img" src="https://pokeres.bastionbot.org/images/pokemon/${pokeId}.png" alt="Pokemon character" width="600" height="600" loading="${pokeId > 12 ? 'lazy' : 'eager'}">
+            <img class="main-card-fig-img" src="https://pokeres.bastionbot.org/images/pokemon/${pokeId}.png" alt="Pokemon character" width="600" height="600" loading="${index > 11 ? 'lazy' : 'eager'}">
         </figure>
         <section class="main-card-content">
             <h3 class="main-card-content-num">#${pokeNum}</h3>
@@ -43,16 +43,22 @@
 
         const pokemonGroupResponse = await fetch(apiUrl);
         const pokemonGroupData = await pokemonGroupResponse.json();
+        const pokemonDataArr = pokemonGroupData.results;
+        
+        for (let i = 0; i < pokemonDataArr.length; i++) {
+            createPokemon(pokemonDataArr[i], i);
+        }
+
         // Update Pagination Controls Obj
         pagination.nextUrl = pokemonGroupData.next;
         pagination.prevUrl = pokemonGroupData.previous;
 
-        const pokemonDataArr = pokemonGroupData.results;
-        
-        for (let i = 0; i < pokemonDataArr.length; i++) {
-            createPokemon(pokemonDataArr[i]);
+        if (pagination.prevUrl == null) {
+            paginationPrevBtn.disabled = true;
+        } else {
+            paginationPrevBtn.disabled = false;
         }
-
+        
         loading.style.display = "";
     }
 
