@@ -144,7 +144,7 @@ input {
 
 .loading {
     /* Hidden by default, shown on API request */
-    display: none;
+    display: flex;
     position: fixed;
     bottom: 5%;
 }
@@ -152,8 +152,8 @@ input {
 .loading-ball {
     width: .8rem;
     height: .8rem;
-    margin-left: .4375rem;
-    margin-right: .4375rem;
+    margin-left: .375rem;
+    margin-right: .375rem;
     border-radius: 50%;
     background-color: #4299e1;
     animation: bounce 600ms ease-in-out infinite;
