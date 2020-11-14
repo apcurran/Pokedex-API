@@ -144,7 +144,7 @@ input {
 
 .loading {
     /* Hidden by default, shown on API request */
-    display: flex;
+    display: none;
     position: fixed;
     bottom: 5%;
 }
