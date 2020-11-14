@@ -59,6 +59,13 @@
         } else {
             paginationPrevBtn.classList.remove("btn--hide");
         }
+
+        if (pagination.nextUrl == null) {
+            paginationNextBtn.classList.add("btn--hide");
+        } else {
+            paginationNextBtn.classList.remove("btn--hide");
+        }
+        
         // Hide loading indicator
         loading.style.display = "";
     }
