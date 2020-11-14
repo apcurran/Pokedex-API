@@ -39,6 +39,7 @@
     }
     
     async function getPokemon(apiUrl) {
+        // Show loading indicator
         loading.style.display = "flex";
 
         const pokemonGroupResponse = await fetch(apiUrl);
@@ -54,11 +55,11 @@
         pagination.prevUrl = pokemonGroupData.previous;
 
         if (pagination.prevUrl == null) {
-            paginationPrevBtn.disabled = true;
+            paginationPrevBtn.classList.add("btn--hide");
         } else {
-            paginationPrevBtn.disabled = false;
+            paginationPrevBtn.classList.remove("btn--hide");
         }
-        
+        // Hide loading indicator
         loading.style.display = "";
     }
 
