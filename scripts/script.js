@@ -72,10 +72,14 @@
 
     async function selectedPokemon(pokemonUrl) {
         try {
+            loading.style.display = "flex";
+
             const response = await fetch(pokemonUrl);
             const data = await response.json();
             
             createPokeCardPopup(data);
+
+            loading.style.display = "";
 
         } catch (err) {
             console.error(err);
