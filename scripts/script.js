@@ -246,3 +246,29 @@
     form.addEventListener("submit", event => event.preventDefault()); // Prevent page refresh
 
 }
+
+// Easter egg
+{
+    let pressed = [];
+    const secretCode = "alex";
+
+    function checkCode(event) {
+        pressed.push(event.key);
+        pressed.splice(0, pressed.length - secretCode.length);
+
+        console.log(pressed);
+        const word = pressed.join("");
+
+        if (word.includes(secretCode)) addPokeGif();
+    }
+
+    function addPokeGif() {
+        const pokeGifHTML = `
+            <iframe class="easter-egg-gif" src="https://giphy.com/embed/vsyKKf1t22nmw" width="480" height="480" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
+        `;
+
+        document.body.insertAdjacentHTML("afterbegin", pokeGifHTML);
+    }
+
+    document.addEventListener("keydown", checkCode);
+}
