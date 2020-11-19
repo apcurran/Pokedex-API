@@ -250,13 +250,12 @@
 // Easter egg
 {
     let pressed = [];
-    const secretCode = "alex";
+    const secretCode = "ArrowUpArrowDownArrowLeftArrowLeftArrowRight";
 
     function checkCode(event) {
         pressed.push(event.key);
         pressed.splice(0, pressed.length - secretCode.length);
 
-        console.log(pressed);
         const word = pressed.join("");
 
         if (word.includes(secretCode)) addPokeGif();
