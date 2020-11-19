@@ -253,6 +253,9 @@
     const secretCode = "ArrowUpArrowDownArrowLeftArrowLeftArrowRight";
 
     function checkCode(event) {
+        // Ignore searchbar keypresses
+        if (event.target.matches(".home-form-search")) return;
+
         pressed.push(event.key);
         pressed.splice(0, pressed.length - secretCode.length);
 
