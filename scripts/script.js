@@ -14,7 +14,6 @@
     };
 
     function createPokemon(pokemon, index) {
-        // TODO use regex to pull out pokemon id from url
         const pokeUrl = pokemon.url;
         const pokeId = pokeUrl.match(/\/(\d+)\/$/)[1];
 
