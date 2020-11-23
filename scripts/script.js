@@ -5,7 +5,7 @@
     const main = document.querySelector(".main");
     const loading = document.querySelector(".loading");
     const POKEMON_PER_PAGE = 50;
-    const API_INITIAL_DATA = `https://pokeapi.co/api/v2/pokemon?limit=${POKEMON_PER_PAGE}`;
+    const apiEndpoint = `https://pokeapi.co/api/v2/pokemon?limit=${POKEMON_PER_PAGE}`;
     const paginationNextBtn = document.getElementById("pagination-controls__btn--next");
     const paginationPrevBtn = document.getElementById("pagination-controls__btn--prev");
     let pagination = {
@@ -85,7 +85,6 @@
         } catch (err) {
             console.error(err);
         }
-
     }
 
     function removePokemonCards() {
@@ -106,7 +105,7 @@
     paginationPrevBtn.addEventListener("click", () => handlePaginationClick("prevUrl"));
 
     // Create Pokemon cards on page load
-    getPokemon(API_INITIAL_DATA).catch(err => console.error(err));
+    getPokemon(apiEndpoint).catch(err => console.error(err));
 
     // Pokemon Pop-Up
     function createPokeCardPopup(pokeCardData) {
@@ -245,7 +244,6 @@
 
     searchInput.addEventListener("keyup", getMatches);
     form.addEventListener("submit", event => event.preventDefault()); // Prevent page refresh
-
 }
 
 // Easter egg
