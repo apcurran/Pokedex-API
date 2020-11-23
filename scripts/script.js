@@ -228,7 +228,7 @@
     
     function getMatches() {
         const pokeCards = document.querySelectorAll(".main-card");
-        const searchTerm = searchInput.value.toLowerCase();
+        const searchTerm = searchInput.value;
         const regex = new RegExp(`^${searchTerm}`, "gi"); // Match the title beginning with searchTerm
 
         for (const card of pokeCards) {
