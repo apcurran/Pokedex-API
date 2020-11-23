@@ -225,12 +225,12 @@
     const searchInput = form.elements.input;
     
     function getMatches() {
-        const searchTerm = searchInput.value.toLowerCase();
         const pokeCards = document.querySelectorAll(".main-card");
+        const searchTerm = searchInput.value.toLowerCase();
+        const regex = new RegExp(`^${searchTerm}`, "gi"); // Match the title beginning with searchTerm
 
         for (const card of pokeCards) {
             const title = card.querySelector(".main-card-content-name").textContent;
-            const regex = new RegExp(`^${searchTerm}`, "gi"); // Match the title beginning with searchTerm
 
             if (title.match(regex)) {
                 card.style.display = "flex";
