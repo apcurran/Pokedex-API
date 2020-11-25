@@ -41,7 +41,12 @@
     
     async function getPokemon(apiUrl) {
         // Show loading indicator
-        loading.style.display = "flex";
+        if (loading.attributeStyleMap) {
+            // Use CSS Houdini Typed OM
+            loading.attributeStyleMap.set("display", "flex");
+        } else {
+            loading.style.display = "flex";
+        }
 
         const pokemonGroupResponse = await fetch(apiUrl);
         const pokemonGroupData = await pokemonGroupResponse.json();
@@ -68,19 +73,34 @@
         }
         
         // Hide loading indicator
-        loading.style.display = "";
+        if (loading.attributeStyleMap) {
+            // Use CSS Houdini Typed OM
+            loading.attributeStyleMap.clear();
+        } else {
+            loading.style.display = "";
+        }
     }
 
     async function selectedPokemon(pokemonUrl) {
         try {
-            loading.style.display = "flex";
+            if (loading.attributeStyleMap) {
+                // Use CSS Houdini Typed OM
+                loading.attributeStyleMap.set("display", "flex");
+            } else {
+                loading.style.display = "flex";
+            }
 
             const response = await fetch(pokemonUrl);
             const data = await response.json();
             
             createPokeCardPopup(data);
 
-            loading.style.display = "";
+            if (loading.attributeStyleMap) {
+                // Use CSS Houdini Typed OM
+                loading.attributeStyleMap.clear();
+            } else {
+                loading.style.display = "";
+            }
 
         } catch (err) {
             console.error(err);
@@ -233,11 +253,21 @@
         for (const card of pokeCards) {
             const title = card.querySelector(".main-card-content-name").textContent;
 
-            if (title.match(regex)) {
-                card.style.display = "flex";
+            if (card.attributeStyleMap) {
+                // Use CSS Houdini Typed Object Model API
+                if (title.match(regex)) {
+                    card.attributeStyleMap.set("display", "flex");
+                } else {
+                    card.attributeStyleMap.set("display", "none");
+                }
             } else {
-                card.style.display = "none";
+                if (title.match(regex)) {
+                    card.style.display = "flex";
+                } else {
+                    card.style.display = "none";
+                }
             }
+
         }
 
     }
