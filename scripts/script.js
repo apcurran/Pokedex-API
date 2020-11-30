@@ -1,6 +1,7 @@
 "use strict";
 
 const loaderModule = (() => {
+    // DOM elem ref
     const loader = document.querySelector(".loading");
 
     function showLoader() {
@@ -34,7 +35,7 @@ const paginationModule = (() => {
         prevUrl: ""
     };
 
-    // DOM elems
+    // DOM elem refs
     const paginationNextBtn = document.getElementById("pagination-controls__btn--next");
     const paginationPrevBtn = document.getElementById("pagination-controls__btn--prev");
     const main = document.querySelector(".main");
@@ -98,8 +99,27 @@ const paginationModule = (() => {
 
 // Pokemon Cards Grid
 const pokemonCardsGridModule = (() => {
+    // DOM elem ref
     const main = document.querySelector(".main");
     
+    async function getPokemon(apiUrl) {
+        loaderModule.showLoader();
+    
+        const pokemonGroupResponse = await fetch(apiUrl);
+        const pokemonGroupData = await pokemonGroupResponse.json();
+        const pokemonDataArr = pokemonGroupData.results;
+        
+        for (let i = 0; i < pokemonDataArr.length; i++) {
+            createPokemon(pokemonDataArr[i], i);
+        }
+    
+        // Update Pagination Controls Data
+        paginationModule.updatePaginationUrl("nextUrl", pokemonGroupData.next);
+        paginationModule.updatePaginationUrl("prevUrl", pokemonGroupData.previous);
+        
+        loaderModule.hideLoader();
+    }
+
     function createPokemon(pokemon, index) {
         // Pull id from url string
         const pokeUrl = pokemon.url;
@@ -124,24 +144,6 @@ const pokemonCardsGridModule = (() => {
         card.insertAdjacentHTML("afterbegin", cardHTML);
         main.append(card);
         card.addEventListener("click", () => pokemonPopupModule.selectedPokemon(pokemon.url));
-    }
-    
-    async function getPokemon(apiUrl) {
-        loaderModule.showLoader();
-    
-        const pokemonGroupResponse = await fetch(apiUrl);
-        const pokemonGroupData = await pokemonGroupResponse.json();
-        const pokemonDataArr = pokemonGroupData.results;
-        
-        for (let i = 0; i < pokemonDataArr.length; i++) {
-            createPokemon(pokemonDataArr[i], i);
-        }
-    
-        // Update Pagination Controls Data
-        paginationModule.updatePaginationUrl("nextUrl", pokemonGroupData.next);
-        paginationModule.updatePaginationUrl("prevUrl", pokemonGroupData.previous);
-        
-        loaderModule.hideLoader();
     }
 
     return {
@@ -292,7 +294,9 @@ function init() {
     const POKEMON_PER_PAGE = 50;
     const apiEndpoint = `https://pokeapi.co/api/v2/pokemon?limit=${POKEMON_PER_PAGE}`;
     
-    pokemonCardsGridModule.getPokemon(apiEndpoint).catch(err => console.error(err));
+    pokemonCardsGridModule
+        .getPokemon(apiEndpoint)
+        .catch(err => console.error(err));
 }
 
 init();
@@ -341,4 +345,32 @@ init();
 
     form.addEventListener("submit", event => event.preventDefault()); // Prevent page refresh
     searchInput.addEventListener("keyup", getMatches);
+}
+
+// Easter egg
+{
+    let pressed = [];
+    const secretCode = "ArrowUpArrowDownArrowLeftArrowLeftArrowRight";
+
+    function checkCode(event) {
+        // Ignore searchbar keypresses
+        if (event.target.matches(".home-form-search")) return;
+
+        pressed.push(event.key);
+        pressed.splice(0, pressed.length - secretCode.length);
+
+        const word = pressed.join("");
+
+        if (word.includes(secretCode)) addPokeGif();
+    }
+
+    function addPokeGif() {
+        const pokeGifHTML = `
+            <iframe class="easter-egg-gif" src="https://giphy.com/embed/vsyKKf1t22nmw" width="480" height="480" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
+        `;
+
+        document.body.insertAdjacentHTML("afterbegin", pokeGifHTML);
+    }
+
+    document.addEventListener("keydown", checkCode);
 }
