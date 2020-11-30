@@ -143,7 +143,7 @@ async function getPokemon(apiUrl) {
         createPokemon(pokemonDataArr[i], i);
     }
 
-    // Update Pagination Controls Obj
+    // Update Pagination Controls Data
     paginationModule.updatePaginationUrl("nextUrl", pokemonGroupData.next);
     paginationModule.updatePaginationUrl("prevUrl", pokemonGroupData.previous);
     
