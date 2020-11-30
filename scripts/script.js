@@ -97,7 +97,6 @@ const paginationModule = (() => {
     };
 })();
 
-// Pokemon Cards Grid
 const pokemonCardsGridModule = (() => {
     // DOM elem ref
     const main = document.querySelector(".main");
