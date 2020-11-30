@@ -240,8 +240,8 @@
     }
 }
 
+// Search Filter
 {
-    // Search Filter
     const form = document.forms.search;
     const searchInput = form.elements.input;
     
