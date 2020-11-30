@@ -30,7 +30,6 @@ const loaderModule = (() => {
 {
     // Pokemon Cards Grid
     const main = document.querySelector(".main");
-    const loading = document.querySelector(".loading");
     const POKEMON_PER_PAGE = 50;
     const apiEndpoint = `https://pokeapi.co/api/v2/pokemon?limit=${POKEMON_PER_PAGE}`;
     const paginationNextBtn = document.getElementById("pagination-controls__btn--next");
@@ -98,24 +97,14 @@ const loaderModule = (() => {
 
     async function selectedPokemon(pokemonUrl) {
         try {
-            if (loading.attributeStyleMap) {
-                // Use CSS Houdini Typed OM
-                loading.attributeStyleMap.set("display", "flex");
-            } else {
-                loading.style.display = "flex";
-            }
+            loaderModule.showLoader();
 
             const response = await fetch(pokemonUrl);
             const data = await response.json();
             
             createPokeCardPopup(data);
 
-            if (loading.attributeStyleMap) {
-                // Use CSS Houdini Typed OM
-                loading.attributeStyleMap.clear();
-            } else {
-                loading.style.display = "";
-            }
+            loaderModule.hideLoader();
 
         } catch (err) {
             console.error(err);
@@ -262,6 +251,27 @@ const loaderModule = (() => {
     const form = document.forms.search;
     const searchInput = form.elements.input;
     
+    // Helper functions
+    function showCard(card) {
+        if (card.attributeStyleMap) {
+            // Use CSS Houdini Typed OM
+            card.attributeStyleMap.clear();
+        } else {
+            // Keep original "display: flex" value
+            card.style.display = "";
+        }
+    }
+
+    function hideCard(card) {
+        if (card.attributeStyleMap) {
+            // Use CSS Houdini Typed OM
+            card.attributeStyleMap.set("display", "none");
+        } else {
+            // Fallback to old "style" property
+            card.style.display = "none";
+        }
+    }
+
     function getMatches() {
         const pokeCards = document.querySelectorAll(".main-card");
         const searchTerm = searchInput.value;
@@ -269,27 +279,15 @@ const loaderModule = (() => {
 
         for (const card of pokeCards) {
             const title = card.querySelector(".main-card-content-name").textContent;
-
-            if (card.attributeStyleMap) {
-                // Use CSS Houdini Typed Object Model API
-                if (title.match(regex)) {
-                    card.attributeStyleMap.set("display", "flex");
-                } else {
-                    card.attributeStyleMap.set("display", "none");
-                }
+            
+            if (title.match(regex)) {
+                showCard(card);
             } else {
-                // Use old 'style' property
-                if (title.match(regex)) {
-                    card.style.display = "flex";
-                } else {
-                    card.style.display = "none";
-                }
+                hideCard(card);
             }
-
         }
-
     }
 
-    searchInput.addEventListener("keyup", getMatches);
     form.addEventListener("submit", event => event.preventDefault()); // Prevent page refresh
+    searchInput.addEventListener("keyup", getMatches);
 }
