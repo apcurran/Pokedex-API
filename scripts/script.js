@@ -287,11 +287,11 @@ const pokemonPopupModule = (() => {
     };
 })();
 
+// Create Pokemon cards on page load
 function init() {
     const POKEMON_PER_PAGE = 50;
     const apiEndpoint = `https://pokeapi.co/api/v2/pokemon?limit=${POKEMON_PER_PAGE}`;
     
-    // Create Pokemon cards on page load
     pokemonCardsGridModule.getPokemon(apiEndpoint).catch(err => console.error(err));
 }
 
