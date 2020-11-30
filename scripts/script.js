@@ -149,13 +149,10 @@ const pokemonCardsGridModule = (() => {
     };
 })();
 
-const POKEMON_PER_PAGE = 50;
-const apiEndpoint = `https://pokeapi.co/api/v2/pokemon?limit=${POKEMON_PER_PAGE}`;
-
-// Create Pokemon cards on page load
-pokemonCardsGridModule.getPokemon(apiEndpoint).catch(err => console.error(err));
-
 const pokemonPopupModule = (() => {
+    // DOM elem
+    const main = document.querySelector(".main");
+
     async function selectedPokemon(pokemonUrl) {
         try {
             loaderModule.showLoader();
@@ -261,7 +258,7 @@ const pokemonPopupModule = (() => {
 
     // Close popup functionality
     function handleClosePopopClick(event) {
-        const popupContainer = document.querySelector(".popup-container");
+        const popupContainer = main.querySelector(".popup-container");
     
         if (!popupContainer) return;
     
@@ -276,7 +273,7 @@ const pokemonPopupModule = (() => {
     function handleClosePopupEsc(event) {
         if (event.key !== "Escape") return;
     
-        const popupContainer = document.querySelector(".popup-container");
+        const popupContainer = main.querySelector(".popup-container");
     
         popupContainer.remove();
     }
@@ -290,7 +287,17 @@ const pokemonPopupModule = (() => {
     };
 })();
 
-// Search Filter
+function init() {
+    const POKEMON_PER_PAGE = 50;
+    const apiEndpoint = `https://pokeapi.co/api/v2/pokemon?limit=${POKEMON_PER_PAGE}`;
+    
+    // Create Pokemon cards on page load
+    pokemonCardsGridModule.getPokemon(apiEndpoint).catch(err => console.error(err));
+}
+
+init();
+
+// Search filter functionality
 {
     const form = document.forms.search;
     const searchInput = form.elements.input;
