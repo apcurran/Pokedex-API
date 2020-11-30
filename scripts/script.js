@@ -1,5 +1,32 @@
 "use strict";
 
+const loaderModule = (() => {
+    const loader = document.querySelector(".loading");
+
+    function showLoader() {
+        if (loader.attributeStyleMap) {
+            // Use CSS Houdini Typed OM
+            loader.attributeStyleMap.set("display", "flex");
+        } else {
+            // Use old 'style' property
+            loader.style.display = "flex";
+        }
+    }
+
+    function hideLoader() {
+        if (loader.attributeStyleMap) {
+            loader.attributeStyleMap.clear();
+        } else {
+            loader.style.display = "";
+        }
+    }
+
+    return {
+        showLoader,
+        hideLoader
+    };
+})();
+
 {
     // Pokemon Cards Grid
     const main = document.querySelector(".main");
@@ -40,13 +67,7 @@
     }
     
     async function getPokemon(apiUrl) {
-        // Show loading indicator
-        if (loading.attributeStyleMap) {
-            // Use CSS Houdini Typed OM
-            loading.attributeStyleMap.set("display", "flex");
-        } else {
-            loading.style.display = "flex";
-        }
+        loaderModule.showLoader();
 
         const pokemonGroupResponse = await fetch(apiUrl);
         const pokemonGroupData = await pokemonGroupResponse.json();
@@ -72,13 +93,7 @@
             paginationNextBtn.classList.remove("btn--hide");
         }
         
-        // Hide loading indicator
-        if (loading.attributeStyleMap) {
-            // Use CSS Houdini Typed OM
-            loading.attributeStyleMap.clear();
-        } else {
-            loading.style.display = "";
-        }
+        loaderModule.hideLoader();
     }
 
     async function selectedPokemon(pokemonUrl) {
@@ -240,6 +255,8 @@
     }
 }
 
+
+
 // Search Filter
 {
     const form = document.forms.search;
@@ -261,6 +278,7 @@
                     card.attributeStyleMap.set("display", "none");
                 }
             } else {
+                // Use old 'style' property
                 if (title.match(regex)) {
                     card.style.display = "flex";
                 } else {
@@ -274,32 +292,4 @@
 
     searchInput.addEventListener("keyup", getMatches);
     form.addEventListener("submit", event => event.preventDefault()); // Prevent page refresh
-}
-
-// Easter egg
-{
-    let pressed = [];
-    const secretCode = "ArrowUpArrowDownArrowLeftArrowLeftArrowRight";
-
-    function checkCode(event) {
-        // Ignore searchbar keypresses
-        if (event.target.matches(".home-form-search")) return;
-
-        pressed.push(event.key);
-        pressed.splice(0, pressed.length - secretCode.length);
-
-        const word = pressed.join("");
-
-        if (word.includes(secretCode)) addPokeGif();
-    }
-
-    function addPokeGif() {
-        const pokeGifHTML = `
-            <iframe class="easter-egg-gif" src="https://giphy.com/embed/vsyKKf1t22nmw" width="480" height="480" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
-        `;
-
-        document.body.insertAdjacentHTML("afterbegin", pokeGifHTML);
-    }
-
-    document.addEventListener("keydown", checkCode);
 }
