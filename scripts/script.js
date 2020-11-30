@@ -34,6 +34,7 @@ const paginationModule = (() => {
         prevUrl: ""
     };
 
+    // DOM elems
     const paginationNextBtn = document.getElementById("pagination-controls__btn--next");
     const paginationPrevBtn = document.getElementById("pagination-controls__btn--prev");
     const main = document.querySelector(".main");
@@ -256,31 +257,57 @@ function createPokeCardPopup(pokeCardData) {
     main.insertAdjacentHTML("afterbegin", pokeCardHTML);
 
     // Close Popup event listeners
-    document.addEventListener("click", handleClosePopopClick);
-    document.addEventListener("keydown", handleClosePopupEsc);
+    // document.addEventListener("click", handleClosePopopClick);
+    // document.addEventListener("keydown", handleClosePopupEsc);
 }
 
-function handleClosePopopClick(event) {
-    const popupContainer = main.querySelector(".popup-container");
+// function handleClosePopopClick(event) {
+//     const popupContainer = main.querySelector(".popup-container");
 
-    if (!popupContainer) return;
+//     if (!popupContainer) return;
 
-    const isOutside = !event.target.closest(".popup");
-    const isPopupCloseBtn = event.target.closest(".popup__close-btn");
+//     const isOutside = !event.target.closest(".popup");
+//     const isPopupCloseBtn = event.target.closest(".popup__close-btn");
     
-    if (isOutside || isPopupCloseBtn) {
+//     if (isOutside || isPopupCloseBtn) {
+//         popupContainer.remove();
+//     }
+// }
+
+// function handleClosePopupEsc(event) {
+//     if (event.key !== "Escape") return;
+
+//     const popupContainer = main.querySelector(".popup-container");
+
+//     popupContainer.remove();
+// }
+
+
+const pokemonPopupModule = (() => {
+    function handleClosePopopClick(event) {
+        const popupContainer = main.querySelector(".popup-container");
+    
+        if (!popupContainer) return;
+    
+        const isOutside = !event.target.closest(".popup");
+        const isPopupCloseBtn = event.target.closest(".popup__close-btn");
+        
+        if (isOutside || isPopupCloseBtn) {
+            popupContainer.remove();
+        }
+    }
+    
+    function handleClosePopupEsc(event) {
+        if (event.key !== "Escape") return;
+    
+        const popupContainer = main.querySelector(".popup-container");
+    
         popupContainer.remove();
     }
-}
 
-function handleClosePopupEsc(event) {
-    if (event.key !== "Escape") return;
-
-    const popupContainer = main.querySelector(".popup-container");
-
-    popupContainer.remove();
-}
-
+    document.addEventListener("click", handleClosePopopClick);
+    document.addEventListener("keydown", handleClosePopupEsc);
+})();
 
 
 // Search Filter
