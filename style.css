@@ -151,7 +151,6 @@ input {
     padding: .25rem .75rem;
     line-height: 1;
     font-size: .925rem;
-    font-weight: 400;
     background-color: hsl(0, 0%, 98%);
     border-radius: 500px;
     color: hsl(0, 0%, 36%);
@@ -160,6 +159,7 @@ input {
 .main-card-content-name {
     text-transform: uppercase;
     letter-spacing: .05em;
+    font-weight: 400;
     font-size: 1.05rem;
     color: hsl(247, 35%, 24%);
 }

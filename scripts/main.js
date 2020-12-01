@@ -111,8 +111,8 @@ const pokemonCardsGridModule = (() => {
                 <img class="main-card-fig-img" src="https://pokeres.bastionbot.org/images/pokemon/${pokeId}.png" alt="Pokemon character" width="600" height="600" loading="${index > 11 ? 'lazy' : 'eager'}">
             </figure>
             <section class="main-card-content">
-                <h3 class="main-card-content-num">#${pokeNum}</h3>
-                <p class="main-card-content-name">${pokeName}</p>
+                <p class="main-card-content-num">#${pokeNum}</p>
+                <h3 class="main-card-content-name">${pokeName}</h3>
             </section>
         </article>
         `;
