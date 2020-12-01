@@ -101,17 +101,20 @@ const pokemonCardsGridModule = (() => {
     
         const pokeNum = pokeId.toString().padStart(3, "0");
         const pokeName = pokemon.name;
-        const card = document.createElement("article");
-        card.classList.add("main-card");
+        const card = document.createElement("button");
+        card.classList.add("main-card-btn-container");
+        // card.tabIndex = 0;
         const cardHTML = 
         `
-        <figure class="main-card-fig">
-            <img class="main-card-fig-img" src="https://pokeres.bastionbot.org/images/pokemon/${pokeId}.png" alt="Pokemon character" width="600" height="600" loading="${index > 11 ? 'lazy' : 'eager'}">
-        </figure>
-        <section class="main-card-content">
-            <h3 class="main-card-content-num">#${pokeNum}</h3>
-            <p class="main-card-content-name">${pokeName}</p>
-        </section>
+        <article class="main-card">
+            <figure class="main-card-fig">
+                <img class="main-card-fig-img" src="https://pokeres.bastionbot.org/images/pokemon/${pokeId}.png" alt="Pokemon character" width="600" height="600" loading="${index > 11 ? 'lazy' : 'eager'}">
+            </figure>
+            <section class="main-card-content">
+                <h3 class="main-card-content-num">#${pokeNum}</h3>
+                <p class="main-card-content-name">${pokeName}</p>
+            </section>
+        </article>
         `;
         
         card.insertAdjacentHTML("afterbegin", cardHTML);

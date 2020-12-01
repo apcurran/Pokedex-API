@@ -101,6 +101,11 @@ input {
     grid-gap: 1.5rem;
 }
 
+.main-card-btn-container {
+    background: none;
+    border: none;
+}
+
 .main-card {
     display: flex;
     flex-direction: column;
