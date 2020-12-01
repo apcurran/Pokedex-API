@@ -13,6 +13,8 @@ Pokedex API
 
     * Using the Pokedex API to fetch data
 
+    * Pagination with next and previous buttons
+
     * Fetch with async/await as an alternative to regular promise syntax
 
     * Dynamic JS generated HTML for displaying Pokemon cards and Pokemon details modal
@@ -24,5 +26,7 @@ Pokedex API
 * CSS Grid and Flexbox used throughout
 
 * Mobile-friendly layout
+
+* Keyboard-accessible navigation with tabbing, enter to select card (display character stats modal), and escape to close modal
 
 Having some fun using vanilla JS with Pokemon characters!
