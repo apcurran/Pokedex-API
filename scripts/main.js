@@ -1,5 +1,3 @@
-"use strict";
-
 import { loaderModule } from "./Loader.js";
 import { removeChildrenElems } from "./utils.js";
 

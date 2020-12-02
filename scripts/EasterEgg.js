@@ -1,5 +1,3 @@
-"use strict";
-
 let pressed = [];
 const secretCode = "ArrowUpArrowDownArrowLeftArrowLeftArrowRight";
 

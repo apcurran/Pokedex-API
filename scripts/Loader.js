@@ -1,5 +1,3 @@
-"use strict";
-
 const loaderModule = (() => {
     // DOM elem ref
     const loader = document.querySelector(".loading");

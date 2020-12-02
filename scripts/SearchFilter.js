@@ -1,5 +1,3 @@
-"use strict";
-
 const form = document.forms.search;
 const searchInput = form.elements.input;
 
