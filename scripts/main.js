@@ -46,12 +46,23 @@ const paginationModule = (() => {
         }
     }
 
-    function handlePaginationClick(type) {
-        // Clear prev pokemon cards first
-        removePokemonCards();
-
-        // Make API req
-        pokemonCardsGridModule.getPokemon(pagination[type]);
+    async function handlePaginationClick(type) {
+        try {
+            // Clear prev pokemon cards first
+            removePokemonCards();
+    
+            // Get Pokemon data
+            const { pokemonData, paginationUrlNext, paginationUrlPrev } = await pokemonCardsGridModule.getPokemonData(pagination[type]);
+            // Create Pokemon cards
+            pokemonCardsGridModule.createAllPokemon(pokemonData);
+    
+            // Update pagination data
+            updatePaginationUrl("nextUrl", paginationUrlNext);
+            updatePaginationUrl("prevUrl", paginationUrlPrev);
+            
+        } catch (err) {
+            console.error(err);
+        }
     }
 
     function removePokemonCards() {
@@ -66,8 +77,6 @@ const paginationModule = (() => {
 
     return {
         updatePaginationUrl,
-        showPrevPaginationBtn,
-        showNextPaginationBtn
     };
 })();
 
@@ -75,7 +84,7 @@ const pokemonCardsGridModule = (() => {
     // DOM elem ref
     const main = document.querySelector(".main");
     
-    async function getPokemon(apiUrl) {
+    async function getPokemonData(apiUrl) {
         try {
             loaderModule.showLoader();
         
@@ -83,18 +92,23 @@ const pokemonCardsGridModule = (() => {
             const pokemonGroupData = await pokemonGroupResponse.json();
             const pokemonDataArr = pokemonGroupData.results;
             
-            for (let i = 0; i < pokemonDataArr.length; i++) {
-                createPokemon(pokemonDataArr[i], i);
-            }
-        
-            // Update Pagination Controls Data
-            paginationModule.updatePaginationUrl("nextUrl", pokemonGroupData.next);
-            paginationModule.updatePaginationUrl("prevUrl", pokemonGroupData.previous);
-            
             loaderModule.hideLoader();
+
+            return {
+                pokemonData: pokemonDataArr,
+                paginationUrlNext: pokemonGroupData.next,
+                paginationUrlPrev: pokemonGroupData.previous
+            };
             
         } catch (err) {
             console.error(err);
+        }
+
+    }
+
+    function createAllPokemon(pokemonDataArr) {
+        for (let i = 0; i < pokemonDataArr.length; i++) {
+            createPokemon(pokemonDataArr[i], i);
         }
     }
 
@@ -128,7 +142,8 @@ const pokemonCardsGridModule = (() => {
     }
 
     return {
-        getPokemon
+        getPokemonData,
+        createAllPokemon
     };
 })();
 
@@ -254,9 +269,9 @@ const pokemonPopupModule = (() => {
     }
     
     function handleClosePopupEsc(event) {
-        if (event.key !== "Escape") return;
-    
         const popupContainer = main.querySelector(".popup-container");
+
+        if (event.key !== "Escape" || !popupContainer) return;
     
         popupContainer.remove();
     }
@@ -269,12 +284,19 @@ const pokemonPopupModule = (() => {
     };
 })();
 
-// Create Pokemon cards on page load
-function init() {
+// On page load
+async function init() {
     const POKEMON_PER_PAGE = 50;
     const apiEndpoint = `https://pokeapi.co/api/v2/pokemon?limit=${POKEMON_PER_PAGE}`;
     
-    pokemonCardsGridModule.getPokemon(apiEndpoint);
+    // Get Pokemon data
+    const { pokemonData, paginationUrlNext, paginationUrlPrev } = await pokemonCardsGridModule.getPokemonData(apiEndpoint);
+    // Create Pokemon cards
+    pokemonCardsGridModule.createAllPokemon(pokemonData);
+
+    // Update pagination data
+    paginationModule.updatePaginationUrl("nextUrl", paginationUrlNext);
+    paginationModule.updatePaginationUrl("prevUrl", paginationUrlPrev);
 }
 
 init();
