@@ -72,6 +72,9 @@ const paginationModule = (() => {
 })();
 
 const pokemonCardsGridModule = (() => {
+    // Data
+    let pokeData = [];
+
     // DOM elem ref
     const main = document.querySelector(".main");
     
@@ -138,7 +141,7 @@ const pokemonPopupModule = (() => {
             const response = await fetch(pokemonUrl);
             const data = await response.json();
             
-            pokemonPopupModule.createPokeCardPopup(data);
+            createPokeCardPopup(data);
     
             loaderModule.hideLoader();
     
@@ -260,8 +263,7 @@ const pokemonPopupModule = (() => {
     document.addEventListener("keydown", handleClosePopupEsc);
 
     return {
-        selectedPokemon,
-        createPokeCardPopup
+        selectedPokemon
     };
 })();
 
