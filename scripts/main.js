@@ -76,21 +76,26 @@ const pokemonCardsGridModule = (() => {
     const main = document.querySelector(".main");
     
     async function getPokemon(apiUrl) {
-        loaderModule.showLoader();
-    
-        const pokemonGroupResponse = await fetch(apiUrl);
-        const pokemonGroupData = await pokemonGroupResponse.json();
-        const pokemonDataArr = pokemonGroupData.results;
+        try {
+            loaderModule.showLoader();
         
-        for (let i = 0; i < pokemonDataArr.length; i++) {
-            createPokemon(pokemonDataArr[i], i);
+            const pokemonGroupResponse = await fetch(apiUrl);
+            const pokemonGroupData = await pokemonGroupResponse.json();
+            const pokemonDataArr = pokemonGroupData.results;
+            
+            for (let i = 0; i < pokemonDataArr.length; i++) {
+                createPokemon(pokemonDataArr[i], i);
+            }
+        
+            // Update Pagination Controls Data
+            paginationModule.updatePaginationUrl("nextUrl", pokemonGroupData.next);
+            paginationModule.updatePaginationUrl("prevUrl", pokemonGroupData.previous);
+            
+            loaderModule.hideLoader();
+            
+        } catch (err) {
+            console.error(err);
         }
-    
-        // Update Pagination Controls Data
-        paginationModule.updatePaginationUrl("nextUrl", pokemonGroupData.next);
-        paginationModule.updatePaginationUrl("prevUrl", pokemonGroupData.previous);
-        
-        loaderModule.hideLoader();
     }
 
     function createPokemon(pokemon, index) {
@@ -269,9 +274,7 @@ function init() {
     const POKEMON_PER_PAGE = 50;
     const apiEndpoint = `https://pokeapi.co/api/v2/pokemon?limit=${POKEMON_PER_PAGE}`;
     
-    pokemonCardsGridModule
-        .getPokemon(apiEndpoint)
-        .catch(err => console.error(err));
+    pokemonCardsGridModule.getPokemon(apiEndpoint);
 }
 
 init();
