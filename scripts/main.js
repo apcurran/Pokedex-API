@@ -1,6 +1,7 @@
 "use strict";
 
 import { loaderModule } from "./Loader.js";
+import { removeChildrenElems } from "./utils.js";
 
 const paginationModule = (() => {
     // Data
@@ -49,7 +50,7 @@ const paginationModule = (() => {
     async function handlePaginationClick(type) {
         try {
             // Clear prev pokemon cards first
-            removePokemonCards();
+            removeChildrenElems(main);
     
             loaderModule.showLoader();
             
@@ -66,12 +67,6 @@ const paginationModule = (() => {
             
         } catch (err) {
             console.error(err);
-        }
-    }
-
-    function removePokemonCards() {
-        while (main.firstChild) {
-            main.removeChild(main.firstChild);
         }
     }
 
