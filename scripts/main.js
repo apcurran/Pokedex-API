@@ -51,10 +51,14 @@ const paginationModule = (() => {
             // Clear prev pokemon cards first
             removePokemonCards();
     
+            loaderModule.showLoader();
+            
             // Get new Pokemon data
             const { pokemonData, paginationUrlNext, paginationUrlPrev } = await pokemonCardsGridModule.getPokemonData(pagination[type]);
             // Create Pokemon cards
             pokemonCardsGridModule.createAllPokemon(pokemonData);
+
+            loaderModule.hideLoader();
     
             // Update to new pagination data
             updatePaginationUrl("nextUrl", paginationUrlNext);
@@ -86,14 +90,10 @@ const pokemonCardsGridModule = (() => {
     
     async function getPokemonData(apiUrl) {
         try {
-            loaderModule.showLoader();
-        
             const pokemonGroupResponse = await fetch(apiUrl);
             const pokemonGroupData = await pokemonGroupResponse.json();
             const pokemonDataArr = pokemonGroupData.results;
             
-            loaderModule.hideLoader();
-
             return {
                 pokemonData: pokemonDataArr,
                 paginationUrlNext: pokemonGroupData.next,
@@ -122,7 +122,6 @@ const pokemonCardsGridModule = (() => {
         const pokeName = pokemon.name;
         const card = document.createElement("button");
         card.classList.add("main-card-btn-container");
-        // card.tabIndex = 0;
         const cardHTML = 
         `
         <article class="main-card">
@@ -148,7 +147,7 @@ const pokemonCardsGridModule = (() => {
 })();
 
 const pokemonPopupModule = (() => {
-    // DOM elem
+    // DOM elem ref
     const main = document.querySelector(".main");
 
     async function selectedPokemon(pokemonUrl) {
@@ -254,7 +253,6 @@ const pokemonPopupModule = (() => {
         return str[0].toUpperCase() + str.slice(1);
     }
 
-    // Close popup functionality
     function handleClosePopopClick(event) {
         const popupContainer = main.querySelector(".popup-container");
     
@@ -289,10 +287,14 @@ async function init() {
     const POKEMON_PER_PAGE = 50;
     const apiEndpoint = `https://pokeapi.co/api/v2/pokemon?limit=${POKEMON_PER_PAGE}`;
     
+    loaderModule.showLoader();
+
     // Get Pokemon data
     const { pokemonData, paginationUrlNext, paginationUrlPrev } = await pokemonCardsGridModule.getPokemonData(apiEndpoint);
     // Create Pokemon cards
     pokemonCardsGridModule.createAllPokemon(pokemonData);
+
+    loaderModule.hideLoader();
 
     // Update pagination data
     paginationModule.updatePaginationUrl("nextUrl", paginationUrlNext);
