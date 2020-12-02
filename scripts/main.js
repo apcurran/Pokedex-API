@@ -51,12 +51,12 @@ const paginationModule = (() => {
             // Clear prev pokemon cards first
             removePokemonCards();
     
-            // Get Pokemon data
+            // Get new Pokemon data
             const { pokemonData, paginationUrlNext, paginationUrlPrev } = await pokemonCardsGridModule.getPokemonData(pagination[type]);
             // Create Pokemon cards
             pokemonCardsGridModule.createAllPokemon(pokemonData);
     
-            // Update pagination data
+            // Update to new pagination data
             updatePaginationUrl("nextUrl", paginationUrlNext);
             updatePaginationUrl("prevUrl", paginationUrlPrev);
             
