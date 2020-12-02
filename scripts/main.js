@@ -72,9 +72,6 @@ const paginationModule = (() => {
 })();
 
 const pokemonCardsGridModule = (() => {
-    // Data
-    let pokeData = [];
-
     // DOM elem ref
     const main = document.querySelector(".main");
     
