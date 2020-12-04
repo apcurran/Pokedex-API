@@ -1,7 +1,7 @@
-function removeChildrenElems(parentElem) {
+function removeChildElems(parentElem) {
     while (parentElem.firstChild) {
         parentElem.removeChild(parentElem.firstChild);
     }
 }
 
-export { removeChildrenElems };
+export { removeChildElems };

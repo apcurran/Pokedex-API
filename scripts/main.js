@@ -1,5 +1,5 @@
 import { loaderModule } from "./Loader.js";
-import { removeChildrenElems } from "./utils.js";
+import { removeChildElems } from "./utils.js";
 
 const paginationModule = (() => {
     // Data
@@ -48,7 +48,7 @@ const paginationModule = (() => {
     async function handlePaginationClick(type) {
         try {
             // Clear prev pokemon cards first
-            removeChildrenElems(main);
+            removeChildElems(main);
     
             loaderModule.showLoader();
             
