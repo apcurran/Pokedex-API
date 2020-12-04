@@ -73,7 +73,7 @@ const paginationModule = (() => {
     paginationPrevBtn.addEventListener("click", () => handlePaginationClick("prevUrl"));
 
     return {
-        updatePaginationUrl,
+        updatePaginationUrl
     };
 })();
 
@@ -281,7 +281,7 @@ const pokemonPopupModule = (() => {
     document.addEventListener("keydown", handleClosePopupEsc);
 
     return {
-        handlePokemonCardClick,
+        handlePokemonCardClick
     };
 })();
 
