@@ -130,7 +130,7 @@ const pokemonCardsGridModule = (() => {
         
         card.insertAdjacentHTML("afterbegin", cardHTML);
         main.append(card);
-        card.addEventListener("click", () => pokemonPopupModule.selectedPokemon(pokemon.url));
+        card.addEventListener("click", () => pokemonPopupModule.handlePokemonCardClick(pokeUrl));
     }
 
     return {
@@ -143,16 +143,26 @@ const pokemonPopupModule = (() => {
     // DOM elem ref
     const main = document.querySelector(".main");
 
-    async function selectedPokemon(pokemonUrl) {
+    async function handlePokemonCardClick(pokemonUrl) {
         try {
             loaderModule.showLoader();
-    
+
+            const data = await getPokemonCharacterData(pokemonUrl);
+            createPokeCardPopup(data);
+
+            loaderModule.hideLoader();
+
+        } catch (err) {
+            console.error(err);
+        }
+    }
+
+    async function getPokemonCharacterData(pokemonUrl) {
+        try {
             const response = await fetch(pokemonUrl);
             const data = await response.json();
-            
-            createPokeCardPopup(data);
-    
-            loaderModule.hideLoader();
+
+            return data;
     
         } catch (err) {
             console.error(err);
@@ -271,7 +281,7 @@ const pokemonPopupModule = (() => {
     document.addEventListener("keydown", handleClosePopupEsc);
 
     return {
-        selectedPokemon
+        handlePokemonCardClick,
     };
 })();
 
