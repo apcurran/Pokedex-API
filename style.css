@@ -152,7 +152,7 @@ input {
         right: 0;
         bottom: 0;
         z-index: 5;
-        background-image: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/13471/sparkles.gif");
+        background-image: url("./images/sparkles.gif");
         background-position: center;
         background-size: 100%;
         mix-blend-mode: color-dodge;
