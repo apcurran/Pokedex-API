@@ -23,7 +23,7 @@ function hideCard(card) {
 }
 
 function getMatches() {
-    const pokeCards = document.querySelectorAll(".main-card");
+    const pokeCards = document.querySelectorAll(".main-card-btn-container");
     const searchTerm = searchInput.value;
     const regex = new RegExp(`^${searchTerm}`, "gi"); // Match the title beginning with searchTerm
 
