@@ -143,20 +143,22 @@ input {
         animation: holo 3s ease-in infinite alternate-reverse;
     }
     
-    /* Sparkles */
-    .main-card:hover::after {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        z-index: 5;
-        background-image: url("./images/sparkles.gif");
-        background-position: center;
-        background-size: 100%;
-        mix-blend-mode: color-dodge;
-        opacity: .6;
+    /* Only show gif sparkles animation for larger devices */
+    @media screen and (min-width: 32em) {
+        .main-card:hover::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 5;
+            background-image: url("./images/sparkles.gif");
+            background-position: center;
+            background-size: 100%;
+            mix-blend-mode: color-dodge;
+            opacity: .6;
+        }
     }
         
     @keyframes holo {
@@ -171,6 +173,7 @@ input {
         }
     }
 }
+
 
 
 .main-card-content {
