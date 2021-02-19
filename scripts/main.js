@@ -159,7 +159,7 @@ const pokemonPopupModule = (() => {
 
     async function getPokemonCharacterData(pokemonUrl) {
         try {
-            const response = await fetch(pokemonUrl);
+            const response = await fetch(pokemonUrl, { cache: "force-cache" });
             const data = await response.json();
 
             return data;
