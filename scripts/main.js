@@ -83,7 +83,7 @@ const pokemonCardsGridModule = (() => {
     
     async function getPokemonData(apiUrl) {
         try {
-            const pokemonGroupResponse = await fetch(apiUrl);
+            const pokemonGroupResponse = await fetch(apiUrl, { cache: "force-cache" });
             const pokemonGroupData = await pokemonGroupResponse.json();
             const pokemonDataArr = pokemonGroupData.results;
             
@@ -106,8 +106,8 @@ const pokemonCardsGridModule = (() => {
     }
 
     function createPokemon(pokemon, index) {
-        // Pull id from url string
         const pokeUrl = pokemon.url;
+        // Pull id from url string
         const idRegex = /\/(\d+)\/$/;
         const pokeId = pokeUrl.match(idRegex)[1];
     
