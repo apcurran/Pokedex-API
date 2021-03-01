@@ -110,27 +110,39 @@ const pokemonCardsGridModule = (() => {
         // Pull id from url string
         const idRegex = /\/(\d+)\/$/;
         const pokeId = pokeUrl.match(idRegex)[1];
-    
         const pokeNum = pokeId.toString().padStart(3, "0");
         const pokeName = pokemon.name;
-        const card = document.createElement("button");
-        card.classList.add("main-card-btn-container");
-        const cardHTML = 
-        `
-        <article class="main-card">
-            <figure class="main-card-fig">
-                <img class="main-card-fig-img" src="https://pokeres.bastionbot.org/images/pokemon/${pokeId}.png" alt="Pokemon character" width="600" height="600" loading="${index > 11 ? 'lazy' : 'eager'}" decoding="async">
-            </figure>
-            <section class="main-card-content">
-                <p class="main-card-content-num">#${pokeNum}</p>
-                <h3 class="main-card-content-name">${pokeName}</h3>
-            </section>
-        </article>
-        `;
+
+        const pokeCardTemplate = document.getElementById("pokemon-card-template");
+        const cardClone = pokeCardTemplate.content.cloneNode(true);
         
-        card.insertAdjacentHTML("afterbegin", cardHTML);
-        main.append(card);
-        card.addEventListener("click", () => pokemonPopupModule.handlePokemonCardClick(pokeUrl));
+        const cardCloneImg = cardClone.querySelector(".main-card-fig-img");
+        cardCloneImg.src = `https://pokeres.bastionbot.org/images/pokemon/${pokeId}.png`;
+        cardCloneImg.loading = index > 11 ? 'lazy' : 'eager';
+
+        cardClone.querySelector(".main-card-content-num").textContent = `#${pokeNum}`;
+        cardClone.querySelector(".main-card-content-name").textContent = pokeName;
+
+        cardClone.firstElementChild.addEventListener("click", () => pokemonPopupModule.handlePokemonCardClick(pokeUrl));
+        main.append(cardClone);
+        // const card = document.createElement("button");
+        // card.classList.add("main-card-btn-container");
+        // const cardHTML = 
+        // `
+        // <article class="main-card">
+        //     <figure class="main-card-fig">
+        //         <img class="main-card-fig-img" src="https://pokeres.bastionbot.org/images/pokemon/${pokeId}.png" alt="Pokemon character" width="600" height="600" loading="${index > 11 ? 'lazy' : 'eager'}" decoding="async">
+        //     </figure>
+        //     <section class="main-card-content">
+        //         <p class="main-card-content-num">#${pokeNum}</p>
+        //         <h3 class="main-card-content-name">${pokeName}</h3>
+        //     </section>
+        // </article>
+        // `;
+        
+        // card.insertAdjacentHTML("afterbegin", cardHTML);
+        // main.append(card);
+        // card.addEventListener("click", () => pokemonPopupModule.handlePokemonCardClick(pokeUrl));
     }
 
     return {
