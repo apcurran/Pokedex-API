@@ -114,7 +114,7 @@ const pokemonCardsGridModule = (() => {
         const pokeName = pokemon.name;
 
         const pokeCardTemplate = document.getElementById("pokemon-card-template");
-        const cardClone = pokeCardTemplate.content.firstElementChild.cloneNode(true);
+        const cardClone = pokeCardTemplate.content.cloneNode(true);
         
         const cardCloneImg = cardClone.querySelector(".main-card-fig-img");
         cardCloneImg.src = `https://pokeres.bastionbot.org/images/pokemon/${pokeId}.png`;
