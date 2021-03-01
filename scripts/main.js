@@ -100,12 +100,17 @@ const pokemonCardsGridModule = (() => {
     }
 
     function createAllPokemon(pokemonDataArr) {
+        let cardArr = [];
+
         for (let i = 0; i < pokemonDataArr.length; i++) {
-            createPokemon(pokemonDataArr[i], i);
+            createPokemon(pokemonDataArr[i], i, cardArr);
         }
+
+        // Batch append all created Pokemon cards
+        main.append(...cardArr);
     }
 
-    function createPokemon(pokemon, index) {
+    function createPokemon(pokemon, index, cardArr) {
         const pokeUrl = pokemon.url;
         // Pull id from url string
         const idRegex = /\/(\d+)\/$/;
@@ -124,7 +129,9 @@ const pokemonCardsGridModule = (() => {
         cardClone.querySelector(".main-card-content-name").textContent = pokeName;
 
         cardClone.firstElementChild.addEventListener("click", () => pokemonPopupModule.handlePokemonCardClick(pokeUrl));
-        main.append(cardClone);
+        cardArr.push(cardClone);
+
+        // main.append(cardClone);
 
         // const card = document.createElement("button");
         // card.classList.add("main-card-btn-container");
