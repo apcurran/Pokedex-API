@@ -106,10 +106,9 @@ const pokemonCardsGridModule = (() => {
     }
 
     function createPokemon(pokemon, index) {
-        const pokeUrl = pokemon.url;
         // Pull id from url string
         const idRegex = /\/(\d+)\/$/;
-        const pokeId = pokeUrl.match(idRegex)[1];
+        const pokeId = pokemon.url.match(idRegex)[1];
     
         const pokeNum = pokeId.toString().padStart(3, "0");
         const pokeName = pokemon.name;
