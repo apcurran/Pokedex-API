@@ -129,7 +129,7 @@ const pokemonCardsGridModule = (() => {
         
         card.insertAdjacentHTML("afterbegin", cardHTML);
         main.append(card);
-        card.addEventListener("click", () => pokemonPopupModule.handlePokemonCardClick(pokeUrl));
+        card.addEventListener("click", () => pokemonPopupModule.handlePokemonCardClick(pokemon.url));
     }
 
     return {
