@@ -103,6 +103,17 @@ const pokemonCardsGridModule = (() => {
         for (let i = 0; i < pokemonDataArr.length; i++) {
             createPokemon(pokemonDataArr[i], i);
         }
+
+        // Event delegation for click on main elem
+        main.addEventListener("click", (event) => {
+            const card = event.target.closest(".main-card-btn-container");
+
+            if (!card) return;
+
+            const pokeUrl = card.dataset.pokeUrl;
+            
+            pokemonPopupModule.handlePokemonCardClick(pokeUrl);
+        });
     }
 
     function createPokemon(pokemon, index) {
@@ -112,24 +123,22 @@ const pokemonCardsGridModule = (() => {
     
         const pokeNum = pokeId.toString().padStart(3, "0");
         const pokeName = pokemon.name;
-        const card = document.createElement("button");
-        card.classList.add("main-card-btn-container");
         const cardHTML = 
         `
-        <article class="main-card">
-            <figure class="main-card-fig">
-                <img class="main-card-fig-img" src="https://pokeres.bastionbot.org/images/pokemon/${pokeId}.png" alt="Pokemon character" width="600" height="600" loading="${index > 11 ? 'lazy' : 'eager'}" decoding="async">
-            </figure>
-            <section class="main-card-content">
-                <p class="main-card-content-num">#${pokeNum}</p>
-                <h3 class="main-card-content-name">${pokeName}</h3>
-            </section>
-        </article>
+        <button class="main-card-btn-container" data-poke-url="${pokemon.url}">
+            <article class="main-card">
+                <figure class="main-card-fig">
+                    <img class="main-card-fig-img" src="https://pokeres.bastionbot.org/images/pokemon/${pokeId}.png" alt="Pokemon character" width="600" height="600" loading="${index > 11 ? 'lazy' : 'eager'}" decoding="async">
+                </figure>
+                <section class="main-card-content">
+                    <p class="main-card-content-num">#${pokeNum}</p>
+                    <h3 class="main-card-content-name">${pokeName}</h3>
+                </section>
+            </article>
+        </button>
         `;
         
-        card.insertAdjacentHTML("afterbegin", cardHTML);
-        main.append(card);
-        card.addEventListener("click", () => pokemonPopupModule.handlePokemonCardClick(pokemon.url));
+        main.insertAdjacentHTML("beforeend", cardHTML);
     }
 
     return {
