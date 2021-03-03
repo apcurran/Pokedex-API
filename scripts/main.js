@@ -138,7 +138,13 @@ const pokemonCardsGridModule = (() => {
         </button>
         `;
         
+<<<<<<< HEAD
         main.insertAdjacentHTML("beforeend", cardHTML);
+=======
+        card.insertAdjacentHTML("afterbegin", cardHTML);
+        main.append(card);
+        card.addEventListener("click", () => pokemonPopupModule.handlePokemonCardClick(pokeUrl));
+>>>>>>> parent of 8343b89... Changed obj property access in event listener for pokemon card
     }
 
     return {
