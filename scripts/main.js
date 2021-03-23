@@ -204,8 +204,8 @@ const pokemonPopupModule = (() => {
         const pokeCardHTML = `
             <div class="popup-container">
                 <section class="poke-main-section popup" style="background-color: ${pokeColor};">
-                    <button class="popup__close-btn">
-                        <svg class="popup__close-btn__x" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                    <button class="popup__close-btn" type="button" aria-label="Close">
+                        <svg class="popup__close-btn__x" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
                     </button>
                     <section class="poke-main-section-data">
                         <h1 class="poke-main-section-data-title">${pokeCardData.name}</h1>
