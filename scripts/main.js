@@ -210,11 +210,11 @@ const pokemonPopupModule = (() => {
                     <section class="poke-main-section-data">
                         <h1 class="poke-main-section-data-title">${pokeCardData.name}</h1>
                         <img class="poke-main-section-data-img" src="https://pokeres.bastionbot.org/images/pokemon/${pokeCardData.id}.png" alt="${pokeCardData.name} Pokemon">
-                        <p class="poke-main-section-data-body">Type: ${capInitialLetter(pokeType)}</p>
+                        <p class="poke-main-section-data-body">Type: <span class="cap-first">${pokeType}</span></p>
                         <p class="poke-main-section-data-body">Weight: ${convertedWeight} lbs</p>
                         <p class="poke-main-section-data-body">Height: ${convertedHeight} ft</p>
                         <div class="poke-main-section-data-abilities">
-                            <p class="poke-main-section-data-abilities-title">Ability: <span>${capInitialLetter(pokeCardData.abilities[0].ability.name)}</span></p>
+                            <p class="poke-main-section-data-abilities-title">Ability: <span class="cap-first">${pokeCardData.abilities[0].ability.name}</span></p>
                         </div>
                     </section>
                     <section class="poke-main-section-stats">
@@ -248,11 +248,6 @@ const pokemonPopupModule = (() => {
         `;
     
         main.insertAdjacentHTML("afterbegin", pokeCardHTML);
-    }
-
-    // Helper func
-    function capInitialLetter(str) {
-        return str[0].toUpperCase() + str.slice(1);
     }
 
     function handleClosePopopClick(event) {
