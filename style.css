@@ -16,12 +16,7 @@ input {
 }
 
 .cap-first {
-    display: inline-block;
-}
-
-.cap-first::first-letter {
-    /* Needs to be a block-level elem or inline-block for uppercase */
-    text-transform: uppercase;
+    text-transform: capitalize;
 }
 
 .home {
