@@ -161,9 +161,6 @@ input {
         mix-blend-mode: color-dodge;
         opacity: .6;
     }
-    /* Only show gif sparkles animation for larger devices */
-    /* @media screen and (min-width: 32em) {
-    } */
         
     @keyframes holo {
         0% {
