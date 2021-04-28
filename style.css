@@ -124,7 +124,6 @@ input {
     overflow-x: hidden;
 }
 
-
 /* Only apply to devices that can hover properly */
 @media (hover: hover) and (pointer: fine) {
     /* Holographic Effect */
@@ -174,8 +173,6 @@ input {
         }
     }
 }
-
-
 
 .main-card-content {
     display: flex;
