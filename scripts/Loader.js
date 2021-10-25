@@ -1,5 +1,6 @@
-const loaderModule = (() => {
+const Loader = (() => {
     // DOM elem ref
+    /** @type {HTMLDivElement} */
     const loader = document.querySelector(".loading");
 
     function showLoader() {
@@ -26,4 +27,4 @@ const loaderModule = (() => {
     };
 })();
 
-export { loaderModule };
+export { Loader };
