@@ -1,6 +1,6 @@
 import { Loader } from "./Loader.js";
 
-const PokemonPopupModule = (() => {
+const PokemonPopup = (() => {
     // DOM elem ref
     const main = document.querySelector(".main");
 
@@ -141,4 +141,4 @@ const PokemonPopupModule = (() => {
     };
 })();
 
-export { PokemonPopupModule };
+export { PokemonPopup };
