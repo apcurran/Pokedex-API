@@ -182,8 +182,8 @@ input {
 }
 
 .main-card-fig {
-    width: 9rem;
-    height: 9rem;
+    width: 10rem;
+    height: 10rem;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -433,6 +433,8 @@ input {
     .home-form { margin-bottom: 2rem; }
 
     .poke-main-section { margin: 1.5rem; }
+
+    .poke-main-section-data-img { width: 65%; }
 }
 
 @media screen and (max-width: 26.5em) {
