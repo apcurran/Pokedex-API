@@ -143,7 +143,7 @@ input {
         opacity: .35;
         transform: scaleX(4);
         transform-origin: left;
-        animation: holo 3s ease-in infinite alternate-reverse;
+        animation: holo 4s ease-in-out infinite alternate-reverse;
     }
     
     .main-card:hover::after {
