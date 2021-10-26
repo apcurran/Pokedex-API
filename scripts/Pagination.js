@@ -57,8 +57,6 @@ const Pagination = (() => {
             const { pokemonData, paginationUrlNext, paginationUrlPrev } = await PokemonCardsGrid.getPokemonData(pagination[type]);
             // Create Pokemon cards
             PokemonCardsGrid.createAllPokemon(pokemonData);
-
-            Loader.hideLoader();
     
             // Update to new pagination data
             updatePaginationUrl("nextUrl", paginationUrlNext);
@@ -66,6 +64,8 @@ const Pagination = (() => {
             
         } catch (err) {
             console.error(err);
+        } finally {
+            Loader.hideLoader();
         }
     }
 
