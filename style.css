@@ -186,6 +186,7 @@ input {
     height: 9rem;
     display: flex;
     justify-content: center;
+    align-items: center;
     border-radius: 50%;
     background-color: hsl(0, 0%, 98%);
 }
@@ -193,7 +194,7 @@ input {
 .main-card-fig-img {
     width: 70%;
     height: 70%;
-    transform: translateY(50%);
+    transform: translateY(15%);
     filter: drop-shadow(0 4px 4px rgba(0,0,0, .31));
 }
 
