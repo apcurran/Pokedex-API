@@ -17,7 +17,9 @@ async function init() {
     
         // Update pagination data
         Pagination.updatePaginationUrl("nextUrl", paginationUrlNext);
+        Pagination.togglePaginationBtnVisibility();
         Pagination.updatePaginationUrl("prevUrl", paginationUrlPrev);
+        Pagination.togglePaginationBtnVisibility();
         
     } catch (err) {
         console.error(err);

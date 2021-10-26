@@ -16,33 +16,15 @@ const Pagination = (() => {
 
     function updatePaginationUrl(urlType, newUrl) {
         pagination[urlType] = newUrl;
+    }
 
+    function togglePaginationBtnVisibility() {
         if (pagination.nextUrl == null) {
-            showNextPaginationBtn(false);
-        } else {
-            showNextPaginationBtn(true);
+            paginationNextBtn.classList.toggle("btn--hide");
         }
 
         if (pagination.prevUrl == null) {
-            showPrevPaginationBtn(false);
-        } else {
-            showPrevPaginationBtn(true);
-        }
-    }
-
-    function showPrevPaginationBtn(status) {
-        if (status) {
-            paginationPrevBtn.classList.remove("btn--hide");
-        } else {
-            paginationPrevBtn.classList.add("btn--hide");
-        }
-    }
-
-    function showNextPaginationBtn(status) {
-        if (status) {
-            paginationNextBtn.classList.remove("btn--hide");
-        } else {
-            paginationNextBtn.classList.add("btn--hide");
+            paginationPrevBtn.classList.toggle("btn--hide");
         }
     }
 
@@ -50,18 +32,20 @@ const Pagination = (() => {
         try {
             // Clear prev pokemon cards first
             removeChildElems(main);
-    
+
             Loader.showLoader();
-            
+
             // Get new Pokemon data
             const { pokemonData, paginationUrlNext, paginationUrlPrev } = await PokemonCardsGrid.getPokemonData(pagination[type]);
             // Create Pokemon cards
             PokemonCardsGrid.createAllPokemon(pokemonData);
-    
+
             // Update to new pagination data
             updatePaginationUrl("nextUrl", paginationUrlNext);
+            togglePaginationBtnVisibility();
             updatePaginationUrl("prevUrl", paginationUrlPrev);
-            
+            togglePaginationBtnVisibility();
+
         } catch (err) {
             console.error(err);
         } finally {
@@ -74,7 +58,8 @@ const Pagination = (() => {
     paginationPrevBtn.addEventListener("click", () => handlePaginationClick("prevUrl"));
 
     return {
-        updatePaginationUrl
+        updatePaginationUrl,
+        togglePaginationBtnVisibility
     };
 })();
 
