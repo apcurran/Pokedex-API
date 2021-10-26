@@ -15,14 +15,14 @@ async function init() {
         // Create Pokemon cards
         PokemonCardsGrid.createAllPokemon(pokemonData);
     
-        Loader.hideLoader();
-    
         // Update pagination data
         Pagination.updatePaginationUrl("nextUrl", paginationUrlNext);
         Pagination.updatePaginationUrl("prevUrl", paginationUrlPrev);
         
     } catch (err) {
         console.error(err);
+    } finally {
+        Loader.hideLoader();
     }
 }
 
