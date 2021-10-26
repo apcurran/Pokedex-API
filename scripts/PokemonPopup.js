@@ -11,10 +11,10 @@ const PokemonPopup = (() => {
             const data = await getPokemonCharacterData(pokemonUrl);
             createPokeCardPopup(data);
 
-            Loader.hideLoader();
-
         } catch (err) {
             console.error(err);
+        } finally {
+            Loader.hideLoader();
         }
     }
 
