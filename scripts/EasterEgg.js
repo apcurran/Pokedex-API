@@ -1,7 +1,7 @@
 let pressed = [];
 const secretCode = "ArrowUpArrowDownArrowLeftArrowLeftArrowRight";
 
-function checkCode(event) {
+function checkForCodeSeq(event) {
     // Ignore searchbar keypresses
     if (event.target.matches(".home-form-search")) return;
 
@@ -24,4 +24,4 @@ function addPokeGif() {
     document.body.insertAdjacentHTML("afterbegin", pokeGifHTML);
 }
 
-document.addEventListener("keydown", checkCode);
+document.addEventListener("keydown", checkForCodeSeq);
