@@ -194,7 +194,7 @@ input {
     width: 70%;
     height: 70%;
     transform: translateY(50%);
-    filter: drop-shadow(0 6px 5px rgba(0,0,0, .32));
+    filter: drop-shadow(0 4px 4px rgba(0,0,0, .31));
 }
 
 .main-card-content-num,
@@ -347,7 +347,7 @@ input {
 
 .poke-main-section-data-img {
     margin-top: 1.5rem;
-    width: 75%;
+    width: 45%;
 }
 
 .poke-main-section-data-body:first-of-type {
