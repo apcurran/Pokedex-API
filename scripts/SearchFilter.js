@@ -38,5 +38,5 @@ function getMatches() {
     }
 }
 
-form.addEventListener("submit", event => event.preventDefault()); // Prevent page refresh
+form.addEventListener("submit", (event) => event.preventDefault()); // Prevent page refresh
 searchInput.addEventListener("keyup", getMatches);
