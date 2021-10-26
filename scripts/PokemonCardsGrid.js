@@ -19,7 +19,6 @@ const PokemonCardsGrid = (() => {
         } catch (err) {
             console.error(err);
         }
-
     }
 
     function createAllPokemon(pokemonDataArr) {
