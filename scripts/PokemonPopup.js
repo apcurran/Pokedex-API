@@ -71,7 +71,7 @@ const PokemonPopup = (() => {
                     </button>
                     <section class="poke-main-section-data">
                         <h2 class="poke-main-section-data-title">${pokeCardData.name}</h2>
-                        <img class="poke-main-section-data-img" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokeCardData.id}.png" alt="${pokeCardData.name} Pokemon">
+                        <img class="poke-main-section-data-img" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokeCardData.id}.png" alt="${pokeCardData.name} Pokemon" width="96" height="96">
                         <p class="poke-main-section-data-body cap-first">Type: ${pokeType}</p>
                         <p class="poke-main-section-data-body">Weight: ${convertedWeight} lbs</p>
                         <p class="poke-main-section-data-body">Height: ${convertedHeight} ft</p>

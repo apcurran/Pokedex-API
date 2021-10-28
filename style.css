@@ -353,6 +353,7 @@ input {
 .poke-main-section-data-img {
     margin-top: 1.5rem;
     width: 45%;
+    height: auto;
 }
 
 .poke-main-section-data-body:first-of-type {

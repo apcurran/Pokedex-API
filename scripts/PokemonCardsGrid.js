@@ -40,7 +40,7 @@ const PokemonCardsGrid = (() => {
         `
         <article class="main-card">
             <figure class="main-card-fig">
-                <img class="main-card-fig-img" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokeId}.png" alt="Pokemon character" width="600" height="600" loading="${index > 11 ? 'lazy' : 'eager'}" decoding="async">
+                <img class="main-card-fig-img" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokeId}.png" alt="Pokemon character" width="96" height="96" loading="${index > 11 ? 'lazy' : 'eager'}" decoding="async">
             </figure>
             <section class="main-card-content">
                 <p class="main-card-content-num">#${pokeNum}</p>
