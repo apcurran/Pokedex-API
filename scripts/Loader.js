@@ -1,24 +1,13 @@
 const Loader = (() => {
-    // DOM elem ref
     /** @type {HTMLDivElement} */
     const loader = document.querySelector(".loading");
 
     function showLoader() {
-        if (loader.attributeStyleMap) {
-            // Use CSS Houdini Typed OM
-            loader.attributeStyleMap.set("display", "flex");
-        } else {
-            // Use old 'style' property
-            loader.style.display = "flex";
-        }
+        loader.classList.add("loader--show");
     }
 
     function hideLoader() {
-        if (loader.attributeStyleMap) {
-            loader.attributeStyleMap.clear();
-        } else {
-            loader.style.display = "";
-        }
+        loader.classList.remove("loader--show");
     }
 
     return {

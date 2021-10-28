@@ -269,6 +269,10 @@ input {
     }
 }
 
+.loader--show {
+    display: flex;
+}
+
 /* Poke Card Page */
 .popup-container {
     /* Show on top */
