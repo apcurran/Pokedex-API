@@ -356,7 +356,7 @@ input {
 
 .poke-main-section-data-img {
     margin-top: 1.5rem;
-    width: 45%;
+    width: 75%;
     height: auto;
 }
 
@@ -442,8 +442,6 @@ input {
     .home-form { margin-bottom: 2rem; }
 
     .poke-main-section { margin: 1.5rem; }
-
-    .poke-main-section-data-img { width: 65%; }
 }
 
 @media screen and (max-width: 26.5em) {
