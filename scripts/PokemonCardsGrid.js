@@ -44,7 +44,7 @@ const PokemonCardsGrid = (() => {
             </figure>
             <section class="main-card-content">
                 <p class="main-card-content-num">#${pokeNum}</p>
-                <h3 class="main-card-content-name">${pokeName}</h3>
+                <h2 class="main-card-content-name">${pokeName}</h2>
             </section>
         </article>
         `;
