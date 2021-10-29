@@ -3,7 +3,6 @@ import { Loader } from "./Loader.js";
 const PokemonPopup = (() => {
     /** @type {HTMLElement} */
     const main = document.querySelector(".main");
-    const isDataSaver = NetworkInformation.saveData;
 
     async function handlePokemonCardClick(pokemonUrl) {
         try {
@@ -65,8 +64,7 @@ const PokemonPopup = (() => {
         const stat4Val = pokeCardData.stats[3].base_stat;
         const stat5Val = pokeCardData.stats[4].base_stat;
         const stat6Val = pokeCardData.stats[5].base_stat;
-        // Show lo-res sprite on data saver mode, else show hi-res art
-        const imgSrc = isDataSaver ? `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokeCardData.id}.png` : `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokeCardData.id}.png`;
+        const imgSrc = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokeCardData.id}.png`;
         
         const pokeCardHTML = `
             <div class="popup-container">
