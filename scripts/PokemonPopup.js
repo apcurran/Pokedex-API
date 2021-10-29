@@ -53,7 +53,7 @@ const PokemonPopup = (() => {
             water: "#90cdf4"
         };
         const pokeColor = colors[pokeType];
-        // Set popup bg color
+        // Set popup bg color to CSS var
         document.documentElement.style.setProperty("--popup-card-bg", pokeColor);
         
         const convertedWeight = (pokeCardData.weight / 4.536).toFixed(2); // Convert hectograms to pounds
