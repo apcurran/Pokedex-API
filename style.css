@@ -7,6 +7,8 @@
 :root {
     --main-bg-clr: hsl(204, 45%, 98%);
     --primary-clr: hsl(209, 62%, 44%);
+
+    --popup-card-bg: hsl(204, 45%, 99%); /* default value */
 }
 
 html,
@@ -311,7 +313,7 @@ input {
     max-width: 60%;
     padding: 3.5rem 2.5rem;
     border-radius: 30px;
-    background-color: hsl(204, 45%, 99%);
+    background-color: var(--popup-card-bg);
     box-shadow: 0 9px 22px -4px rgba(0,0,0, .185);
 }
 

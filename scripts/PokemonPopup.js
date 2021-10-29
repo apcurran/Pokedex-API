@@ -53,6 +53,8 @@ const PokemonPopup = (() => {
             water: "#90cdf4"
         };
         const pokeColor = colors[pokeType];
+        // Set popup bg color
+        document.documentElement.style.setProperty("--popup-card-bg", pokeColor);
         
         const convertedWeight = (pokeCardData.weight / 4.536).toFixed(2); // Convert hectograms to pounds
         const convertedHeight = (pokeCardData.height / 3.048).toFixed(2); // Convert decimeters to feet
@@ -65,7 +67,7 @@ const PokemonPopup = (() => {
         
         const pokeCardHTML = `
             <div class="popup-container">
-                <section class="poke-main-section popup" style="background-color: ${pokeColor};">
+                <section class="poke-main-section popup">
                     <button class="popup__close-btn" type="button" aria-label="Close">
                         <svg class="popup__close-btn__x" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
                     </button>
