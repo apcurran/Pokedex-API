@@ -1,8 +1,9 @@
 import { Loader } from "./Loader.js";
 
 const PokemonPopup = (() => {
-    // DOM elem ref
+    /** @type {HTMLElement} */
     const main = document.querySelector(".main");
+    const isDataSaver = NetworkInformation.saveData;
 
     async function handlePokemonCardClick(pokemonUrl) {
         try {
@@ -64,6 +65,8 @@ const PokemonPopup = (() => {
         const stat4Val = pokeCardData.stats[3].base_stat;
         const stat5Val = pokeCardData.stats[4].base_stat;
         const stat6Val = pokeCardData.stats[5].base_stat;
+        // Show lo-res sprite on data saver mode, else show hi-res art
+        const imgSrc = isDataSaver ? `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokeCardData.id}.png` : `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokeCardData.id}.png`;
         
         const pokeCardHTML = `
             <div class="popup-container">
@@ -73,7 +76,7 @@ const PokemonPopup = (() => {
                     </button>
                     <section class="poke-main-section-data">
                         <h2 class="poke-main-section-data-title">${pokeCardData.name}</h2>
-                        <img class="poke-main-section-data-img" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokeCardData.id}.png" alt="${pokeCardData.name} Pokemon" width="475" height="475">
+                        <img class="poke-main-section-data-img" src="${imgSrc}" alt="${pokeCardData.name} Pokemon" width="475" height="475">
                         <p class="poke-main-section-data-body cap-first">Type: ${pokeType}</p>
                         <p class="poke-main-section-data-body">Weight: ${convertedWeight} lbs</p>
                         <p class="poke-main-section-data-body">Height: ${convertedHeight} ft</p>
