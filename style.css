@@ -54,6 +54,7 @@ input {
 
 .home-form-search:focus {
     outline-offset: .25rem;
+    outline-color: var(--primary-clr);
 }
 
 .home-form-search::placeholder {
