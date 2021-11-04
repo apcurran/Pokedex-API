@@ -120,7 +120,7 @@ input {
     border-radius: 20px;
 }
 
-.main-card-btn-container:focus {
+.main-card-btn-container:focus-visible {
     outline-color: var(--primary-clr);
 }
 
