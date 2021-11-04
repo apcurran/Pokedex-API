@@ -46,16 +46,14 @@ input {
 .home-form-search {
     width: 100%;
     padding: .5rem 1rem;
-    font-size: 1rem;
+    font-size: 1.125rem;
     border-radius: 500px;
     border: none;
-    outline: none;
-    box-shadow: 0 2px 6px rgba(0,0,0, .15);
-    transition: box-shadow 150ms ease;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, .125);
 }
 
 .home-form-search:focus {
-    box-shadow: 0 2px 15px hsl(205, 79%, 70%);
+    outline-offset: .25rem;
 }
 
 .home-form-search::placeholder {
