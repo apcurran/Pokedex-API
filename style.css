@@ -107,6 +107,7 @@ input {
     margin: 1rem 0 4rem 0;
     width: 80rem;
     max-width: 90%;
+    min-height: 277rem;
     
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(275px, 1fr));
