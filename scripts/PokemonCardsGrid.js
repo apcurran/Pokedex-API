@@ -1,6 +1,6 @@
 import { handlePokemonCardClick } from "./PokemonPopup.js";
 
-// DOM elem ref
+/** @type {HTMLElement} */
 const main = document.querySelector(".main");
 
 async function getPokemonData(apiUrl) {

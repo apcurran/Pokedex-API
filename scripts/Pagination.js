@@ -2,65 +2,61 @@ import { createAllPokemon, getPokemonData } from "./PokemonCardsGrid.js";
 import { showLoader, hideLoader } from "./Loader.js";
 import { removeChildElems } from "./utils.js";
 
-const Pagination = (() => {
-    // Data
-    let pagination = {
-        nextUrl: "",
-        prevUrl: ""
-    };
+// DOM elem refs
+const paginationNextBtn = document.getElementById("pagination-controls__btn--next");
+const paginationPrevBtn = document.getElementById("pagination-controls__btn--prev");
+const main = document.querySelector(".main");
 
-    // DOM elem refs
-    const paginationNextBtn = document.getElementById("pagination-controls__btn--next");
-    const paginationPrevBtn = document.getElementById("pagination-controls__btn--prev");
-    const main = document.querySelector(".main");
+// Data
+let pagination = {
+    nextUrl: "",
+    prevUrl: ""
+};
 
-    function updatePaginationUrl(urlType, newUrl) {
-        pagination[urlType] = newUrl;
+function updatePaginationUrl(urlType, newUrl) {
+    pagination[urlType] = newUrl;
+}
+
+function togglePaginationBtnVisibility() {
+    if (pagination.nextUrl == null) {
+        paginationNextBtn.classList.toggle("btn--hide");
     }
 
-    function togglePaginationBtnVisibility() {
-        if (pagination.nextUrl == null) {
-            paginationNextBtn.classList.toggle("btn--hide");
-        }
-
-        if (pagination.prevUrl == null) {
-            paginationPrevBtn.classList.toggle("btn--hide");
-        }
+    if (pagination.prevUrl == null) {
+        paginationPrevBtn.classList.toggle("btn--hide");
     }
+}
 
-    async function handlePaginationClick(type) {
-        try {
-            // Clear prev pokemon cards first
-            removeChildElems(main);
+async function handlePaginationClick(type) {
+    try {
+        // Clear prev pokemon cards first
+        removeChildElems(main);
 
-            showLoader();
+        showLoader();
 
-            // Get new Pokemon data
-            const { pokemonData, paginationUrlNext, paginationUrlPrev } = await getPokemonData(pagination[type]);
-            // Create Pokemon cards
-            createAllPokemon(pokemonData);
+        // Get new Pokemon data
+        const { pokemonData, paginationUrlNext, paginationUrlPrev } = await getPokemonData(pagination[type]);
+        // Create Pokemon cards
+        createAllPokemon(pokemonData);
 
-            // Update to new pagination data
-            updatePaginationUrl("nextUrl", paginationUrlNext);
-            togglePaginationBtnVisibility();
-            updatePaginationUrl("prevUrl", paginationUrlPrev);
-            togglePaginationBtnVisibility();
+        // Update to new pagination data
+        updatePaginationUrl("nextUrl", paginationUrlNext);
+        togglePaginationBtnVisibility();
+        updatePaginationUrl("prevUrl", paginationUrlPrev);
+        togglePaginationBtnVisibility();
 
-        } catch (err) {
-            console.error(err);
-        } finally {
-            hideLoader();
-        }
+    } catch (err) {
+        console.error(err);
+    } finally {
+        hideLoader();
     }
+}
 
-    // Event listeners
-    paginationNextBtn.addEventListener("click", () => handlePaginationClick("nextUrl"));
-    paginationPrevBtn.addEventListener("click", () => handlePaginationClick("prevUrl"));
+// Event listeners
+paginationNextBtn.addEventListener("click", () => handlePaginationClick("nextUrl"));
+paginationPrevBtn.addEventListener("click", () => handlePaginationClick("prevUrl"));
 
-    return {
-        updatePaginationUrl,
-        togglePaginationBtnVisibility
-    };
-})();
-
-export { Pagination };
+export {
+    updatePaginationUrl,
+    togglePaginationBtnVisibility
+};

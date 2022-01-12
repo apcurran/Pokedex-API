@@ -1,5 +1,5 @@
 import { getPokemonData, createAllPokemon } from "./PokemonCardsGrid.js";
-import { Pagination } from "./Pagination.js";
+import { updatePaginationUrl, togglePaginationBtnVisibility } from "./Pagination.js";
 import { showLoader, hideLoader } from "./Loader.js";
 
 // On page load
@@ -16,10 +16,10 @@ async function init() {
         createAllPokemon(pokemonData);
     
         // Update pagination data
-        Pagination.updatePaginationUrl("nextUrl", paginationUrlNext);
-        Pagination.togglePaginationBtnVisibility();
-        Pagination.updatePaginationUrl("prevUrl", paginationUrlPrev);
-        Pagination.togglePaginationBtnVisibility();
+        updatePaginationUrl("nextUrl", paginationUrlNext);
+        togglePaginationBtnVisibility();
+        updatePaginationUrl("prevUrl", paginationUrlPrev);
+        togglePaginationBtnVisibility();
         
     } catch (err) {
         console.error(err);
