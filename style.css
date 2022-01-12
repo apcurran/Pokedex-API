@@ -7,14 +7,19 @@
 :root {
     --main-bg-clr: hsl(204, 45%, 98%);
     --primary-clr: hsl(209, 62%, 44%);
-
     --popup-card-bg: hsl(204, 45%, 99%); /* default value */
+
+    --slight-spacing: .03em;
 }
 
 html,
-input {
+body {
     font-family: 'Work Sans', sans-serif;
-    letter-spacing: .02em;
+}
+
+input,
+button {
+    font-family: inherit;
 }
 
 .cap-first {
@@ -76,7 +81,7 @@ input {
     margin: 0 .25rem;
     padding: .5rem .75rem;
     text-transform: uppercase;
-    letter-spacing: .08em;
+    letter-spacing: var(--slight-spacing);
     font-size: .875rem;
     font-weight: 700;
     background: none;
@@ -230,7 +235,7 @@ input {
 
 .main-card-content-name {
     text-transform: uppercase;
-    letter-spacing: .05em;
+    letter-spacing: var(--slight-spacing);
     font-weight: 400;
     font-size: 1.0625rem;
     color: hsl(247, 35%, 24%);
@@ -355,6 +360,7 @@ input {
 .poke-main-section-data-title {
     font-size: 2.1rem;
     text-transform: uppercase;
+    letter-spacing: var(--slight-spacing);
 }
 
 .poke-main-section-data-abilities-title {
@@ -384,6 +390,7 @@ input {
     text-transform: uppercase;
     font-weight: 400;
     font-size: 1.125rem;
+    letter-spacing: var(--slight-spacing);
 }
 
 .poke-main-section-stats-prog {
