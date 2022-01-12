@@ -111,7 +111,7 @@ input {
     
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(275px, 1fr));
-    place-content: center center;
+    align-content: start;
     grid-gap: 1.5rem;
 }
 
