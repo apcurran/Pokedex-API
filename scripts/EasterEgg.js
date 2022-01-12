@@ -1,5 +1,6 @@
-let pressed = [];
 const secretCode = "ArrowUpArrowDownArrowLeftArrowLeftArrowRight";
+// Data
+let pressed = [];
 
 function checkForCodeSeq(event) {
     // Ignore searchbar keypresses
