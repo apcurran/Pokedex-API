@@ -1,4 +1,4 @@
-import { Loader } from "./Loader.js";
+import { showLoader, hideLoader } from "./Loader.js";
 
 const PokemonPopup = (() => {
     /** @type {HTMLElement} */
@@ -6,7 +6,7 @@ const PokemonPopup = (() => {
 
     async function handlePokemonCardClick(pokemonUrl) {
         try {
-            Loader.showLoader();
+            showLoader();
 
             const data = await getPokemonCharacterData(pokemonUrl);
             createPokeCardPopup(data);
@@ -14,7 +14,7 @@ const PokemonPopup = (() => {
         } catch (err) {
             console.error(err);
         } finally {
-            Loader.hideLoader();
+            hideLoader();
         }
     }
 

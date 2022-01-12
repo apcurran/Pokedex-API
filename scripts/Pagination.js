@@ -1,5 +1,5 @@
 import { PokemonCardsGrid } from "./PokemonCardsGrid.js";
-import { Loader } from "./Loader.js";
+import { showLoader, hideLoader } from "./Loader.js";
 import { removeChildElems } from "./utils.js";
 
 const Pagination = (() => {
@@ -33,7 +33,7 @@ const Pagination = (() => {
             // Clear prev pokemon cards first
             removeChildElems(main);
 
-            Loader.showLoader();
+            showLoader();
 
             // Get new Pokemon data
             const { pokemonData, paginationUrlNext, paginationUrlPrev } = await PokemonCardsGrid.getPokemonData(pagination[type]);
@@ -49,7 +49,7 @@ const Pagination = (() => {
         } catch (err) {
             console.error(err);
         } finally {
-            Loader.hideLoader();
+            hideLoader();
         }
     }
 

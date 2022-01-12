@@ -1,6 +1,6 @@
 import { PokemonCardsGrid } from "./PokemonCardsGrid.js";
 import { Pagination } from "./Pagination.js";
-import { Loader } from "./Loader.js";
+import { showLoader, hideLoader } from "./Loader.js";
 
 // On page load
 async function init() {
@@ -8,7 +8,7 @@ async function init() {
         const POKEMON_PER_PAGE = 50;
         const apiEndpoint = `https://pokeapi.co/api/v2/pokemon?limit=${POKEMON_PER_PAGE}`;
         
-        Loader.showLoader();
+        showLoader();
     
         // Get Pokemon data
         const { pokemonData, paginationUrlNext, paginationUrlPrev } = await PokemonCardsGrid.getPokemonData(apiEndpoint);
@@ -24,7 +24,7 @@ async function init() {
     } catch (err) {
         console.error(err);
     } finally {
-        Loader.hideLoader();
+        hideLoader();
     }
 }
 
