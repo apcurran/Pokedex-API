@@ -1,42 +1,41 @@
 import { handlePokemonCardClick } from "./PokemonPopup.js";
 
-const PokemonCardsGrid = (() => {
-    // DOM elem ref
-    const main = document.querySelector(".main");
-    
-    async function getPokemonData(apiUrl) {
-        try {
-            const pokemonGroupResponse = await fetch(apiUrl, { cache: "force-cache" });
-            const pokemonGroupData = await pokemonGroupResponse.json();
-            const pokemonDataArr = pokemonGroupData.results;
-            
-            return {
-                pokemonData: pokemonDataArr,
-                paginationUrlNext: pokemonGroupData.next,
-                paginationUrlPrev: pokemonGroupData.previous
-            };
-            
-        } catch (err) {
-            console.error(err);
-        }
-    }
+// DOM elem ref
+const main = document.querySelector(".main");
 
-    function createAllPokemon(pokemonDataArr) {
-        for (let i = 0; i < pokemonDataArr.length; i++) {
-            createPokemon(pokemonDataArr[i], i);
-        }
-    }
+async function getPokemonData(apiUrl) {
+    try {
+        const pokemonGroupResponse = await fetch(apiUrl, { cache: "force-cache" });
+        const pokemonGroupData = await pokemonGroupResponse.json();
+        const pokemonDataArr = pokemonGroupData.results;
 
-    function createPokemon(pokemon, index) {
-        // Pull id from url string
-        const idRegex = /\/(\d+)\/$/;
-        const pokeId = pokemon.url.match(idRegex)[1];
-    
-        const pokeNum = pokeId.toString().padStart(3, "0");
-        const pokeName = pokemon.name;
-        const card = document.createElement("button");
-        card.classList.add("main-card-btn-container");
-        const cardHTML = 
+        return {
+            pokemonData: pokemonDataArr,
+            paginationUrlNext: pokemonGroupData.next,
+            paginationUrlPrev: pokemonGroupData.previous
+        };
+
+    } catch (err) {
+        console.error(err);
+    }
+}
+
+function createAllPokemon(pokemonDataArr) {
+    for (let i = 0; i < pokemonDataArr.length; i++) {
+        createPokemon(pokemonDataArr[i], i);
+    }
+}
+
+function createPokemon(pokemon, index) {
+    // Pull id from url string
+    const idRegex = /\/(\d+)\/$/;
+    const pokeId = pokemon.url.match(idRegex)[1];
+
+    const pokeNum = pokeId.toString().padStart(3, "0");
+    const pokeName = pokemon.name;
+    const card = document.createElement("button");
+    card.classList.add("main-card-btn-container");
+    const cardHTML =
         `
         <article class="main-card">
             <figure class="main-card-fig">
@@ -48,16 +47,13 @@ const PokemonCardsGrid = (() => {
             </section>
         </article>
         `;
-        
-        card.insertAdjacentHTML("afterbegin", cardHTML);
-        main.append(card);
-        card.addEventListener("click", () => handlePokemonCardClick(pokemon.url));
-    }
 
-    return {
-        getPokemonData,
-        createAllPokemon
-    };
-})();
+    card.insertAdjacentHTML("afterbegin", cardHTML);
+    main.append(card);
+    card.addEventListener("click", () => handlePokemonCardClick(pokemon.url));
+}
 
-export { PokemonCardsGrid };
+export {
+    getPokemonData,
+    createAllPokemon
+};

@@ -1,4 +1,4 @@
-import { PokemonCardsGrid } from "./PokemonCardsGrid.js";
+import { createAllPokemon, getPokemonData } from "./PokemonCardsGrid.js";
 import { showLoader, hideLoader } from "./Loader.js";
 import { removeChildElems } from "./utils.js";
 
@@ -36,9 +36,9 @@ const Pagination = (() => {
             showLoader();
 
             // Get new Pokemon data
-            const { pokemonData, paginationUrlNext, paginationUrlPrev } = await PokemonCardsGrid.getPokemonData(pagination[type]);
+            const { pokemonData, paginationUrlNext, paginationUrlPrev } = await getPokemonData(pagination[type]);
             // Create Pokemon cards
-            PokemonCardsGrid.createAllPokemon(pokemonData);
+            createAllPokemon(pokemonData);
 
             // Update to new pagination data
             updatePaginationUrl("nextUrl", paginationUrlNext);
