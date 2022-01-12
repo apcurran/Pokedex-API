@@ -1,4 +1,4 @@
-import { PokemonPopup } from "./PokemonPopup.js";
+import { handlePokemonCardClick } from "./PokemonPopup.js";
 
 const PokemonCardsGrid = (() => {
     // DOM elem ref
@@ -51,7 +51,7 @@ const PokemonCardsGrid = (() => {
         
         card.insertAdjacentHTML("afterbegin", cardHTML);
         main.append(card);
-        card.addEventListener("click", () => PokemonPopup.handlePokemonCardClick(pokemon.url));
+        card.addEventListener("click", () => handlePokemonCardClick(pokemon.url));
     }
 
     return {

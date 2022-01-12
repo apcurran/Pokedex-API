@@ -1,72 +1,71 @@
 import { showLoader, hideLoader } from "./Loader.js";
 
-const PokemonPopup = (() => {
-    /** @type {HTMLElement} */
-    const main = document.querySelector(".main");
+/** @type {HTMLElement} */
+const main = document.querySelector(".main");
 
-    async function handlePokemonCardClick(pokemonUrl) {
-        try {
-            showLoader();
+async function handlePokemonCardClick(pokemonUrl) {
+    try {
+        showLoader();
 
-            const data = await getPokemonCharacterData(pokemonUrl);
-            createPokeCardPopup(data);
+        const data = await getPokemonCharacterData(pokemonUrl);
+        createPokeCardPopup(data);
 
-        } catch (err) {
-            console.error(err);
-        } finally {
-            hideLoader();
-        }
+    } catch (err) {
+        console.error(err);
+    } finally {
+        hideLoader();
     }
+}
 
-    async function getPokemonCharacterData(pokemonUrl) {
-        try {
-            const response = await fetch(pokemonUrl);
-            const data = await response.json();
+async function getPokemonCharacterData(pokemonUrl) {
+    try {
+        const response = await fetch(pokemonUrl);
+        const data = await response.json();
 
-            return data;
-    
-        } catch (err) {
-            console.error(err);
-        }
+        return data;
+
+    } catch (err) {
+        console.error(err);
     }
+}
 
-    function createPokeCardPopup(pokeCardData) {
-        const pokeType = pokeCardData.types[0].type.name;
-        const colors = {
-            bug: "#68d391",
-            dark: "ccc",
-            dragon: "#81e6d9",
-            electric: "#faf089",
-            fairy: "#feb2b2",
-            fighting: "#f6ad55",
-            fire: "#fc8181",
-            flying: "#e2e8f0",
-            ghost: "#b794f4",
-            grass: "#c6f6d5",
-            ground: "#ecc94b",
-            ice: "#bee3f8",
-            normal: "#b2f5ea",
-            poison: "#d6bcfa",
-            psychic: "#fbb6ce",
-            rock: "#fbd38d",
-            steel: "#9ae6b4",
-            water: "#90cdf4"
-        };
-        const pokeColor = colors[pokeType];
-        // Set popup bg color to CSS var
-        document.documentElement.style.setProperty("--popup-card-bg", pokeColor);
-        
-        const convertedWeight = (pokeCardData.weight / 4.536).toFixed(2); // Convert hectograms to pounds
-        const convertedHeight = (pokeCardData.height / 3.048).toFixed(2); // Convert decimeters to feet
-        const stat1Val = pokeCardData.stats[0].base_stat;
-        const stat2Val = pokeCardData.stats[1].base_stat;
-        const stat3Val = pokeCardData.stats[2].base_stat;
-        const stat4Val = pokeCardData.stats[3].base_stat;
-        const stat5Val = pokeCardData.stats[4].base_stat;
-        const stat6Val = pokeCardData.stats[5].base_stat;
-        const imgSrc = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokeCardData.id}.png`;
-        
-        const pokeCardHTML = `
+function createPokeCardPopup(pokeCardData) {
+    const pokeType = pokeCardData.types[0].type.name;
+    const colors = {
+        bug: "#68d391",
+        dark: "ccc",
+        dragon: "#81e6d9",
+        electric: "#faf089",
+        fairy: "#feb2b2",
+        fighting: "#f6ad55",
+        fire: "#fc8181",
+        flying: "#e2e8f0",
+        ghost: "#b794f4",
+        grass: "#c6f6d5",
+        ground: "#ecc94b",
+        ice: "#bee3f8",
+        normal: "#b2f5ea",
+        poison: "#d6bcfa",
+        psychic: "#fbb6ce",
+        rock: "#fbd38d",
+        steel: "#9ae6b4",
+        water: "#90cdf4"
+    };
+    const pokeColor = colors[pokeType];
+    // Set popup bg color to CSS var
+    document.documentElement.style.setProperty("--popup-card-bg", pokeColor);
+
+    const convertedWeight = (pokeCardData.weight / 4.536).toFixed(2); // Convert hectograms to pounds
+    const convertedHeight = (pokeCardData.height / 3.048).toFixed(2); // Convert decimeters to feet
+    const stat1Val = pokeCardData.stats[0].base_stat;
+    const stat2Val = pokeCardData.stats[1].base_stat;
+    const stat3Val = pokeCardData.stats[2].base_stat;
+    const stat4Val = pokeCardData.stats[3].base_stat;
+    const stat5Val = pokeCardData.stats[4].base_stat;
+    const stat6Val = pokeCardData.stats[5].base_stat;
+    const imgSrc = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokeCardData.id}.png`;
+
+    const pokeCardHTML = `
             <div class="popup-container">
                 <section class="poke-main-section popup">
                     <button class="popup__close-btn" type="button" aria-label="Close">
@@ -111,37 +110,32 @@ const PokemonPopup = (() => {
                 </section>
             </div>
         `;
-    
-        main.insertAdjacentHTML("afterbegin", pokeCardHTML);
-    }
 
-    function handleClosePopopClick(event) {
-        const popupContainer = main.querySelector(".popup-container");
-    
-        if (!popupContainer) return;
-    
-        const isOutside = !event.target.closest(".popup");
-        const isPopupCloseBtn = event.target.closest(".popup__close-btn");
-        
-        if (isOutside || isPopupCloseBtn) {
-            popupContainer.remove();
-        }
-    }
-    
-    function handleClosePopupEsc(event) {
-        const popupContainer = main.querySelector(".popup-container");
+    main.insertAdjacentHTML("afterbegin", pokeCardHTML);
+}
 
-        if (event.key !== "Escape" || !popupContainer) return;
-    
+function handleClosePopopClick(event) {
+    const popupContainer = main.querySelector(".popup-container");
+
+    if (!popupContainer) return;
+
+    const isOutside = !event.target.closest(".popup");
+    const isPopupCloseBtn = event.target.closest(".popup__close-btn");
+
+    if (isOutside || isPopupCloseBtn) {
         popupContainer.remove();
     }
+}
 
-    document.addEventListener("click", handleClosePopopClick);
-    document.addEventListener("keydown", handleClosePopupEsc);
+function handleClosePopupEsc(event) {
+    const popupContainer = main.querySelector(".popup-container");
 
-    return {
-        handlePokemonCardClick
-    };
-})();
+    if (event.key !== "Escape" || !popupContainer) return;
 
-export { PokemonPopup };
+    popupContainer.remove();
+}
+
+document.addEventListener("click", handleClosePopopClick);
+document.addEventListener("keydown", handleClosePopupEsc);
+
+export { handlePokemonCardClick };
