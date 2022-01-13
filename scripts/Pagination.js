@@ -26,7 +26,8 @@ function updatePaginationUrl(urlType, newUrl) {
 /**
  * @param {string} paginationUrl
  * @param {HTMLElement} paginationBtn 
- * @param {string} elemHideClass 
+ * @param {string} elemHideClass
+ * @returns {void}
  */
 function togglePaginationBtnVisibility(paginationUrl, paginationBtn, elemHideClass) {
     // Check if pagination URL is null
