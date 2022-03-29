@@ -47,6 +47,9 @@ function togglePaginationBtnVisibility(paginationUrl, paginationBtn, elemHideCla
     return;
 }
 
+/**
+ * @param {string} type 
+ */
 async function handlePaginationClick(type) {
     try {
         // Clear prev pokemon cards first
