@@ -123,13 +123,7 @@ function handleClosePopopClick(event) {
     const isPopupCloseBtn = event.target.closest(".popup__close-btn");
 
     if (isOutside || isPopupCloseBtn) {
-        // trigger fade out anim
-        popupContainer.classList.add("popup-container--fade-out");
-        // then remove from DOM
-        popupContainer.addEventListener("animationend", () => {
-            popupContainer.remove();
-        }, { once: true });
-
+        closePopup(popupContainer);
     }
 }
 
@@ -138,7 +132,20 @@ function handleClosePopupEsc(event) {
 
     if (event.key !== "Escape" || !popupContainer) return;
 
-    popupContainer.remove();
+    closePopup(popupContainer);
+}
+
+/**
+ * @param {Element} elem
+ * @returns {void}
+ */
+function closePopup(elem) {
+    // trigger fade out anim
+    elem.classList.add("popup-container--fade-out");
+    // remove from DOM
+    elem.addEventListener("animationend", () => {
+        elem.remove();
+    }, { once: true });
 }
 
 document.addEventListener("click", handleClosePopopClick);
