@@ -308,6 +308,12 @@ button {
     animation: fade-in 300ms ease forwards;
 }
 
+/* fade effect */
+.popup-container.popup-container--fade-out {
+    pointer-events: none;
+    animation: fade-out 300ms ease forwards;
+}
+
 @keyframes fade-in {
     from {
         opacity: 0;
@@ -315,6 +321,16 @@ button {
 
     to {
         opacity: 1;
+    }
+}
+
+@keyframes fade-out {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
     }
 }
 

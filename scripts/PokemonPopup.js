@@ -123,7 +123,13 @@ function handleClosePopopClick(event) {
     const isPopupCloseBtn = event.target.closest(".popup__close-btn");
 
     if (isOutside || isPopupCloseBtn) {
-        popupContainer.remove();
+        // trigger fade out anim
+        popupContainer.classList.add("popup-container--fade-out");
+        // then remove from DOM
+        popupContainer.addEventListener("animationend", () => {
+            popupContainer.remove();
+        }, { once: true });
+
     }
 }
 
