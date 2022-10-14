@@ -146,7 +146,7 @@ button {
 
 /* Only apply to devices that can hover properly */
 @media (hover: hover) and (pointer: fine) {
-    /* Holographic Effect */
+    /* holographic effect */
     .main-card:hover::before {
         content: "";
         position: absolute;
@@ -165,7 +165,7 @@ button {
         transform-origin: left;
         animation: holo 4s ease-in-out infinite alternate-reverse;
     }
-    
+    /* sparkle effect */
     .main-card:hover::after {
         content: "";
         position: absolute;
