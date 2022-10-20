@@ -6,7 +6,7 @@
 
 :root {
     --main-bg-clr: hsl(204, 45%, 98%);
-    --primary-clr: hsl(209, 62%, 44%);
+    --primary-clr: hsl(193, 82%, 31%);
     --popup-card-bg: hsl(204, 45%, 99%); /* default value */
 
     --slight-spacing: .03em;
@@ -24,6 +24,12 @@ button {
 
 p {
     font-size: 1rem;
+}
+
+button:focus-visible,
+input:focus {
+    outline-style: solid;
+    outline-width: medium;
 }
 
 .cap-first {
@@ -89,7 +95,7 @@ p {
     font-size: .875rem;
     font-weight: 700;
     background: none;
-    border: 1px solid #90cdf4;
+    border: 1px solid var(--primary-clr);
     border-radius: 4px;
     cursor: pointer;
     color: var(--primary-clr);
@@ -132,6 +138,8 @@ p {
 }
 
 .main-card-btn-container:focus-visible {
+    outline-style: solid;
+    outline-width: medium;
     outline-color: var(--primary-clr);
 }
 
@@ -391,6 +399,10 @@ p {
     margin-top: 1rem;
 }
 
+.poke-main-section-data-body span {
+    font-weight: 700;
+}
+
 .poke-main-section-stats-title {
     margin-bottom: .5rem;
     text-transform: uppercase;
@@ -451,12 +463,6 @@ p {
 
     .poke-main-section-data-img,
     .poke-main-section-data-title { align-self: center; }
-
-    .poke-main-section-data-body,
-    .poke-main-section-data-abilities {
-        margin-top: 1rem;
-        margin-bottom: 0;
-    }
 }
 
 @media screen and (max-width: 34.25em) {

@@ -74,10 +74,10 @@ function createPokeCardPopup(pokeCardData) {
                     <section class="poke-main-section-data">
                         <h2 class="poke-main-section-data-title">${pokeCardData.name}</h2>
                         <img class="poke-main-section-data-img" src="${imgSrc}" alt="${pokeCardData.name} Pokemon" width="475" height="475">
-                        <p class="poke-main-section-data-body cap-first">Type: ${pokeType}</p>
-                        <p class="poke-main-section-data-body">Weight: ${convertedWeight} lbs</p>
-                        <p class="poke-main-section-data-body">Height: ${convertedHeight} ft</p>
-                        <p class="poke-main-section-data-body cap-first">Ability: ${pokeCardData.abilities[0].ability.name}</p>
+                        <p class="poke-main-section-data-body cap-first"><span>Type:</span> ${pokeType}</p>
+                        <p class="poke-main-section-data-body"><span>Weight:</span> ${convertedWeight} lbs</p>
+                        <p class="poke-main-section-data-body"><span>Height:</span> ${convertedHeight} ft</p>
+                        <p class="poke-main-section-data-body cap-first"><span>Ability:</span> ${pokeCardData.abilities[0].ability.name}</p>
                     </section>
                     <section class="poke-main-section-stats">
                         <h3 class="poke-main-section-stats-title">${pokeCardData.stats[0].stat.name}</h3>
