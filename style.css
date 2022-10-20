@@ -22,6 +22,10 @@ button {
     font-family: inherit;
 }
 
+p {
+    font-size: 1rem;
+}
+
 .cap-first {
     text-transform: capitalize;
 }
@@ -137,7 +141,7 @@ button {
     flex-direction: column;
     align-items: center;
     padding: 2rem;
-    background: #c3dafe;  /* fallback */
+    background: #c3dafe; /* fallback */
     background: linear-gradient(to bottom, hsl(221, 90%, 86%), hsl(217, 97%, 88%));
     border-radius: 20px;
     box-shadow: 0 6px 9px rgba(0,0,0, .165);
@@ -373,14 +377,6 @@ button {
     letter-spacing: var(--slight-spacing);
 }
 
-.poke-main-section-data-abilities-title {
-    font-weight: 400;
-}
-
-.poke-main-section-data-abilities-title span {
-    font-size: 1rem;
-}
-
 .poke-main-section-data-img {
     margin-top: 1.5rem;
     width: 75%;
@@ -392,7 +388,7 @@ button {
 }
 
 .poke-main-section-data-body {
-    margin: 1rem 0;
+    margin-top: 1rem;
 }
 
 .poke-main-section-stats-title {
