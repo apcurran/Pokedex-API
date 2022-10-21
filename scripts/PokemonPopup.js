@@ -149,4 +149,7 @@ function closePopup(elem) {
 document.addEventListener("click", handleClosePopopClick);
 document.addEventListener("keydown", handleClosePopupEsc);
 
-export { handlePokemonCardClick };
+export {
+    handlePokemonCardClick,
+    createPokeCardPopup
+};

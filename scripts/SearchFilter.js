@@ -1,3 +1,5 @@
+import { getSinglePokemonData, createSinglePokemon } from "./PokemonCardsGrid.js";
+
 const form = document.forms.search;
 const searchInput = form.elements.input;
 
@@ -25,5 +27,12 @@ function getMatches() {
     }
 }
 
-form.addEventListener("submit", (event) => event.preventDefault()); // Prevent page refresh
+async function getCharacter(event) {
+    event.preventDefault();
+    
+    const pokemonCharacterData = await getSinglePokemonData(searchInput.value);
+    createSinglePokemon(pokemonCharacterData);
+}
+
+form.addEventListener("submit", getCharacter); // Prevent page refresh
 searchInput.addEventListener("keyup", getMatches);
