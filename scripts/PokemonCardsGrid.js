@@ -26,7 +26,7 @@ async function getPokemonData(apiUrl) {
  */
 function createAllPokemon(pokemonDataArr) {
     for (let i = 0; i < pokemonDataArr.length; i++) {
-        const [pokemonCard, pokemonURL] = createPokemon(pokemonDataArr[i], i);
+        const [pokemonCard, pokemonURL] = createPokemonCard(pokemonDataArr[i], i);
         pokemonCard.addEventListener("click", () => handlePokemonCardClick(pokemonURL));
         main.append(pokemonCard);
     }
@@ -37,7 +37,7 @@ function createAllPokemon(pokemonDataArr) {
  * @param {number} index 
  * @returns {[HTMLButtonElement, string]}
  */
-function createPokemon(pokemon, index) {
+function createPokemonCard(pokemon, index) {
     // Pull id from url string
     const idRegex = /\/(\d+)\/$/;
     const pokeId = pokemon.url.match(idRegex)[1];
