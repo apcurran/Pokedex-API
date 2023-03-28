@@ -26,14 +26,16 @@ async function getPokemonData(apiUrl) {
  */
 function createAllPokemon(pokemonDataArr) {
     for (let i = 0; i < pokemonDataArr.length; i++) {
-        createPokemon(pokemonDataArr[i], i);
+        const [pokemonCard, pokemonURL] = createPokemon(pokemonDataArr[i], i);
+        pokemonCard.addEventListener("click", () => handlePokemonCardClick(pokemonURL));
+        main.append(pokemonCard);
     }
 }
 
 /**
  * @param {object} pokemon 
  * @param {number} index 
- * @returns {void}
+ * @returns {[HTMLButtonElement, string]}
  */
 function createPokemon(pokemon, index) {
     // Pull id from url string
@@ -41,10 +43,10 @@ function createPokemon(pokemon, index) {
     const pokeId = pokemon.url.match(idRegex)[1];
     const pokeNum = pokeId.toString().padStart(3, "0");
     const pokeName = pokemon.name;
-
+    const pokeURL = pokemon.url;
     const card = createPokemonCard(pokeId, index, pokeNum, pokeName);
-    main.append(card);
-    card.addEventListener("click", () => handlePokemonCardClick(pokemon.url));
+
+    return [card, pokeURL];
 }
 
 /**
