@@ -30,25 +30,22 @@ function updatePaginationUrl(urlType, newUrl) {
  * @returns {void}
  */
 function togglePaginationBtnVisibility(paginationUrl, paginationBtn, elemHideClass) {
-    // Check if pagination URL is null
     if (!paginationUrl) {
-        // If pagination URL is null, then add the "btn--hide" class to elem and exit early
+        // hide button
         return paginationBtn.classList.add(elemHideClass);
     }
 
     const btnElemHasHideClass = paginationBtn.classList.contains(elemHideClass);
 
     if (btnElemHasHideClass) {
-        // Remove "btn--hide" class to make btn visible
+        // make button visible
         return paginationBtn.classList.remove(elemHideClass);
     }
-
-    // Return (do nothing) to keep UI btn visible
-    return;
 }
 
 /**
  * @param {string} type 
+ * @returns {void}
  */
 async function handlePaginationClick(type) {
     try {
