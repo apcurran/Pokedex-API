@@ -1,0 +1,14 @@
+{
+  "name": "pokedex-api",
+  "version": "1.0.0",
+  "description": "Pokedex API",
+  "main": "main.js",
+  "scripts": {
+    "lint": "npx eslint ."
+  },
+  "author": "Alex Curran",
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^8.36.0"
+  }
+}
