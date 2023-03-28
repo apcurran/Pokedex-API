@@ -44,36 +44,24 @@ function createPokemon(pokemon, index) {
     const pokeNum = pokeId.toString().padStart(3, "0");
     const pokeName = pokemon.name;
     const pokeURL = pokemon.url;
-    const card = createPokemonCard(pokeId, index, pokeNum, pokeName);
-
-    return [card, pokeURL];
-}
-
-/**
- * @param {string} id 
- * @param {number} index 
- * @param {string} pokeNum 
- * @param {string} name 
- * @returns {HTMLElement}
- */
-function createPokemonCard(id, index, pokeNum, name) {
+    // create card
     const card = document.createElement("button");
     card.classList.add("main-card-btn-container");
     const cardHTML =
         `
         <article class="main-card">
             <figure class="main-card-fig">
-                <img class="main-card-fig-img" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png" alt="Pokemon character" width="96" height="96" loading="${index > 11 ? "lazy" : "eager"}" decoding="async">
+                <img class="main-card-fig-img" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokeId}.png" alt="Pokemon character" width="96" height="96" loading="${index > 11 ? "lazy" : "eager"}" decoding="async">
             </figure>
             <section class="main-card-content">
                 <p class="main-card-content-num">#${pokeNum}</p>
-                <h2 class="main-card-content-name">${name}</h2>
+                <h2 class="main-card-content-name">${pokeName}</h2>
             </section>
         </article>
         `;
     card.insertAdjacentHTML("afterbegin", cardHTML);
 
-    return card;
+    return [card, pokeURL];
 }
 
 export {
