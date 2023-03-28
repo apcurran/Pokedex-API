@@ -20,26 +20,21 @@ async function getPokemonData(apiUrl) {
     }
 }
 
-// search for character on submit
-async function getSinglePokemonData(queryName) {
-    try {
-        const API_URL = `https://pokeapi.co/api/v2/pokemon/${queryName}`;
-        const characterDataResponse = await fetch(API_URL);
-        const characterData = await characterDataResponse.json();
-
-        return characterData;
-
-    } catch (err) {
-        console.error(err);
-    }
-}
-
+/**
+ * @param {array} pokemonDataArr 
+ * @returns {void}
+ */
 function createAllPokemon(pokemonDataArr) {
     for (let i = 0; i < pokemonDataArr.length; i++) {
         createPokemon(pokemonDataArr[i], i);
     }
 }
 
+/**
+ * @param {object} pokemon 
+ * @param {number} index 
+ * @returns {void}
+ */
 function createPokemon(pokemon, index) {
     // Pull id from url string
     const idRegex = /\/(\d+)\/$/;
@@ -81,6 +76,5 @@ function createPokemonCard(id, index, pokeNum, name) {
 
 export {
     getPokemonData,
-    getSinglePokemonData,
     createAllPokemon
 };
