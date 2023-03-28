@@ -1,9 +1,6 @@
-import { getSinglePokemonData, createSinglePokemon } from "./PokemonCardsGrid.js";
-
 const form = document.forms.search;
 const searchInput = form.elements.input;
 
-// Helper functions
 function showCard(card) {
     card.classList.remove("card--hide");
 }
@@ -27,17 +24,5 @@ function getMatches() {
     }
 }
 
-async function getCharacter(event) {
-    try {
-        event.preventDefault();
-        
-        const pokemonCharacterData = await getSinglePokemonData(searchInput.value);
-        createSinglePokemon(pokemonCharacterData);
-        
-    } catch (err) {
-        console.error(err);
-    }
-}
-
-form.addEventListener("submit", getCharacter); // Prevent page refresh
+form.addEventListener("submit", (event) => event.preventDefault()); // Prevent page refresh
 searchInput.addEventListener("keyup", getMatches);

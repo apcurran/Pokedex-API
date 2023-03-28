@@ -52,17 +52,6 @@ function createPokemon(pokemon, index) {
     card.addEventListener("click", () => handlePokemonCardClick(pokemon.url));
 }
 
-function createSinglePokemon(pokemonData) {
-    const pokeId = pokemonData.id;
-    const pokeNum = pokeId.toString().padStart(3, "0");
-    const pokeName = pokemonData.name;
-    
-    const card = createPokemonHTML(pokeId, 1, pokeNum, pokeName);
-    main.append(card);
-    // BUG -- clicking the card causes a flash of popup and then a deletion from DOM
-    card.addEventListener("click", () => createPokemonCardPopup(pokemonData));
-}
-
 function createPokemonHTML(id, index, num, name) {
     const card = document.createElement("button");
     card.classList.add("main-card-btn-container");
@@ -86,6 +75,5 @@ function createPokemonHTML(id, index, num, name) {
 export {
     getPokemonData,
     getSinglePokemonData,
-    createAllPokemon,
-    createSinglePokemon
+    createAllPokemon
 };
