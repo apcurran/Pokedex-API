@@ -25,7 +25,7 @@ function updatePaginationUrl(urlType, newUrl) {
 
 /**
  * @param {string} paginationUrl
- * @param {HTMLElement} paginationBtn 
+ * @param {HTMLButtonElement} paginationBtn 
  * @param {string} elemHideClass
  * @returns {void}
  */
