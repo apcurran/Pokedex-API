@@ -1,4 +1,4 @@
-import { handlePokemonCardClick, createPokemonCardPopup } from "./PokemonPopup.js";
+import { handlePokemonCardClick } from "./PokemonPopup.js";
 
 /** @type {HTMLElement} */
 const main = document.querySelector(".main");
@@ -63,7 +63,7 @@ function createPokemonCard(id, index, pokeNum, name) {
         `
         <article class="main-card">
             <figure class="main-card-fig">
-                <img class="main-card-fig-img" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png" alt="Pokemon character" width="96" height="96" loading="${index > 11 ? 'lazy' : 'eager'}" decoding="async">
+                <img class="main-card-fig-img" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png" alt="Pokemon character" width="96" height="96" loading="${index > 11 ? "lazy" : "eager"}" decoding="async">
             </figure>
             <section class="main-card-content">
                 <p class="main-card-content-num">#${pokeNum}</p>
