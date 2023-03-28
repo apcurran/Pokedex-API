@@ -3,10 +3,13 @@ import { showLoader, hideLoader } from "./Loader.js";
 /** @type {HTMLElement} */
 const main = document.querySelector(".main");
 
+/**
+ * @param {string} pokemonUrl 
+ * @returns {void}
+ */
 async function handlePokemonCardClick(pokemonUrl) {
     try {
         showLoader();
-
         const data = await getPokemonCharacterData(pokemonUrl);
         createPokemonCardPopup(data);
 
