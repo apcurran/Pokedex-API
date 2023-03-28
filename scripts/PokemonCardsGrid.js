@@ -47,12 +47,19 @@ function createPokemon(pokemon, index) {
     const pokeNum = pokeId.toString().padStart(3, "0");
     const pokeName = pokemon.name;
 
-    const card = createPokemonHTML(pokeId, index, pokeNum, pokeName);
+    const card = createPokemonCard(pokeId, index, pokeNum, pokeName);
     main.append(card);
     card.addEventListener("click", () => handlePokemonCardClick(pokemon.url));
 }
 
-function createPokemonHTML(id, index, num, name) {
+/**
+ * @param {string} id 
+ * @param {number} index 
+ * @param {string} pokeNum 
+ * @param {string} name 
+ * @returns {HTMLElement}
+ */
+function createPokemonCard(id, index, pokeNum, name) {
     const card = document.createElement("button");
     card.classList.add("main-card-btn-container");
     const cardHTML =
@@ -62,7 +69,7 @@ function createPokemonHTML(id, index, num, name) {
                 <img class="main-card-fig-img" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png" alt="Pokemon character" width="96" height="96" loading="${index > 11 ? 'lazy' : 'eager'}" decoding="async">
             </figure>
             <section class="main-card-content">
-                <p class="main-card-content-num">#${num}</p>
+                <p class="main-card-content-num">#${pokeNum}</p>
                 <h2 class="main-card-content-name">${name}</h2>
             </section>
         </article>
