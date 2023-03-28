@@ -2,7 +2,7 @@ const secretCode = "ArrowUpArrowDownArrowLeftArrowLeftArrowRight";
 // Data
 let pressed = [];
 
-function checkForCodeSeq(event) {
+function checkForCodeSequence(event) {
     // Ignore searchbar keypresses
     if (event.target.matches(".home-form-search")) return;
 
@@ -18,11 +18,14 @@ function addPokeGif() {
     // Check if gif already exists in the DOM first.
     if (document.querySelector(".easter-egg-gif")) return;
 
-    const pokeGifHTML = `
-        <iframe class="easter-egg-gif" src="https://giphy.com/embed/vsyKKf1t22nmw" width="480" height="480" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
-    `;
+    const gifIframe = document.createElement("iframe");
+    gifIframe.classList.add("easter-egg-gif", "giphy-embed");
+    gifIframe.src = "https://giphy.com/embed/vsyKKf1t22nmw";
+    gifIframe.width = 480;
+    gifIframe.height = 480;
 
-    document.body.insertAdjacentHTML("afterbegin", pokeGifHTML);
+    document.body.append(gifIframe);
+    setTimeout(() => gifIframe.remove(), 7000);
 }
 
-document.addEventListener("keydown", checkForCodeSeq);
+document.addEventListener("keydown", checkForCodeSequence);
