@@ -28,10 +28,15 @@ function getMatches() {
 }
 
 async function getCharacter(event) {
-    event.preventDefault();
-    
-    const pokemonCharacterData = await getSinglePokemonData(searchInput.value);
-    createSinglePokemon(pokemonCharacterData);
+    try {
+        event.preventDefault();
+        
+        const pokemonCharacterData = await getSinglePokemonData(searchInput.value);
+        createSinglePokemon(pokemonCharacterData);
+        
+    } catch (err) {
+        console.error(err);
+    }
 }
 
 form.addEventListener("submit", getCharacter); // Prevent page refresh
