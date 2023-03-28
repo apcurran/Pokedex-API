@@ -8,7 +8,7 @@ async function handlePokemonCardClick(pokemonUrl) {
         showLoader();
 
         const data = await getPokemonCharacterData(pokemonUrl);
-        createPokeCardPopup(data);
+        createPokemonCardPopup(data);
 
     } catch (err) {
         console.error(err);
@@ -29,7 +29,7 @@ async function getPokemonCharacterData(pokemonUrl) {
     }
 }
 
-function createPokeCardPopup(pokeCardData) {
+function createPokemonCardPopup(pokeCardData) {
     const pokeType = pokeCardData.types[0].type.name;
     const colors = {
         bug: "#68d391",
@@ -112,7 +112,7 @@ function createPokeCardPopup(pokeCardData) {
     main.insertAdjacentHTML("afterbegin", pokeCardHTML);
 }
 
-function handleClosePopopClick(event) {
+function handlePopupCloseViaClick(event) {
     const popupContainer = main.querySelector(".popup-container");
 
     if (!popupContainer) return;
@@ -125,7 +125,7 @@ function handleClosePopopClick(event) {
     }
 }
 
-function handleClosePopupEsc(event) {
+function handlePopupCloseViaEscKeypress(event) {
     const popupContainer = main.querySelector(".popup-container");
 
     if (event.key !== "Escape" || !popupContainer) return;
@@ -146,10 +146,10 @@ function closePopup(elem) {
     }, { once: true });
 }
 
-document.addEventListener("click", handleClosePopopClick);
-document.addEventListener("keydown", handleClosePopupEsc);
+document.addEventListener("click", handlePopupCloseViaClick);
+document.addEventListener("keydown", handlePopupCloseViaEscKeypress);
 
 export {
     handlePokemonCardClick,
-    createPokeCardPopup
+    createPokemonCardPopup
 };

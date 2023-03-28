@@ -1,4 +1,4 @@
-import { handlePokemonCardClick, createPokeCardPopup } from "./PokemonPopup.js";
+import { handlePokemonCardClick, createPokemonCardPopup } from "./PokemonPopup.js";
 
 /** @type {HTMLElement} */
 const main = document.querySelector(".main");
@@ -60,7 +60,7 @@ function createSinglePokemon(pokemonData) {
     const card = createPokemonHTML(pokeId, 1, pokeNum, pokeName);
     main.append(card);
     // BUG -- clicking the card causes a flash of popup and then a deletion from DOM
-    card.addEventListener("click", () => createPokeCardPopup(pokemonData));
+    card.addEventListener("click", () => createPokemonCardPopup(pokemonData));
 }
 
 function createPokemonHTML(id, index, num, name) {
