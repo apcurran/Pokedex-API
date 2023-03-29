@@ -2,6 +2,9 @@ import { getPokemonData, createAllPokemon } from "./PokemonCardsGrid.js";
 import { paginationNextBtn, paginationPrevBtn, paginationBtnHideClass, updatePaginationUrl, togglePaginationBtnVisibility } from "./Pagination.js";
 import { showLoader, hideLoader } from "./Loader.js";
 
+/**
+ * @returns {void}
+ */
 async function init() {
     try {
         const POKEMON_PER_PAGE = 50;
