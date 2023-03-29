@@ -20,6 +20,11 @@ async function handlePokemonCardClick(pokemonUrl) {
     }
 }
 
+/**
+ * 
+ * @param {string} pokemonUrl 
+ * @returns {Promise}
+ */
 async function getPokemonCharacterData(pokemonUrl) {
     try {
         const response = await fetch(pokemonUrl);
@@ -58,8 +63,8 @@ function createPokemonCardPopup(pokeCardData) {
     // Set popup bg color to CSS var
     document.documentElement.style.setProperty("--popup-card-bg", pokeColor);
 
-    const convertedWeight = (pokeCardData.weight / 4.536).toFixed(2); // Convert hectograms to pounds
-    const convertedHeight = (pokeCardData.height / 3.048).toFixed(2); // Convert decimeters to feet
+    const convertedWeightFromHectogramsToPounds = (pokeCardData.weight / 4.536).toFixed(2);
+    const convertedHeightFromDecimetersToFeet = (pokeCardData.height / 3.048).toFixed(2);
     const stat1Val = pokeCardData.stats[0].base_stat;
     const stat2Val = pokeCardData.stats[1].base_stat;
     const stat3Val = pokeCardData.stats[2].base_stat;
@@ -78,8 +83,8 @@ function createPokemonCardPopup(pokeCardData) {
                         <h2 class="poke-main-section-data-title">${pokeCardData.name}</h2>
                         <img class="poke-main-section-data-img" src="${imgSrc}" alt="${pokeCardData.name} Pokemon" width="475" height="475">
                         <p class="poke-main-section-data-body cap-first"><span>Type:</span> ${pokeType}</p>
-                        <p class="poke-main-section-data-body"><span>Weight:</span> ${convertedWeight} lbs</p>
-                        <p class="poke-main-section-data-body"><span>Height:</span> ${convertedHeight} ft</p>
+                        <p class="poke-main-section-data-body"><span>Weight:</span> ${convertedWeightFromHectogramsToPounds} lbs</p>
+                        <p class="poke-main-section-data-body"><span>Height:</span> ${convertedHeightFromDecimetersToFeet} ft</p>
                         <p class="poke-main-section-data-body cap-first"><span>Ability:</span> ${pokeCardData.abilities[0].ability.name}</p>
                     </section>
                     <section class="poke-main-section-stats">

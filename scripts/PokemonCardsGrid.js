@@ -5,7 +5,7 @@ const main = document.querySelector(".main");
 
 /**
  * @param {string} apiUrl 
- * @returns {promise}
+ * @returns {Promise}
  */
 async function getPokemonData(apiUrl) {
     try {
