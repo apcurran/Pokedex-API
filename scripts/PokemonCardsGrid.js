@@ -5,7 +5,7 @@ const main = document.querySelector(".main");
 
 /**
  * @param {string} apiUrl 
- * @returns {{ pokemonData: object[], paginationUrlNext: string|null, paginationUrlPrev: string|null }}
+ * @returns {promise}
  */
 async function getPokemonData(apiUrl) {
     try {
