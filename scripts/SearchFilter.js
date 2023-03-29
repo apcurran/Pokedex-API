@@ -1,14 +1,25 @@
 const form = document.forms.search;
 const searchInput = form.elements.input;
 
+/**
+ * @param {HTMLElement} card 
+ * @returns {void}
+ */
 function showCard(card) {
     card.classList.remove("card--hide");
 }
 
+/**
+ * @param {HTMLElement} card 
+ * @returns {void}
+ */
 function hideCard(card) {
     card.classList.add("card--hide");
 }
 
+/**
+ * @returns {void}
+ */
 function getMatches() {
     const pokeCards = document.querySelectorAll(".main-card-btn-container");
     const searchTermLower = searchInput.value.toLowerCase();
