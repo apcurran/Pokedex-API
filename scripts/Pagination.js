@@ -33,7 +33,7 @@ function togglePaginationBtnVisibility(paginationUrl, paginationBtn, elemHideCla
 }
 
 /**
- * @param {string} type 
+ * @param {"nextUrl"|"prevUrl"} type 
  * @returns {void}
  */
 async function handlePaginationClick(type) {
@@ -42,7 +42,8 @@ async function handlePaginationClick(type) {
         removeChildElems(main);
         showLoader();
 
-        const { pokemonData, paginationUrlNext, paginationUrlPrev } = await getPokemonData(pagination[type]);
+        const apiURL = pagination[type];
+        const { pokemonData, paginationUrlNext, paginationUrlPrev } = await getPokemonData(apiURL);
         createAllPokemon(pokemonData);
 
         updatePaginationState(paginationUrlNext, paginationUrlPrev);
