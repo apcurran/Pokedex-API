@@ -3,6 +3,10 @@ import { handlePokemonCardClick } from "./PokemonPopup.js";
 /** @type {HTMLElement} */
 const main = document.querySelector(".main");
 
+/**
+ * @param {string} apiUrl 
+ * @returns {{ pokemonData: object[], paginationUrlNext: string|null, paginationUrlPrev: string|null }}
+ */
 async function getPokemonData(apiUrl) {
     try {
         const pokemonGroupResponse = await fetch(apiUrl, { cache: "force-cache" });
