@@ -53,9 +53,7 @@ async function handlePaginationClick(type) {
         removeChildElems(main);
         showLoader();
 
-        // Get new Pokemon data
         const { pokemonData, paginationUrlNext, paginationUrlPrev } = await getPokemonData(pagination[type]);
-        // Create Pokemon cards
         createAllPokemon(pokemonData);
 
         // Update pagination btn state and UI
