@@ -1,5 +1,5 @@
-const form = document.forms.search;
-const searchInput = form.elements.input;
+const form = document.querySelector(".home-form");
+const searchInput = form.querySelector(".home-form-search");
 
 /**
  * @param {HTMLElement} card 
