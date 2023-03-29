@@ -142,13 +142,12 @@ function handlePopupCloseViaEscKeypress(event) {
 }
 
 /**
- * @param {Element} elem
+ * @param {HTMLElement} elem
  * @returns {void}
  */
 function closePopup(elem) {
-    // trigger fade out anim
+    // trigger fade anim
     elem.classList.add("popup-container--fade-out");
-    // remove from DOM
     elem.addEventListener("animationend", () => {
         elem.remove();
     }, { once: true });
