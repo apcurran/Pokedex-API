@@ -15,30 +15,19 @@ let pagination = {
 };
 
 /**
- * @param {string} urlType 
- * @param {string} newUrl 
- * @returns {string}
- */
-function updatePaginationUrl(urlType, newUrl) {
-    return pagination[urlType] = newUrl;
-}
-
-/**
  * @param {string} paginationUrl
  * @param {HTMLButtonElement} paginationBtn 
  * @param {string} elemHideClass
  * @returns {void}
  */
 function togglePaginationBtnVisibility(paginationUrl, paginationBtn, elemHideClass) {
-    if (!paginationUrl) {
-        // hide button
+    if (paginationUrl === null) {
         return paginationBtn.classList.add(elemHideClass);
     }
 
     const btnElemHasHideClass = paginationBtn.classList.contains(elemHideClass);
 
     if (btnElemHasHideClass) {
-        // make button visible
         return paginationBtn.classList.remove(elemHideClass);
     }
 }
@@ -56,17 +45,25 @@ async function handlePaginationClick(type) {
         const { pokemonData, paginationUrlNext, paginationUrlPrev } = await getPokemonData(pagination[type]);
         createAllPokemon(pokemonData);
 
-        // Update pagination btn state and UI
-        updatePaginationUrl("nextUrl", paginationUrlNext);
-        togglePaginationBtnVisibility(pagination.nextUrl, paginationNextBtn, paginationBtnHideClass);
-        updatePaginationUrl("prevUrl", paginationUrlPrev);
-        togglePaginationBtnVisibility(pagination.prevUrl, paginationPrevBtn, paginationBtnHideClass);
+        updatePaginationState(paginationUrlNext, paginationUrlPrev);
+        togglePaginationBtnVisibility(paginationUrlNext, paginationNextBtn, paginationBtnHideClass);
+        togglePaginationBtnVisibility(paginationUrlPrev, paginationPrevBtn, paginationBtnHideClass);
 
     } catch (err) {
         console.error(err);
     } finally {
         hideLoader();
     }
+}
+
+/**
+ * @param {string} nextURL 
+ * @param {string} previousURL 
+ * @returns {void}
+ */
+function updatePaginationState(nextURL, previousURL) {
+    pagination.nextUrl = nextURL;
+    pagination.prevUrl = previousURL;
 }
 
 // Event listeners
@@ -77,6 +74,6 @@ export {
     paginationNextBtn,
     paginationPrevBtn,
     paginationBtnHideClass,
-    updatePaginationUrl,
-    togglePaginationBtnVisibility
+    togglePaginationBtnVisibility,
+    updatePaginationState
 };
