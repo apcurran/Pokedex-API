@@ -3,21 +3,21 @@ import { handlePokemonCardClick } from "./PokemonPopup.js";
 const form = document.querySelector(".home-form");
 const searchInput = form.querySelector(".home-form-search");
 
-/**
- * @param {HTMLElement} card 
- * @returns {void}
- */
-function showCard(card) {
-    card.classList.remove("card--hide");
-}
+// /**
+//  * @param {HTMLElement} card 
+//  * @returns {void}
+//  */
+// function showCard(card) {
+//     card.classList.remove("card--hide");
+// }
 
-/**
- * @param {HTMLElement} card 
- * @returns {void}
- */
-function hideCard(card) {
-    card.classList.add("card--hide");
-}
+// /**
+//  * @param {HTMLElement} card 
+//  * @returns {void}
+//  */
+// function hideCard(card) {
+//     card.classList.add("card--hide");
+// }
 
 // /**
 //  * @returns {void}
@@ -48,16 +48,16 @@ function hideCard(card) {
 //     }
 // }
 
-/**
- * @returns {void}
- */
-function showAllCards() {
-    const pokeCards = document.querySelectorAll(".main-card-btn-container");
+// /**
+//  * @returns {void}
+//  */
+// function showAllCards() {
+//     const pokeCards = document.querySelectorAll(".main-card-btn-container");
 
-    for (let card of pokeCards) {
-        showCard(card);
-    }
-}
+//     for (let card of pokeCards) {
+//         showCard(card);
+//     }
+// }
 
 async function getSinglePokemonSearch() {
     try {
@@ -69,5 +69,8 @@ async function getSinglePokemonSearch() {
     }
 }
 
-form.addEventListener("submit", (event) => event.preventDefault()); // Prevent page refresh
-searchInput.addEventListener("keyup", getSinglePokemonSearch);
+form.addEventListener("submit", (event) => {
+    event.preventDefault();
+
+    getSinglePokemonSearch();
+});
