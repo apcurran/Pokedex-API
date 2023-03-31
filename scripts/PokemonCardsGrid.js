@@ -70,5 +70,6 @@ function createPokemonCard(pokemon, index) {
 
 export {
     getPokemonData,
-    createAllPokemon
+    createAllPokemon,
+    createPokemonCard
 };

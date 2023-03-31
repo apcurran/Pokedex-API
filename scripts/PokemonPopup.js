@@ -23,11 +23,14 @@ async function handlePokemonCardClick(pokemonUrl) {
 /**
  * 
  * @param {string} pokemonUrl 
- * @returns {Promise}
+ * @returns {Promise|null}
  */
 async function getPokemonCharacterData(pokemonUrl) {
     try {
         const response = await fetch(pokemonUrl);
+
+        if (!response.ok) return null;
+
         const data = await response.json();
 
         return data;
@@ -158,5 +161,5 @@ document.addEventListener("keydown", handlePopupCloseViaEscKeypress);
 
 export {
     handlePokemonCardClick,
-    createPokemonCardPopup
+    getPokemonCharacterData
 };
