@@ -11,6 +11,12 @@ async function handlePokemonCardClick(pokemonUrl) {
     try {
         showLoader();
         const data = await getPokemonCharacterData(pokemonUrl);
+
+        if (data instanceof Error) {
+            // TODO: handle error
+
+        }
+
         createPokemonCardPopup(data);
 
     } catch (err) {
@@ -29,14 +35,16 @@ async function getPokemonCharacterData(pokemonUrl) {
     try {
         const response = await fetch(pokemonUrl);
 
-        if (!response.ok) return null;
+        if (!response.ok) {
+            throw Error("It looks like that Pokemon does not exist. Please check your spelling and try again.");
+        }
 
         const data = await response.json();
 
         return data;
 
     } catch (err) {
-        console.error(err);
+        return err;
     }
 }
 
