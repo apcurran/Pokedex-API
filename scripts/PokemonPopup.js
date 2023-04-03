@@ -35,7 +35,7 @@ async function getPokemonCharacterData(pokemonUrl) {
     try {
         const response = await fetch(pokemonUrl);
 
-        if (!response.ok) {
+        if (response.status === 404) {
             throw Error("It looks like that Pokemon does not exist. Please check your spelling and try again.");
         }
 
