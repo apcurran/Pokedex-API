@@ -87,7 +87,7 @@ input:focus {
     border-radius: 5px;
     font-weight: 700;
     opacity: 0;
-    transition: opacity 2000ms ease-in-out;
+    transition: opacity 150ms ease-in-out;
 }
 
 .home-error--show {
