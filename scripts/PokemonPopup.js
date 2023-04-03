@@ -13,8 +13,21 @@ async function handlePokemonCardClick(pokemonUrl) {
         const data = await getPokemonCharacterData(pokemonUrl);
 
         if (data instanceof Error) {
-            // TODO: handle error
+            const errorElem = document.querySelector(".home-error");
+            errorElem.textContent = data.message;
+            errorElem.classList.add("home-error--show");
 
+            setTimeout(() => {
+                // fade out elem
+                errorElem.classList.remove("home-error--show");
+
+                errorElem.addEventListener("animationend", () => {
+                    // remove text after elem faded out
+                    errorElem.textContent = "";
+                }, { once: true });
+            }, 7000);
+
+            return;
         }
 
         createPokemonCardPopup(data);
