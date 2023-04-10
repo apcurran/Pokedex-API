@@ -43,8 +43,8 @@ function createAllPokemon(pokemonDataArr) {
  */
 function createPokemonCard(pokemon, index) {
     // Pull id from url string
-    const idRegex = /\/(\d+)\/$/;
-    const pokeId = pokemon.url.match(idRegex)[1];
+    const pokeURLSplit = pokemon.url.split("/");
+    const pokeId = pokeURLSplit[pokeURLSplit.length - 2];
     const pokeNum = pokeId.toString().padStart(3, "0");
     const pokeName = pokemon.name;
     const pokeURL = pokemon.url;
