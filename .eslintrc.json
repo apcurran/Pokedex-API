@@ -1,7 +1,6 @@
 {
     "env": {
-        "browser": true,
-        "es2021": true
+        "browser": true
     },
     "extends": "eslint:recommended",
     "overrides": [
@@ -20,6 +19,10 @@
             "always"
         ],
         "arrow-parens": [
+            "error",
+            "always"
+        ],
+        "eol-last": [
             "error",
             "always"
         ]
