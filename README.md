@@ -29,4 +29,6 @@ Pokedex API
 
 * Keyboard-accessible navigation with tabbing, enter to select card (display character stats modal), and escape to close modal
 
+* Scroll-driven background color change animation with Web Animations API (ScrollTimeline)
+
 Having some fun using vanilla JS with Pokemon characters!
