@@ -8,7 +8,7 @@ if (window.ScrollTimeline) {
 
     body.animate(
         {
-            backgroundColor: ["hsl(204, 45%, 98%)", "#e0f2fe"] // [from, to]
+            backgroundColor: ["hsl(204, 45%, 98%)", "#e0e7ff"] // [from, to]
         },
         {
             timeline
