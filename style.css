@@ -457,6 +457,22 @@ input:focus {
     transform: translate(-50%, -50%);
 }
 
+/* Scroll Timeline Animation */
+@keyframes color-fade {
+    from {
+        background-color: var(--main-bg-clr);
+    }
+
+    to {
+        background-color: #e0e7ff;
+    }
+}
+
+body {
+    animation: color-fade linear;
+    animation-timeline: scroll(root block);
+}
+
 @media screen and (max-width: 80em) {
     .poke-main-section { max-width: 92%; }
 }
