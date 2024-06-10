@@ -40,13 +40,12 @@ async function handlePokemonCardClick(pokemonUrl) {
 }
 
 /**
- * 
  * @param {string} pokemonUrl 
  * @returns {Promise|null}
  */
 async function getPokemonCharacterData(pokemonUrl) {
     try {
-        const response = await fetch(pokemonUrl);
+        const response = await fetch(pokemonUrl, { cache: "force-cache" });
 
         if (response.status === 404) {
             throw Error("It looks like that Pokemon does not exist. Please check your spelling and try again.");
