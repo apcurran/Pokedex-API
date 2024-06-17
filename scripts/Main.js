@@ -8,7 +8,7 @@ import { showLoader, hideLoader } from "./Loader.js";
 async function init() {
     try {
         const POKEMON_PER_PAGE = 50;
-        const apiEndpoint = `https://pokeapi.co/api/v2/pokemon?limit=${POKEMON_PER_PAGE}`;
+        const apiEndpoint = `https://pokeapi.co/api/v2/pokemon?offset=0&limit=${POKEMON_PER_PAGE}`;
         
         showLoader();
         const { pokemonData, paginationUrlNext, paginationUrlPrev } = await getPokemonData(apiEndpoint);
