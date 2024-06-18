@@ -270,10 +270,16 @@ input:focus {
 }
 
 .loading {
+    opacity: 0;
     /* Hidden by default, shown on API request */
     display: none;
     position: fixed;
     bottom: 5%;
+
+    transition:
+        opacity 500ms,
+        display 500ms;
+    transition-behavior: allow-discrete;
 }
 
 .loading-ball {
@@ -310,6 +316,7 @@ input:focus {
 }
 
 .loader--show {
+    opacity: 1;
     display: flex;
 }
 
