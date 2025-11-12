@@ -4,11 +4,12 @@
   "description": "Pokedex API",
   "main": "main.js",
   "scripts": {
-    "lint": "npx eslint ."
+    "lint": "npx oxlint .",
+    "lint:fix": "npx oxlint --fix ."
   },
   "author": "Alex Curran",
   "license": "ISC",
   "devDependencies": {
-    "eslint": "^8.36.0"
+    "oxlint": "^1.28.0"
   }
 }
