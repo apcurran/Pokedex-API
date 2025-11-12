@@ -3,24 +3,32 @@ import { showLoader, hideLoader } from "./Loader.js";
 import { removeChildElems } from "./utils.js";
 
 // DOM elem refs
-const paginationNextBtn = document.getElementById("pagination-controls__btn--next");
-const paginationPrevBtn = document.getElementById("pagination-controls__btn--prev");
+const paginationNextBtn = document.getElementById(
+    "pagination-controls__btn--next",
+);
+const paginationPrevBtn = document.getElementById(
+    "pagination-controls__btn--prev",
+);
 const paginationBtnHideClass = "btn--hide";
 const main = document.querySelector(".main");
 
 // Data
 let pagination = {
     nextUrl: "",
-    prevUrl: ""
+    prevUrl: "",
 };
 
 /**
  * @param {string} paginationUrl
- * @param {HTMLButtonElement} paginationBtn 
+ * @param {HTMLButtonElement} paginationBtn
  * @param {string} elemHideClass
  * @returns {void}
  */
-function togglePaginationBtnVisibility(paginationUrl, paginationBtn, elemHideClass) {
+function togglePaginationBtnVisibility(
+    paginationUrl,
+    paginationBtn,
+    elemHideClass,
+) {
     if (paginationUrl === null) {
         return paginationBtn.classList.add(elemHideClass);
     }
@@ -33,7 +41,7 @@ function togglePaginationBtnVisibility(paginationUrl, paginationBtn, elemHideCla
 }
 
 /**
- * @param {"nextUrl"|"prevUrl"} type 
+ * @param {"nextUrl"|"prevUrl"} type
  * @returns {void}
  */
 async function handlePaginationClick(type) {
@@ -43,13 +51,21 @@ async function handlePaginationClick(type) {
         showLoader();
 
         const apiURL = pagination[type];
-        const { pokemonData, paginationUrlNext, paginationUrlPrev } = await getPokemonData(apiURL);
+        const { pokemonData, paginationUrlNext, paginationUrlPrev } =
+            await getPokemonData(apiURL);
         createAllPokemon(pokemonData);
 
         updatePaginationState(paginationUrlNext, paginationUrlPrev);
-        togglePaginationBtnVisibility(paginationUrlNext, paginationNextBtn, paginationBtnHideClass);
-        togglePaginationBtnVisibility(paginationUrlPrev, paginationPrevBtn, paginationBtnHideClass);
-
+        togglePaginationBtnVisibility(
+            paginationUrlNext,
+            paginationNextBtn,
+            paginationBtnHideClass,
+        );
+        togglePaginationBtnVisibility(
+            paginationUrlPrev,
+            paginationPrevBtn,
+            paginationBtnHideClass,
+        );
     } catch (err) {
         console.error(err);
     } finally {
@@ -58,8 +74,8 @@ async function handlePaginationClick(type) {
 }
 
 /**
- * @param {string} nextURL 
- * @param {string} previousURL 
+ * @param {string} nextURL
+ * @param {string} previousURL
  * @returns {void}
  */
 function updatePaginationState(nextURL, previousURL) {
@@ -68,13 +84,17 @@ function updatePaginationState(nextURL, previousURL) {
 }
 
 // Event listeners
-paginationNextBtn.addEventListener("click", () => handlePaginationClick("nextUrl"));
-paginationPrevBtn.addEventListener("click", () => handlePaginationClick("prevUrl"));
+paginationNextBtn.addEventListener("click", () =>
+    handlePaginationClick("nextUrl"),
+);
+paginationPrevBtn.addEventListener("click", () =>
+    handlePaginationClick("prevUrl"),
+);
 
 export {
     paginationNextBtn,
     paginationPrevBtn,
     paginationBtnHideClass,
     togglePaginationBtnVisibility,
-    updatePaginationState
+    updatePaginationState,
 };

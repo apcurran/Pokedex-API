@@ -4,7 +4,7 @@ import { showLoader, hideLoader } from "./Loader.js";
 const main = document.querySelector(".main");
 
 /**
- * @param {string} pokemonUrl 
+ * @param {string} pokemonUrl
  * @returns {void}
  */
 async function handlePokemonCardClick(pokemonUrl) {
@@ -21,17 +21,20 @@ async function handlePokemonCardClick(pokemonUrl) {
                 // fade out elem
                 errorElem.classList.remove("home-error--show");
 
-                errorElem.addEventListener("animationend", () => {
-                    // remove text after elem faded out
-                    errorElem.textContent = "";
-                }, { once: true });
+                errorElem.addEventListener(
+                    "animationend",
+                    () => {
+                        // remove text after elem faded out
+                        errorElem.textContent = "";
+                    },
+                    { once: true },
+                );
             }, 7000);
 
             return;
         }
 
         createPokemonCardPopup(data);
-
     } catch (err) {
         console.error(err);
     } finally {
@@ -40,7 +43,7 @@ async function handlePokemonCardClick(pokemonUrl) {
 }
 
 /**
- * @param {string} pokemonUrl 
+ * @param {string} pokemonUrl
  * @returns {Promise|null}
  */
 async function getPokemonCharacterData(pokemonUrl) {
@@ -48,13 +51,14 @@ async function getPokemonCharacterData(pokemonUrl) {
         const response = await fetch(pokemonUrl, { cache: "force-cache" });
 
         if (response.status === 404) {
-            throw Error("It looks like that Pokemon does not exist. Please check your spelling and try again.");
+            throw Error(
+                "It looks like that Pokemon does not exist. Please check your spelling and try again.",
+            );
         }
 
         const data = await response.json();
 
         return data;
-
     } catch (err) {
         return err;
     }
@@ -80,14 +84,18 @@ function createPokemonCardPopup(pokeCardData) {
         psychic: "#fbb6ce",
         rock: "#fbd38d",
         steel: "#9ae6b4",
-        water: "#90cdf4"
+        water: "#90cdf4",
     };
     const pokeColor = colors[pokeType];
     // Set popup bg color to CSS var
     document.documentElement.style.setProperty("--popup-card-bg", pokeColor);
 
-    const convertedWeightFromHectogramsToPounds = (pokeCardData.weight / 4.536).toFixed(2);
-    const convertedHeightFromDecimetersToFeet = (pokeCardData.height / 3.048).toFixed(2);
+    const convertedWeightFromHectogramsToPounds = (
+        pokeCardData.weight / 4.536
+    ).toFixed(2);
+    const convertedHeightFromDecimetersToFeet = (
+        pokeCardData.height / 3.048
+    ).toFixed(2);
     const stat1Val = pokeCardData.stats[0].base_stat;
     const stat2Val = pokeCardData.stats[1].base_stat;
     const stat3Val = pokeCardData.stats[2].base_stat;
@@ -171,15 +179,16 @@ function handlePopupCloseViaEscKeypress(event) {
 function closePopup(elem) {
     // trigger fade anim
     elem.classList.add("popup-container--fade-out");
-    elem.addEventListener("animationend", () => {
-        elem.remove();
-    }, { once: true });
+    elem.addEventListener(
+        "animationend",
+        () => {
+            elem.remove();
+        },
+        { once: true },
+    );
 }
 
 document.addEventListener("click", handlePopupCloseViaClick);
 document.addEventListener("keydown", handlePopupCloseViaEscKeypress);
 
-export {
-    handlePokemonCardClick,
-    getPokemonCharacterData
-};
+export { handlePokemonCardClick, getPokemonCharacterData };

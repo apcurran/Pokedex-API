@@ -9,7 +9,4 @@ function hideLoader() {
     loader.classList.remove("loader--show");
 }
 
-export {
-    showLoader,
-    hideLoader
-};
+export { showLoader, hideLoader };

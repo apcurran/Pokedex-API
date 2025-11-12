@@ -1,46 +1,93 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en-US">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Alex Curran's Pokedex contains all major Pokemon characters and allows for instant searching. In addition, this Pokedex provides detailed information on specific Pokemon.">
-    <link rel="stylesheet" href="style.css">
-    <link rel="dns-prefetch" href="https://pokeapi.co/">
-    <link rel="preconnect" href="https://pokeapi.co/" crossorigin="anonymous">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap">
-    <script type="module" src="./scripts/Main.js"></script>
-    <script type="module" src="./scripts/Pagination.js"></script>
-    <script type="module" src="./scripts/PokemonCardsGrid.js"></script>
-    <script type="module" src="./scripts/PokemonPopup.js"></script>
-    <script type="module" src="./scripts/Loader.js"></script>
-    <script type="module" src="./scripts/SearchFilter.js"></script>
-    <script type="module" src="./scripts/utils.js"></script>
-    <script type="module" src="./scripts/EasterEgg.js"></script>
-    <title>Pok&eacute;dex App</title>
-</head>
-<body id="home" class="home">
-    <h1 class="home-title">Pok&eacute;dex API</h1>
-    <form name="search" class="home-form">
-        <input name="input" type="text" class="home-form-search" placeholder="Search for a Pok&eacute;mon">
-    </form>
-    <p class="home-error"></p>
-    <section class="pagination-controls">
-        <button id="pagination-controls__btn--prev" class="pagination-controls__btn btn--hide">
-            <svg class="chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
-            <span>Prev</span>
-        </button>
-        <button id="pagination-controls__btn--next" class="pagination-controls__btn">
-            <span>Next</span>
-            <svg class="chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
-        </button>
-    </section>
-    <main class="main"></main>
-    <div class="loading">
-        <span class="loading-ball"></span>
-        <span class="loading-ball"></span>
-        <span class="loading-ball"></span>
-    </div>
-</body>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta
+            name="description"
+            content="Alex Curran's Pokedex contains all major Pokemon characters and allows for instant searching. In addition, this Pokedex provides detailed information on specific Pokemon."
+        />
+        <link rel="stylesheet" href="style.css" />
+        <link rel="dns-prefetch" href="https://pokeapi.co/" />
+        <link
+            rel="preconnect"
+            href="https://pokeapi.co/"
+            crossorigin="anonymous"
+        />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap"
+        />
+        <script type="module" src="./scripts/Main.js"></script>
+        <script type="module" src="./scripts/Pagination.js"></script>
+        <script type="module" src="./scripts/PokemonCardsGrid.js"></script>
+        <script type="module" src="./scripts/PokemonPopup.js"></script>
+        <script type="module" src="./scripts/Loader.js"></script>
+        <script type="module" src="./scripts/SearchFilter.js"></script>
+        <script type="module" src="./scripts/utils.js"></script>
+        <script type="module" src="./scripts/EasterEgg.js"></script>
+        <title>Pok&eacute;dex App</title>
+    </head>
+    <body id="home" class="home">
+        <h1 class="home-title">Pok&eacute;dex API</h1>
+        <form name="search" class="home-form">
+            <input
+                name="input"
+                type="text"
+                class="home-form-search"
+                placeholder="Search for a Pok&eacute;mon"
+            />
+        </form>
+        <p class="home-error"></p>
+        <section class="pagination-controls">
+            <button
+                id="pagination-controls__btn--prev"
+                class="pagination-controls__btn btn--hide"
+            >
+                <svg
+                    class="chevron"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                >
+                    <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M15 19l-7-7 7-7"
+                    ></path>
+                </svg>
+                <span>Prev</span>
+            </button>
+            <button
+                id="pagination-controls__btn--next"
+                class="pagination-controls__btn"
+            >
+                <span>Next</span>
+                <svg
+                    class="chevron"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                >
+                    <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M9 5l7 7-7 7"
+                    ></path>
+                </svg>
+            </button>
+        </section>
+        <main class="main"></main>
+        <div class="loading">
+            <span class="loading-ball"></span>
+            <span class="loading-ball"></span>
+            <span class="loading-ball"></span>
+        </div>
+    </body>
 </html>
