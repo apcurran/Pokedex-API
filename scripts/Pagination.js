@@ -1,6 +1,5 @@
 import { createAllPokemon, getPokemonData } from "./PokemonCardsGrid.js";
 import { showLoader, hideLoader } from "./Loader.js";
-import { removeChildElems } from "./utils.js";
 
 // DOM elem refs
 const paginationNextBtn = document.getElementById(
@@ -47,7 +46,7 @@ function togglePaginationBtnVisibility(
 async function handlePaginationClick(type) {
     try {
         // Clear prev pokemon cards first
-        removeChildElems(main);
+        main.replaceChildren();
         showLoader();
 
         const apiURL = pagination[type];
