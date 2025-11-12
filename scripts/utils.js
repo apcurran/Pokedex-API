@@ -1,11 +1,9 @@
 /**
- * @param {HTMLElement} parent 
+ * @param {HTMLElement} parent
  * @returns {void}
  */
 function removeChildElems(parent) {
-    while (parent.firstChild) {
-        parent.removeChild(parent.firstChild);
-    }
+    parent.replaceChildren();
 }
 
 export { removeChildElems };
