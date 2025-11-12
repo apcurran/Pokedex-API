@@ -3,7 +3,9 @@ import { handlePokemonCardClick } from "./PokemonPopup.js";
 const form = document.querySelector(".home-form");
 const searchInput = form.querySelector(".home-form-search");
 
-async function getSinglePokemonSearch() {
+form.addEventListener("submit", function getSinglePokemonSearch(event) {
+    event.preventDefault();
+
     try {
         const lowerSearchValue = searchInput.value.trim().toLowerCase();
         const apiUrl = `https://pokeapi.co/api/v2/pokemon/${lowerSearchValue}`;
@@ -11,10 +13,4 @@ async function getSinglePokemonSearch() {
     } catch (err) {
         console.error(err);
     }
-}
-
-form.addEventListener("submit", (event) => {
-    event.preventDefault();
-
-    getSinglePokemonSearch();
 });
