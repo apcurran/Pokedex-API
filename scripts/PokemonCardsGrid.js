@@ -31,7 +31,7 @@ async function getPokemonData(apiUrl) {
  */
 function createAllPokemon(pokemonDataArr) {
     for (let i = 0; i < pokemonDataArr.length; i++) {
-        const [pokemonCard, pokemonURL] = createPokemonCard(
+        const { pokemonCard, pokemonURL } = createPokemonCard(
             pokemonDataArr[i],
             i,
         );
@@ -48,12 +48,9 @@ function createAllPokemon(pokemonDataArr) {
  * @returns {[HTMLButtonElement, string]}
  */
 function createPokemonCard(pokemon, index) {
-    // Pull id from url string
-    const pokeURLSplit = pokemon.url.split("/");
-    const pokeId = pokeURLSplit[pokeURLSplit.length - 2];
-    const pokeNum = pokeId.toString().padStart(3, "0");
-    const pokeName = pokemon.name;
-    const pokeURL = pokemon.url;
+    const { url, name } = pokemon;
+    const pokeId = url.split("/").at(-2);
+    const pokeNum = pokeId.padStart(3, "0");
     // create card
     const card = document.createElement("button");
     card.classList.add("main-card-btn-container");
@@ -64,13 +61,16 @@ function createPokemonCard(pokemon, index) {
             </figure>
             <section class="main-card-content">
                 <p class="main-card-content-num">#${pokeNum}</p>
-                <h2 class="main-card-content-name">${pokeName}</h2>
+                <h2 class="main-card-content-name">${name}</h2>
             </section>
         </article>
         `;
     card.insertAdjacentHTML("afterbegin", cardHTML);
 
-    return [card, pokeURL];
+    return {
+        pokemonCard: card,
+        pokemonURL: url,
+    };
 }
 
 export { getPokemonData, createAllPokemon, createPokemonCard };
