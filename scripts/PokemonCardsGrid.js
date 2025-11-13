@@ -2,6 +2,8 @@ import { handlePokemonCardClick } from "./PokemonPopup.js";
 
 /** @type {HTMLElement} */
 const main = document.querySelector(".main");
+/** @type {HTMLTemplateElement} */
+const pokemonCardTemplate = document.getElementById("pokemon-card-template");
 
 // event delegation instead of a separate event listener on each card
 main.addEventListener("click", function onPokemonGridCardSelect(event) {
@@ -41,11 +43,17 @@ async function getPokemonData(apiUrl) {
  * @param {array} pokemonDataArr
  * @returns {void}
  */
-function createAllPokemon(pokemonDataArr) {
+function renderPokemonCardsGrid(pokemonDataArr) {
+    let containerFragment = document.createDocumentFragment();
+
+    // batch add all card elems to container fragment
     for (let i = 0; i < pokemonDataArr.length; i++) {
-        const { pokemonCard } = createPokemonCard(pokemonDataArr[i], i);
-        main.append(pokemonCard);
+        const card = createPokemonCard(pokemonDataArr[i], i);
+        containerFragment.append(card);
     }
+
+    // render all cards in one go
+    main.replaceChildren(containerFragment);
 }
 
 /**
@@ -57,26 +65,20 @@ function createPokemonCard(pokemon, index) {
     const { url, name } = pokemon;
     const pokeId = url.split("/").at(-2);
     const pokeNum = pokeId.padStart(3, "0");
-    // create card
-    const card = document.createElement("button");
-    card.classList.add("main-card-btn-container");
-    card.dataset.url = url;
-    const cardHTML = `
-        <article class="main-card">
-            <figure class="main-card-fig">
-                <img class="main-card-fig-img" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokeId}.png" alt="Pokemon character" width="96" height="96" loading="${index > 11 ? "lazy" : "eager"}" decoding="async">
-            </figure>
-            <section class="main-card-content">
-                <p class="main-card-content-num">#${pokeNum}</p>
-                <h2 class="main-card-content-name">${name}</h2>
-            </section>
-        </article>
-        `;
-    card.insertAdjacentHTML("afterbegin", cardHTML);
 
-    return {
-        pokemonCard: card,
-    };
+    let clone = pokemonCardTemplate.content.cloneNode(true);
+    const card = clone.querySelector(".main-card-btn-container");
+    const img = clone.querySelector(".main-card-fig-img");
+    const p = clone.querySelector(".main-card-content-num");
+    const h2 = clone.querySelector(".main-card-content-name");
+
+    card.dataset.url = url;
+    img.src = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokeId}.png`;
+    img.loading = index > 11 ? "lazy" : "eager";
+    p.textContent = `#${pokeNum}`;
+    h2.textContent = name;
+
+    return card;
 }
 
-export { getPokemonData, createAllPokemon, createPokemonCard };
+export { getPokemonData, renderPokemonCardsGrid, createPokemonCard };

@@ -1,4 +1,4 @@
-import { getPokemonData, createAllPokemon } from "./PokemonCardsGrid.js";
+import { getPokemonData, renderPokemonCardsGrid } from "./PokemonCardsGrid.js";
 import {
     paginationNextBtn,
     paginationPrevBtn,
@@ -19,7 +19,7 @@ async function init() {
         showLoader();
         const { pokemonData, paginationUrlNext, paginationUrlPrev } =
             await getPokemonData(apiEndpoint);
-        createAllPokemon(pokemonData);
+        renderPokemonCardsGrid(pokemonData);
 
         updatePaginationState(paginationUrlNext, paginationUrlPrev);
         togglePaginationBtnVisibility(
