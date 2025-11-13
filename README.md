@@ -23,6 +23,8 @@ Pokedex API
 
     - Clickable Pokemon cards display a separate pop-up modal with detailed information on a specific character
 
+    - Event delegation
+
 - CSS Grid and Flexbox used throughout
 
 - Mobile-friendly layout
