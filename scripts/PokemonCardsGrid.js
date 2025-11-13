@@ -3,6 +3,18 @@ import { handlePokemonCardClick } from "./PokemonPopup.js";
 /** @type {HTMLElement} */
 const main = document.querySelector(".main");
 
+// event delegation instead of a separate event listener on each card
+main.addEventListener("click", function onPokemonGridCardSelect(event) {
+    const card = event.target.closest(".main-card-btn-container");
+
+    if (!card) {
+        return;
+    }
+
+    const pokemonURL = card.dataset.url;
+    handlePokemonCardClick(pokemonURL);
+});
+
 /**
  * @param {string} apiUrl
  * @returns {Promise}
@@ -31,13 +43,7 @@ async function getPokemonData(apiUrl) {
  */
 function createAllPokemon(pokemonDataArr) {
     for (let i = 0; i < pokemonDataArr.length; i++) {
-        const { pokemonCard, pokemonURL } = createPokemonCard(
-            pokemonDataArr[i],
-            i,
-        );
-        pokemonCard.addEventListener("click", () =>
-            handlePokemonCardClick(pokemonURL),
-        );
+        const { pokemonCard } = createPokemonCard(pokemonDataArr[i], i);
         main.append(pokemonCard);
     }
 }
@@ -54,6 +60,7 @@ function createPokemonCard(pokemon, index) {
     // create card
     const card = document.createElement("button");
     card.classList.add("main-card-btn-container");
+    card.dataset.url = url;
     const cardHTML = `
         <article class="main-card">
             <figure class="main-card-fig">
@@ -69,7 +76,6 @@ function createPokemonCard(pokemon, index) {
 
     return {
         pokemonCard: card,
-        pokemonURL: url,
     };
 }
 
