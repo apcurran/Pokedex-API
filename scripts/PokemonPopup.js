@@ -1,7 +1,10 @@
 import { showLoader, hideLoader } from "./Loader.js";
 
+// const main = document.querySelector(".main"); // removed with popover API refactor
 /** @type {HTMLElement} */
-const main = document.querySelector(".main");
+const pokemonPopup = document.getElementById("pokemon-popup");
+/** @type {HTMLElement} */
+const popupContent = document.getElementById("popup-content");
 
 /**
  * @param {string} pokemonUrl
@@ -9,6 +12,10 @@ const main = document.querySelector(".main");
  */
 async function handlePokemonCardClick(pokemonUrl) {
     try {
+        pokemonPopup.hidePopover();
+        // remove old pokemon character info
+        popupContent.replaceChildren();
+
         showLoader();
         const data = await getPokemonCharacterData(pokemonUrl);
 
@@ -34,7 +41,9 @@ async function handlePokemonCardClick(pokemonUrl) {
             return;
         }
 
+        // update card HTML data, then show popover
         createPokemonCardPopup(data);
+        pokemonPopup.showPopover();
     } catch (err) {
         console.error(err);
     } finally {
@@ -105,90 +114,48 @@ function createPokemonCardPopup(pokeCardData) {
     const imgSrc = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokeCardData.id}.png`;
 
     const pokeCardHTML = `
-            <div class="popup-container">
-                <article class="poke-main-section popup">
-                    <button class="popup__close-btn" type="button" aria-label="Close">
-                        <svg class="popup__close-btn__x" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
-                    </button>
-                    <section class="poke-main-section-data">
-                        <h2 class="poke-main-section-data-title">${pokeCardData.name}</h2>
-                        <img class="poke-main-section-data-img" src="${imgSrc}" alt="${pokeCardData.name} Pokemon" width="475" height="475">
-                        <p class="poke-main-section-data-body cap-first"><span>Type:</span> ${pokeType}</p>
-                        <p class="poke-main-section-data-body"><span>Weight:</span> ${convertedWeightFromHectogramsToPounds} lbs</p>
-                        <p class="poke-main-section-data-body"><span>Height:</span> ${convertedHeightFromDecimetersToFeet} ft</p>
-                        <p class="poke-main-section-data-body cap-first"><span>Ability:</span> ${pokeCardData.abilities[0].ability.name}</p>
-                    </section>
-                    <section class="poke-main-section-stats">
-                        <h3 class="poke-main-section-stats-title">${pokeCardData.stats[0].stat.name}</h3>
-                        <div class="poke-main-section-stats-prog">
-                            <div class="poke-main-section-stats-prog-bar" style="width: ${stat1Val}%"><small>${stat1Val}%</small></div>
-                        </div>
-                        <h3 class="poke-main-section-stats-title">${pokeCardData.stats[1].stat.name}</h3>
-                        <div class="poke-main-section-stats-prog">
-                            <div class="poke-main-section-stats-prog-bar" style="width: ${stat2Val}%"><small>${stat2Val}%</small></div>
-                        </div>
-                        <h3 class="poke-main-section-stats-title">${pokeCardData.stats[2].stat.name}</h3>
-                        <div class="poke-main-section-stats-prog">
-                            <div class="poke-main-section-stats-prog-bar" style="width: ${stat3Val}%"><small>${stat3Val}%</small></div>
-                        </div>
-                        <h3 class="poke-main-section-stats-title">${pokeCardData.stats[3].stat.name}</h3>
-                        <div class="poke-main-section-stats-prog">
-                            <div class="poke-main-section-stats-prog-bar" style="width: ${stat4Val}%"><small>${stat4Val}%</small></div>
-                        </div>
-                        <h3 class="poke-main-section-stats-title">${pokeCardData.stats[4].stat.name}</h3>
-                        <div class="poke-main-section-stats-prog">
-                            <div class="poke-main-section-stats-prog-bar" style="width: ${stat5Val}%"><small>${stat5Val}%</small></div>
-                        </div>
-                        <h3 class="poke-main-section-stats-title">${pokeCardData.stats[5].stat.name}</h3>
-                        <div class="poke-main-section-stats-prog">
-                            <div class="poke-main-section-stats-prog-bar" style="width: ${stat6Val}%"><small>${stat6Val}%</small></div>
-                        </div>
-                    </section>
-                </article>
-            </div>
+            <article class="poke-main-section popup">
+                <button class="popup__close-btn" type="button" aria-label="Close" popovertarget="pokemon-popup" popovertargetaction="hide">
+                    <svg class="popup__close-btn__x" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+                <section class="poke-main-section-data">
+                    <h2 class="poke-main-section-data-title">${pokeCardData.name}</h2>
+                    <img class="poke-main-section-data-img" src="${imgSrc}" alt="${pokeCardData.name} Pokemon" width="475" height="475">
+                    <p class="poke-main-section-data-body cap-first"><span>Type:</span> ${pokeType}</p>
+                    <p class="poke-main-section-data-body"><span>Weight:</span> ${convertedWeightFromHectogramsToPounds} lbs</p>
+                    <p class="poke-main-section-data-body"><span>Height:</span> ${convertedHeightFromDecimetersToFeet} ft</p>
+                    <p class="poke-main-section-data-body cap-first"><span>Ability:</span> ${pokeCardData.abilities[0].ability.name}</p>
+                </section>
+                <section class="poke-main-section-stats">
+                    <h3 class="poke-main-section-stats-title">${pokeCardData.stats[0].stat.name}</h3>
+                    <div class="poke-main-section-stats-prog">
+                        <div class="poke-main-section-stats-prog-bar" style="width: ${stat1Val}%"><small>${stat1Val}%</small></div>
+                    </div>
+                    <h3 class="poke-main-section-stats-title">${pokeCardData.stats[1].stat.name}</h3>
+                    <div class="poke-main-section-stats-prog">
+                        <div class="poke-main-section-stats-prog-bar" style="width: ${stat2Val}%"><small>${stat2Val}%</small></div>
+                    </div>
+                    <h3 class="poke-main-section-stats-title">${pokeCardData.stats[2].stat.name}</h3>
+                    <div class="poke-main-section-stats-prog">
+                        <div class="poke-main-section-stats-prog-bar" style="width: ${stat3Val}%"><small>${stat3Val}%</small></div>
+                    </div>
+                    <h3 class="poke-main-section-stats-title">${pokeCardData.stats[3].stat.name}</h3>
+                    <div class="poke-main-section-stats-prog">
+                        <div class="poke-main-section-stats-prog-bar" style="width: ${stat4Val}%"><small>${stat4Val}%</small></div>
+                    </div>
+                    <h3 class="poke-main-section-stats-title">${pokeCardData.stats[4].stat.name}</h3>
+                    <div class="poke-main-section-stats-prog">
+                        <div class="poke-main-section-stats-prog-bar" style="width: ${stat5Val}%"><small>${stat5Val}%</small></div>
+                    </div>
+                    <h3 class="poke-main-section-stats-title">${pokeCardData.stats[5].stat.name}</h3>
+                    <div class="poke-main-section-stats-prog">
+                        <div class="poke-main-section-stats-prog-bar" style="width: ${stat6Val}%"><small>${stat6Val}%</small></div>
+                    </div>
+                </section>
+            </article>
         `;
 
-    main.insertAdjacentHTML("afterbegin", pokeCardHTML);
+    popupContent.innerHTML = pokeCardHTML;
 }
-
-function handlePopupCloseViaClick(event) {
-    const popupContainer = main.querySelector(".popup-container");
-
-    if (!popupContainer) return;
-
-    const isOutside = !event.target.closest(".popup");
-    const isPopupCloseBtn = event.target.closest(".popup__close-btn");
-
-    if (isOutside || isPopupCloseBtn) {
-        closePopup(popupContainer);
-    }
-}
-
-function handlePopupCloseViaEscKeypress(event) {
-    const popupContainer = main.querySelector(".popup-container");
-
-    if (event.key !== "Escape" || !popupContainer) return;
-
-    closePopup(popupContainer);
-}
-
-/**
- * @param {HTMLElement} elem
- * @returns {void}
- */
-function closePopup(elem) {
-    // trigger fade anim
-    elem.classList.add("popup-container--fade-out");
-    elem.addEventListener(
-        "animationend",
-        () => {
-            elem.remove();
-        },
-        { once: true },
-    );
-}
-
-document.addEventListener("click", handlePopupCloseViaClick);
-document.addEventListener("keydown", handlePopupCloseViaEscKeypress);
 
 export { handlePokemonCardClick, getPokemonCharacterData };
