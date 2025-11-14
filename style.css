@@ -326,8 +326,8 @@ input:focus {
 }
 
 /* Poke Card Page */
-.popup-container {
-    /* Show on top */
+
+/* .popup-container {
     z-index: 10;
     position: fixed;
     top: 0;
@@ -344,7 +344,6 @@ input:focus {
     animation: fade-in 300ms ease forwards;
 }
 
-/* fade effect */
 .popup-container.popup-container--fade-out {
     pointer-events: none;
     animation: fade-out 300ms ease forwards;
@@ -368,6 +367,10 @@ input:focus {
     to {
         opacity: 0;
     }
+} */
+
+[popover]:popover-open::backdrop {
+    background-color: rgb(0 0 0 / 35%);
 }
 
 .poke-main-section {
@@ -376,7 +379,7 @@ input:focus {
     display: grid;
     grid-template-columns: 0.75fr 1fr;
     gap: 2rem;
-    max-width: 60%;
+    max-width: 100%;
     padding: 3.5rem 2.5rem;
     border-radius: 30px;
     background-color: var(--popup-card-bg);
