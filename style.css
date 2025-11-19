@@ -376,6 +376,7 @@ input:focus {
 
 #pokemon-popup {
     margin: auto;
+    width: min(90%, 60rem);
 }
 
 [popover]:popover-open::backdrop {
@@ -498,9 +499,6 @@ body {
 }
 
 @media screen and (max-width: 80em) {
-    #pokemon-popover {
-        max-width: 92%;
-    }
 }
 
 @media screen and (max-width: 46em) {
