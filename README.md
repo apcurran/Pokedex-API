@@ -21,9 +21,9 @@ Pokedex API
 
     - Real-time search filter for Pokemon
 
-    - Clickable Pokemon cards display a separate pop-up modal with detailed information on a specific character
+    - Clickable Pokemon cards display a separate popover modal (native implementation) with detailed information on a specific character
 
-    - Event delegation
+    - Event delegation utilized
 
 - CSS Grid and Flexbox used throughout
 
@@ -32,5 +32,7 @@ Pokedex API
 - Keyboard-accessible navigation with tabbing, enter to select card (display character stats modal), and escape to close modal
 
 - Scroll-driven background color change animation with Web Animations API (ScrollTimeline)
+
+- Popover animations with native CSS `@starting-style`
 
 Having some fun using vanilla JS with Pokemon characters!
