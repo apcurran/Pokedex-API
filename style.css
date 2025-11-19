@@ -498,7 +498,7 @@ body {
 }
 
 @media screen and (max-width: 80em) {
-    .poke-main-section {
+    #pokemon-popover {
         max-width: 92%;
     }
 }
