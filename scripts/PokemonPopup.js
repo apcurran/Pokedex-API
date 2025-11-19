@@ -1,6 +1,5 @@
 import { showLoader, hideLoader } from "./Loader.js";
 
-// const main = document.querySelector(".main"); // removed with popover API refactor
 /** @type {HTMLElement} */
 const pokemonPopup = document.getElementById("pokemon-popup");
 /** @type {HTMLElement} */
