@@ -376,7 +376,10 @@ input:focus {
 
 #pokemon-popup {
     margin: auto;
-    width: min(90%, 60rem);
+    width: min(94%, 60rem);
+    max-height: 90vh;
+    overflow-y: auto;
+    overscroll-behavior-block: contain;
 }
 
 [popover]:popover-open::backdrop {
@@ -498,21 +501,13 @@ body {
     animation-timeline: scroll(root block);
 }
 
-@media screen and (max-width: 80em) {
-}
-
 @media screen and (max-width: 46em) {
-    .popup {
-        height: 100%;
-        overflow-y: scroll;
-    }
-
     .poke-main-section-stats-prog {
         width: 100%;
     }
 
     .poke-main-section {
-        margin: 3rem;
+        margin: 0;
         grid-template-columns: 1fr;
     }
 
@@ -539,15 +534,10 @@ body {
     .home-form {
         margin-bottom: 2rem;
     }
-
-    .poke-main-section {
-        margin: 1.5rem;
-    }
 }
 
 @media screen and (max-width: 26.5em) {
     .poke-main-section {
-        margin: 1.5rem;
         padding: 2.5rem 2rem;
     }
 
