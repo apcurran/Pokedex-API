@@ -1,7 +1,9 @@
 {
     "compilerOptions": {
         "module": "esnext",
-        "target": "esnext"
+        "target": "esnext",
+        "types": ["cypress"]
     },
+    "include": ["./node_modules/cypress", "cypress/**/*.js"],
     "exclude": ["node_modules"]
 }
