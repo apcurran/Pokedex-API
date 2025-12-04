@@ -37,4 +37,15 @@ describe("Popover functionality", () => {
             .find(".poke-main-section-stats-prog-bar")
             .should("have.length", 6);
     });
+
+    it("should close the popover when the close button is clicked", () => {
+        cy.get(cardSelector).first().click();
+        cy.wait("@getCharacterDetails");
+
+        cy.get(popupSelector).should("be.visible");
+
+        cy.get("button.popup__close-btn").click();
+
+        cy.get(popupSelector).should("not.be.visible");
+    });
 });
