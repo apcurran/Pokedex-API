@@ -32,4 +32,22 @@ describe("Search box functionality", () => {
 
         cy.get(error).should("not.have.class", "home-error--show");
     });
+
+    it("search box should handle case-insensitive queries", () => {
+        const pokemonCharacterName = "mEw";
+        const loweredPokemonCharacterName = pokemonCharacterName.toLowerCase();
+
+        cy.intercept(
+            "GET",
+            `https://pokeapi.co/api/v2/pokemon/${loweredPokemonCharacterName}`,
+        ).as("getCharacterData");
+
+        cy.get(searchInput).type(`${pokemonCharacterName}{enter}`);
+
+        cy.wait("@getCharacterData");
+
+        cy.get(pokemonPopup).should("be.visible");
+
+        cy.get("#popup-content").should("not.be.empty");
+    });
 });
