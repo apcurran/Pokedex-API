@@ -30,18 +30,13 @@ describe("Easter egg functionality", () => {
         cy.get(gif).should("not.exist");
     });
 
-    // it("no easter egg shown when sequence is entered in search input", () => {
-    //     const searchInput = ".home-form-search";
+    it("no easter egg shown when sequence is entered in search input", () => {
+        const searchInput = ".home-form-search";
 
-    //     cy.get(searchInput).focus();
+        cy.get(searchInput).focus();
 
-    //     cy.get(searchInput).type(secretCode);
+        cy.get(searchInput).type(secretCode);
 
-    //     cy.get(gif).should("not.exist");
-
-    //     cy.get(searchInput).should(
-    //         "have.value",
-    //         /"ArrowUpArrowDownArrowLeftArrowLeftArrowRight"/i,
-    //     );
-    // });
+        cy.get(gif).should("not.exist");
+    });
 });
