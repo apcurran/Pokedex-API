@@ -12,4 +12,13 @@ describe("Easter egg functionality", () => {
 
         cy.get(gif).should("be.visible");
     });
+
+    it("no easter egg shown when incorrect sequence entered", () => {
+        const incorrectSecretCode =
+            "{uparrow}{uparrow}{leftarrow}{leftarrow}{leftarrow}";
+
+        cy.get("body").type(incorrectSecretCode);
+
+        cy.get(gif).should("not.exist");
+    });
 });
