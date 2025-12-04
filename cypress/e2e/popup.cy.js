@@ -3,8 +3,6 @@ describe("Popover functionality", () => {
     const popupSelector = "#pokemon-popup";
     const popupContentSelector = "#popup-content";
     const popupArticleSelector = ".poke-main-section";
-    const characterName = "bulbasaur";
-    const characterId = "001";
 
     beforeEach(() => {
         cy.intercept("GET", "**/api/v2/pokemon?offset=0&limit=50").as(
