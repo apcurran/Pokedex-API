@@ -50,4 +50,24 @@ describe("Search box functionality", () => {
 
         cy.get("#popup-content").should("not.be.empty");
     });
+
+    it("should show an error message when a non-existent character is searched", () => {
+        const notAPokemon = "thisdoesnotexist";
+
+        cy.intercept(
+            "GET",
+            `https://pokeapi.co/api/v2/pokemon/${notAPokemon}`,
+        ).as("getInvalidData");
+
+        cy.get(searchInput).type(`${notAPokemon}{enter}`);
+
+        cy.wait("@getInvalidData");
+
+        cy.get(error)
+            .should("be.visible")
+            .and("have.class", "home-error--show")
+            .and("not.be.empty");
+
+        cy.get(pokemonPopup).should("not.be.visible");
+    });
 });
