@@ -1,3 +1,4 @@
+const GIF_DURATION_MS = 7_000;
 const secretCode = "ArrowUpArrowDownArrowLeftArrowLeftArrowRight";
 // Data
 let pressed = [];
@@ -25,7 +26,7 @@ function addPokeGif() {
     gifIframe.height = 480;
 
     document.body.append(gifIframe);
-    setTimeout(() => gifIframe.remove(), 7000);
+    setTimeout(() => gifIframe.remove(), GIF_DURATION_MS);
 }
 
 document.addEventListener("keydown", checkForCodeSequence);
