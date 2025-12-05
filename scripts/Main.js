@@ -1,15 +1,9 @@
 import { getPokemonData, renderPokemonCardsGrid } from "./PokemonCardsGrid.js";
-import {
-    paginationNextBtn,
-    paginationPrevBtn,
-    paginationBtnHideClass,
-    togglePaginationBtnVisibility,
-    updatePaginationState,
-} from "./Pagination.js";
+import { updatePaginationUI } from "./Pagination.js";
 import { showLoader, hideLoader } from "./Loader.js";
 
 /**
- * @returns {void}
+ * @returns {Promise<void>}
  */
 async function init() {
     try {
@@ -17,21 +11,12 @@ async function init() {
         const apiEndpoint = `https://pokeapi.co/api/v2/pokemon?offset=0&limit=${POKEMON_PER_PAGE}`;
 
         showLoader();
+
         const { pokemonData, paginationUrlNext, paginationUrlPrev } =
             await getPokemonData(apiEndpoint);
         renderPokemonCardsGrid(pokemonData);
 
-        updatePaginationState(paginationUrlNext, paginationUrlPrev);
-        togglePaginationBtnVisibility(
-            paginationUrlNext,
-            paginationNextBtn,
-            paginationBtnHideClass,
-        );
-        togglePaginationBtnVisibility(
-            paginationUrlPrev,
-            paginationPrevBtn,
-            paginationBtnHideClass,
-        );
+        updatePaginationUI(paginationUrlNext, paginationUrlPrev);
     } catch (err) {
         console.error(err);
     } finally {

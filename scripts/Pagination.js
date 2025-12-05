@@ -1,7 +1,6 @@
 import { renderPokemonCardsGrid, getPokemonData } from "./PokemonCardsGrid.js";
 import { showLoader, hideLoader } from "./Loader.js";
 
-// DOM elem refs
 const paginationNextBtn = document.getElementById(
     "pagination-controls__btn--next",
 );
@@ -11,60 +10,50 @@ const paginationPrevBtn = document.getElementById(
 const paginationBtnHideClass = "btn--hide";
 const main = document.querySelector(".main");
 
-// Data
-let pagination = {
-    nextUrl: "",
-    prevUrl: "",
-};
-
 /**
- * @param {string} paginationUrl
- * @param {HTMLButtonElement} paginationBtn
- * @param {string} elemHideClass
+ * Side-effects to DOM state here
+ *
+ * @param {string|null} nextURL
+ * @param {string|null} previousURL
  * @returns {void}
  */
-function togglePaginationBtnVisibility(
-    paginationUrl,
-    paginationBtn,
-    elemHideClass,
-) {
-    if (paginationUrl === null) {
-        return paginationBtn.classList.add(elemHideClass);
-    }
+function updatePaginationUI(nextURL, previousURL) {
+    // update data-url attribute (DOM now holds single source of state)
+    paginationNextBtn.dataset.url = nextURL || "";
+    paginationPrevBtn.dataset.url = previousURL || "";
 
-    const btnElemHasHideClass = paginationBtn.classList.contains(elemHideClass);
-
-    if (btnElemHasHideClass) {
-        return paginationBtn.classList.remove(elemHideClass);
-    }
+    // update visibility of buttons to user
+    paginationNextBtn.classList.toggle(
+        paginationBtnHideClass,
+        nextURL === null, // if nextURL is null (from API), add hide class
+    );
+    paginationPrevBtn.classList.toggle(
+        paginationBtnHideClass,
+        previousURL === null,
+    );
 }
 
 /**
- * @param {"nextUrl"|"prevUrl"} type
- * @returns {void}
+ * @param {HTMLButtonElement} buttonClicked
+ * @returns {Promise<void>}
  */
-async function handlePaginationClick(type) {
+async function handlePaginationClick(buttonClicked) {
     try {
         // Clear prev pokemon cards first
         main.replaceChildren();
         showLoader();
 
-        const apiURL = pagination[type];
+        const apiURL = buttonClicked.dataset.url;
+
+        if (!apiURL) {
+            return;
+        }
+
         const { pokemonData, paginationUrlNext, paginationUrlPrev } =
             await getPokemonData(apiURL);
         renderPokemonCardsGrid(pokemonData);
 
-        updatePaginationState(paginationUrlNext, paginationUrlPrev);
-        togglePaginationBtnVisibility(
-            paginationUrlNext,
-            paginationNextBtn,
-            paginationBtnHideClass,
-        );
-        togglePaginationBtnVisibility(
-            paginationUrlPrev,
-            paginationPrevBtn,
-            paginationBtnHideClass,
-        );
+        updatePaginationUI(paginationUrlNext, paginationUrlPrev);
     } catch (err) {
         console.error(err);
     } finally {
@@ -72,28 +61,11 @@ async function handlePaginationClick(type) {
     }
 }
 
-/**
- * @param {string} nextURL
- * @param {string} previousURL
- * @returns {void}
- */
-function updatePaginationState(nextURL, previousURL) {
-    pagination.nextUrl = nextURL;
-    pagination.prevUrl = previousURL;
-}
-
-// Event listeners
-paginationNextBtn.addEventListener("click", () =>
-    handlePaginationClick("nextUrl"),
+paginationNextBtn.addEventListener("click", (event) =>
+    handlePaginationClick(event.currentTarget),
 );
-paginationPrevBtn.addEventListener("click", () =>
-    handlePaginationClick("prevUrl"),
+paginationPrevBtn.addEventListener("click", (event) =>
+    handlePaginationClick(event.currentTarget),
 );
 
-export {
-    paginationNextBtn,
-    paginationPrevBtn,
-    paginationBtnHideClass,
-    togglePaginationBtnVisibility,
-    updatePaginationState,
-};
+export { updatePaginationUI };
