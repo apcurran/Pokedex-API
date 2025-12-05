@@ -8,6 +8,11 @@ form.addEventListener("submit", function getSinglePokemonSearch(event) {
 
     try {
         const lowerSearchValue = searchInput.value.trim().toLowerCase();
+
+        if (!lowerSearchValue) {
+            return;
+        }
+
         const apiUrl = `https://pokeapi.co/api/v2/pokemon/${lowerSearchValue}`;
         handlePokemonCardClick(apiUrl);
     } catch (err) {
