@@ -16,6 +16,7 @@ async function handlePokemonCardClick(pokemonUrl) {
         popupContent.replaceChildren();
 
         showLoader();
+
         const data = await getPokemonCharacterData(pokemonUrl);
 
         if (data instanceof Error) {
@@ -46,7 +47,6 @@ function displayError(data) {
     setTimeout(() => {
         // fade out elem
         errorElem.classList.remove("home-error--show");
-
         errorElem.addEventListener(
             "animationend",
             () => {
