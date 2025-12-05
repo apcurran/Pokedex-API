@@ -40,7 +40,7 @@ async function getPokemonData(apiUrl) {
 }
 
 /**
- * @param {array} pokemonDataArr
+ * @param {[]} pokemonDataArr
  * @returns {void}
  */
 function renderPokemonCardsGrid(pokemonDataArr) {

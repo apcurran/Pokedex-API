@@ -7,7 +7,7 @@ const popupContent = document.getElementById("popup-content");
 
 /**
  * @param {string} pokemonUrl
- * @returns {void}
+ * @returns {Promise<void>}
  */
 async function handlePokemonCardClick(pokemonUrl) {
     try {
@@ -60,7 +60,7 @@ function displayError(data) {
 
 /**
  * @param {string} pokemonUrl
- * @returns {Promise|null}
+ * @returns {Promise<any>}
  */
 async function getPokemonCharacterData(pokemonUrl) {
     try {
