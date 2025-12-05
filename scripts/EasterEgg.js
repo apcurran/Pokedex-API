@@ -3,6 +3,10 @@ const secretCode = "ArrowUpArrowDownArrowLeftArrowLeftArrowRight";
 // Data
 let pressed = [];
 
+/**
+ * @param {KeyboardEvent} event
+ * @returns {void}
+ */
 function checkForCodeSequence(event) {
     // Ignore searchbar keypresses
     if (event.target.matches(".home-form-search")) return;
@@ -10,9 +14,13 @@ function checkForCodeSequence(event) {
     pressed.push(event.key);
     pressed.splice(0, pressed.length - secretCode.length);
 
-    const word = pressed.join("");
+    const pressedCode = pressed.join("");
 
-    if (word.includes(secretCode)) addPokeGif();
+    if (pressedCode === secretCode) {
+        addPokeGif();
+        // reset the state after correct code inputted
+        pressed = [];
+    }
 }
 
 function addPokeGif() {
