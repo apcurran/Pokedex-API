@@ -14,9 +14,9 @@
     "author": "Alex Curran",
     "license": "ISC",
     "devDependencies": {
-        "cypress": "^15.7.1",
-        "oxlint": "^1.28.0",
-        "prettier": "3.6.2",
+        "cypress": "^15.8.0",
+        "oxlint": "^1.33.0",
+        "prettier": "3.7.4",
         "serve": "^14.2.5"
     }
 }
