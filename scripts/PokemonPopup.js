@@ -106,12 +106,8 @@ function createPokemonCardPopup(pokeCardData) {
     // Set popup bg color to CSS var
     document.documentElement.style.setProperty("--popup-card-bg", pokeColor);
 
-    const convertedWeightFromHectogramsToPounds = (
-        pokeCardData.weight / 4.536
-    ).toFixed(2);
-    const convertedHeightFromDecimetersToFeet = (
-        pokeCardData.height / 3.048
-    ).toFixed(2);
+    const convertedWeightFromHectogramsToPounds = (pokeCardData.weight / 4.536).toFixed(2);
+    const convertedHeightFromDecimetersToFeet = (pokeCardData.height / 3.048).toFixed(2);
     const stat1Val = pokeCardData.stats[0].base_stat;
     const stat2Val = pokeCardData.stats[1].base_stat;
     const stat3Val = pokeCardData.stats[2].base_stat;

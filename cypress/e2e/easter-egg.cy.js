@@ -22,8 +22,7 @@ describe("Easter egg functionality", () => {
     });
 
     it("no easter egg shown when incorrect sequence entered", () => {
-        const incorrectSecretCode =
-            "{uparrow}{uparrow}{leftarrow}{leftarrow}{leftarrow}";
+        const incorrectSecretCode = "{uparrow}{uparrow}{leftarrow}{leftarrow}{leftarrow}";
 
         cy.get("body").type(incorrectSecretCode);
 

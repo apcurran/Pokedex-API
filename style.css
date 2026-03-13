@@ -168,11 +168,7 @@ input:focus {
     align-items: center;
     padding: 2rem;
     background: #c3dafe; /* fallback */
-    background: linear-gradient(
-        to bottom,
-        hsl(221, 90%, 86%),
-        hsl(217, 97%, 88%)
-    );
+    background: linear-gradient(to bottom, hsl(221, 90%, 86%), hsl(217, 97%, 88%));
     border-radius: 20px;
     box-shadow: 0 6px 9px rgba(0, 0, 0, 0.165);
     overflow-x: hidden;
@@ -186,11 +182,7 @@ input:focus {
         position: absolute;
         inset: 0;
         z-index: 1;
-        background-image: linear-gradient(
-            115deg,
-            rgb(0, 231, 255) 0%,
-            rgb(255, 0, 231) 100%
-        );
+        background-image: linear-gradient(115deg, rgb(0, 231, 255) 0%, rgb(255, 0, 231) 100%);
         opacity: 0.35;
         transform: scaleX(4);
         transform-origin: left;

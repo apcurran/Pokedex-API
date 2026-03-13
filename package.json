@@ -2,19 +2,20 @@
     "name": "pokedex-api",
     "version": "1.0.0",
     "description": "Pokedex API",
+    "license": "ISC",
+    "author": "Alex Curran",
     "main": "main.js",
     "scripts": {
         "dev": "npx serve",
         "lint": "npx oxlint .",
         "lint:fix": "npx oxlint --fix .",
-        "format": "npx prettier . --write",
+        "format": "npx oxfmt",
         "cy:open": "npx cypress open",
         "cy:run": "npx cypress run"
     },
-    "author": "Alex Curran",
-    "license": "ISC",
     "devDependencies": {
         "cypress": "^15.10.0",
+        "oxfmt": "^0.40.0",
         "oxlint": "^1.43.0",
         "prettier": "3.8.1",
         "serve": "^14.2.5"

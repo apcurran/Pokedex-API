@@ -6,19 +6,15 @@ describe("Pagination functionality", () => {
     const POKEMON_COUNT = 50;
 
     beforeEach(() => {
-        cy.intercept(
-            "GET",
-            `**/api/v2/pokemon?offset=0&limit=${POKEMON_COUNT}`,
-        ).as("initialLoad");
+        cy.intercept("GET", `**/api/v2/pokemon?offset=0&limit=${POKEMON_COUNT}`).as("initialLoad");
         cy.visit("/");
         cy.wait("@initialLoad");
     });
 
     it("should navigate to the next page and show both previous and next pagination buttons", () => {
-        cy.intercept(
-            "GET",
-            `**/api/v2/pokemon?offset=50&limit=${POKEMON_COUNT}`,
-        ).as("nextPageLoad");
+        cy.intercept("GET", `**/api/v2/pokemon?offset=50&limit=${POKEMON_COUNT}`).as(
+            "nextPageLoad",
+        );
 
         // previous button is hidden on first page
         cy.get(previousButton).should("have.class", cardHideClass);
@@ -39,12 +35,8 @@ describe("Pagination functionality", () => {
     });
 
     it("should navigate back to the first page, and navigation previous should be hidden", () => {
-        cy.intercept("GET", "**/api/v2/pokemon?offset=50&limit=50").as(
-            "pageTwoLoad",
-        );
-        cy.intercept("GET", "**/api/v2/pokemon?offset=0&limit=50").as(
-            "pageOneLoad",
-        );
+        cy.intercept("GET", "**/api/v2/pokemon?offset=50&limit=50").as("pageTwoLoad");
+        cy.intercept("GET", "**/api/v2/pokemon?offset=0&limit=50").as("pageOneLoad");
 
         // move to second page
         cy.get(nextButton).click();

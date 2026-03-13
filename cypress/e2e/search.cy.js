@@ -4,10 +4,9 @@ describe("Search box functionality", () => {
     const error = ".home-error";
 
     beforeEach(() => {
-        cy.intercept(
-            "GET",
-            "https://pokeapi.co/api/v2/pokemon?offset=0&limit=50",
-        ).as("getPokemonCharactersData");
+        cy.intercept("GET", "https://pokeapi.co/api/v2/pokemon?offset=0&limit=50").as(
+            "getPokemonCharactersData",
+        );
 
         cy.visit("/");
 
@@ -17,10 +16,9 @@ describe("Search box functionality", () => {
     it("should successfully search a pokemon character and render the popup with the character's data", () => {
         const pokemonCharacterName = "mew";
 
-        cy.intercept(
-            "GET",
-            `https://pokeapi.co/api/v2/pokemon/${pokemonCharacterName}`,
-        ).as("getCharacterData");
+        cy.intercept("GET", `https://pokeapi.co/api/v2/pokemon/${pokemonCharacterName}`).as(
+            "getCharacterData",
+        );
 
         cy.get(searchInput).type(`${pokemonCharacterName}{enter}`);
 
@@ -37,10 +35,9 @@ describe("Search box functionality", () => {
         const pokemonCharacterName = "mEw";
         const loweredPokemonCharacterName = pokemonCharacterName.toLowerCase();
 
-        cy.intercept(
-            "GET",
-            `https://pokeapi.co/api/v2/pokemon/${loweredPokemonCharacterName}`,
-        ).as("getCharacterData");
+        cy.intercept("GET", `https://pokeapi.co/api/v2/pokemon/${loweredPokemonCharacterName}`).as(
+            "getCharacterData",
+        );
 
         cy.get(searchInput).type(`${pokemonCharacterName}{enter}`);
 
@@ -54,10 +51,9 @@ describe("Search box functionality", () => {
     it("should show an error message when a non-existent character is searched", () => {
         const notAPokemon = "thisdoesnotexist";
 
-        cy.intercept(
-            "GET",
-            `https://pokeapi.co/api/v2/pokemon/${notAPokemon}`,
-        ).as("getInvalidData");
+        cy.intercept("GET", `https://pokeapi.co/api/v2/pokemon/${notAPokemon}`).as(
+            "getInvalidData",
+        );
 
         cy.get(searchInput).type(`${notAPokemon}{enter}`);
 

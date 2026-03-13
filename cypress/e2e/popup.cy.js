@@ -5,9 +5,7 @@ describe("Popover functionality", () => {
     const popupArticleSelector = ".poke-main-section";
 
     beforeEach(() => {
-        cy.intercept("GET", "**/api/v2/pokemon?offset=0&limit=50").as(
-            "initialLoad",
-        );
+        cy.intercept("GET", "**/api/v2/pokemon?offset=0&limit=50").as("initialLoad");
         cy.visit("/");
         cy.wait("@initialLoad");
 
@@ -19,9 +17,7 @@ describe("Popover functionality", () => {
 
         cy.wait("@getCharacterDetails");
 
-        cy.get(popupSelector)
-            .should("be.visible")
-            .and("have.attr", "popover", "auto");
+        cy.get(popupSelector).should("be.visible").and("have.attr", "popover", "auto");
 
         cy.get(popupContentSelector).should("not.be.empty");
 

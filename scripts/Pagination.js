@@ -1,12 +1,8 @@
 import { renderPokemonCardsGrid, getPokemonData } from "./PokemonCardsGrid.js";
 import { showLoader, hideLoader } from "./Loader.js";
 
-const paginationNextBtn = document.getElementById(
-    "pagination-controls__btn--next",
-);
-const paginationPrevBtn = document.getElementById(
-    "pagination-controls__btn--prev",
-);
+const paginationNextBtn = document.getElementById("pagination-controls__btn--next");
+const paginationPrevBtn = document.getElementById("pagination-controls__btn--prev");
 const paginationBtnHideClass = "btn--hide";
 const main = document.querySelector(".main");
 
@@ -27,10 +23,7 @@ function updatePaginationUI(nextURL, previousURL) {
         paginationBtnHideClass,
         nextURL === null, // if nextURL is null (from API), add hide class
     );
-    paginationPrevBtn.classList.toggle(
-        paginationBtnHideClass,
-        previousURL === null,
-    );
+    paginationPrevBtn.classList.toggle(paginationBtnHideClass, previousURL === null);
 }
 
 /**
@@ -49,8 +42,7 @@ async function handlePaginationClick(buttonClicked) {
             return;
         }
 
-        const { pokemonData, paginationUrlNext, paginationUrlPrev } =
-            await getPokemonData(apiURL);
+        const { pokemonData, paginationUrlNext, paginationUrlPrev } = await getPokemonData(apiURL);
         renderPokemonCardsGrid(pokemonData);
 
         updatePaginationUI(paginationUrlNext, paginationUrlPrev);
@@ -61,11 +53,7 @@ async function handlePaginationClick(buttonClicked) {
     }
 }
 
-paginationNextBtn.addEventListener("click", (event) =>
-    handlePaginationClick(event.currentTarget),
-);
-paginationPrevBtn.addEventListener("click", (event) =>
-    handlePaginationClick(event.currentTarget),
-);
+paginationNextBtn.addEventListener("click", (event) => handlePaginationClick(event.currentTarget));
+paginationPrevBtn.addEventListener("click", (event) => handlePaginationClick(event.currentTarget));
 
 export { updatePaginationUI };

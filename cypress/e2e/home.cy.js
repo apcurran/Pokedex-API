@@ -1,9 +1,8 @@
 describe("Home page initial load with essential parts rendering correctly", () => {
     beforeEach(() => {
-        cy.intercept(
-            "GET",
-            "https://pokeapi.co/api/v2/pokemon?offset=0&limit=50",
-        ).as("getPokemonCharactersData");
+        cy.intercept("GET", "https://pokeapi.co/api/v2/pokemon?offset=0&limit=50").as(
+            "getPokemonCharactersData",
+        );
 
         cy.visit("/");
 
