@@ -148,10 +148,15 @@ input:focus {
     grid-gap: 1.5rem;
 }
 
+.main-card-btn-container,
+.main-card {
+    border-radius: 20px;
+    corner-shape: squircle;
+}
+
 .main-card-btn-container {
     background: none;
     border: none;
-    border-radius: 20px;
     cursor: pointer;
 }
 
@@ -169,7 +174,6 @@ input:focus {
     padding: 2rem;
     background: #c3dafe; /* fallback */
     background: linear-gradient(to bottom, hsl(221, 90%, 86%), hsl(217, 97%, 88%));
-    border-radius: 20px;
     box-shadow: 0 6px 9px rgba(0, 0, 0, 0.165);
     overflow-x: hidden;
 }
