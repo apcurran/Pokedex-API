@@ -322,9 +322,11 @@ input:focus {
 }
 
 #pokemon-popup,
-#popup-content {
+#popup-content,
+.poke-main-section {
     border-radius: 30px;
     border: none;
+    corner-shape: squircle;
 }
 
 /* OPEN state */
@@ -388,7 +390,6 @@ input:focus {
     gap: 2rem;
     max-width: 100%;
     padding: 3.5rem 2.5rem;
-    border-radius: 30px;
     background-color: var(--popup-card-bg);
     box-shadow: 0 9px 22px -4px rgba(0, 0, 0, 0.185);
 }
