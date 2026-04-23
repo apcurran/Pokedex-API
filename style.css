@@ -36,6 +36,12 @@ input:focus {
     text-transform: capitalize;
 }
 
+.tooltip {
+    text-decoration: underline dotted;
+    text-underline-offset: 4px;
+    cursor: help;
+}
+
 .home {
     margin-top: 3rem;
     display: flex;
