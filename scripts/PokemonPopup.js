@@ -1,4 +1,5 @@
 import { showLoader, hideLoader } from "./Loader.js";
+import { initAbilityTooltip } from "./ToolTip.js";
 
 /** @type {HTMLElement} */
 const pokemonPopup = document.getElementById("pokemon-popup");
@@ -163,6 +164,7 @@ function createPokemonCardPopup(pokeCardData) {
         `;
 
     popupContent.innerHTML = pokeCardHTML;
+    initAbilityTooltip();
 }
 
 export { handlePokemonCardClick, getPokemonCharacterData };
