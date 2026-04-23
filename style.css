@@ -36,7 +36,7 @@ input:focus {
     text-transform: capitalize;
 }
 
-.tooltip {
+.tooltip-trigger {
     text-decoration: underline dotted;
     text-underline-offset: 4px;
     cursor: help;

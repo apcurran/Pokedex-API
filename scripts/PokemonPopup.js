@@ -128,7 +128,8 @@ function createPokemonCardPopup(pokeCardData) {
                     <p class="poke-main-section-data-body"><span>Weight:</span> ${convertedWeightFromHectogramsToPounds} lbs</p>
                     <p class="poke-main-section-data-body"><span>Height:</span> ${convertedHeightFromDecimetersToFeet} ft</p>
                     <p class="poke-main-section-data-body cap-first">
-                        <span class="tooltip">Ability:</span>
+                        <span id="ability-tooltip-trigger" class="tooltip-trigger">Ability:</span>
+                        <span id="ability-tooltip" class="tooltip">Hidden tooltip content here...</span>
                         ${pokeCardData.abilities[0].ability.name}
                     </p>
                 </section>
