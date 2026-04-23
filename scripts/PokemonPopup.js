@@ -129,7 +129,7 @@ function createPokemonCardPopup(pokeCardData) {
                     <p class="poke-main-section-data-body"><span>Height:</span> ${convertedHeightFromDecimetersToFeet} ft</p>
                     <p class="poke-main-section-data-body cap-first">
                         <span id="ability-tooltip-trigger" class="tooltip-trigger" popovertarget="ability-tooltip">Ability:</span>
-                        <span id="ability-tooltip" class="tooltip" popover>Hidden tooltip content here...</span>
+                        <span id="ability-tooltip" class="tooltip" popover="hint">Hidden tooltip content here...</span>
                         ${pokeCardData.abilities[0].ability.name}
                     </p>
                 </section>
