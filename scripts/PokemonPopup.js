@@ -130,7 +130,10 @@ function createPokemonCardPopup(pokeCardData) {
                     <p class="poke-main-section-data-body"><span>Height:</span> ${convertedHeightFromDecimetersToFeet} ft</p>
                     <p class="poke-main-section-data-body cap-first">
                         <span id="ability-tooltip-trigger" class="tooltip-trigger" popovertarget="ability-tooltip">Ability:</span>
-                        <span id="ability-tooltip" class="tooltip" popover="hint">Hidden tooltip content here...</span>
+                        <span id="ability-tooltip" class="tooltip" popover="hint">
+                            Each Pokémon has one or more passive characteristics or powers called, <strong>abilities</strong>.
+                            Some abilities are exclusive to certain Pokémon and their evolutions.
+                        </span>
                         ${pokeCardData.abilities[0].ability.name}
                     </p>
                 </section>
