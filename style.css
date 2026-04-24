@@ -45,7 +45,7 @@ input:focus {
 }
 
 #ability-tooltip {
-    margin-top: 0.75rem;
+    margin-top: 0.5rem;
     border: none;
     padding: 1rem 2rem;
     corner-shape: squircle;
@@ -56,6 +56,7 @@ input:focus {
 
     position-anchor: --tooltip-anchor;
     position-area: bottom;
+    position-try-fallbacks: flip-block;
 }
 
 .home {

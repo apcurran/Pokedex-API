@@ -132,7 +132,7 @@ function createPokemonCardPopup(pokeCardData) {
                         <span id="ability-tooltip-trigger" class="tooltip-trigger" popovertarget="ability-tooltip">Ability:</span>
                         <span id="ability-tooltip" class="tooltip" popover="hint">
                             Each Pokémon has one or more passive characteristics or powers called, <strong>abilities</strong>.
-                            Some abilities are exclusive to certain Pokémon and their evolutions.
+                            Some abilities are exclusive to certain Pokémon and their evolutions, while others are widely known amongst them.
                         </span>
                         ${pokeCardData.abilities[0].ability.name}
                     </p>
